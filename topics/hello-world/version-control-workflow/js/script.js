@@ -53,31 +53,31 @@ function draw() {
         pop();
     }
 
-    // Draw a red circle at the position of the mouse
-    push();
+    // Draw a red circle at the position of the mouse (((I CHANGED THIS TO SPACESHIP)))
+    push(); 
     // No line around the shape
     noStroke();
  
     // Make it DARK (RGB)
     fill(40, 20, 40);
-    // Draw a 100x100 circle at the mouse position
-    // Spaceship width
-    ellipse(mouseX, mouseY, 340, 45);
-         //spaceship top and bottom (head and tail)
-    ellipse(mouseX, mouseY - 20, 130, 70);
-    //lights on ship, starting from the middle to the extremities
+        /////// used to be --Draw a 100x100 circle at the mouse position
+        // NOW IS Spaceship width
+        ellipse(mouseX, mouseY, 340, 45);
+        //spaceship top and bottom (head and tail)
+        ellipse(mouseX, mouseY - 20, 130, 70);
+        //lights on ship, starting from the middle to the extremities
     fill(100,100,100);
-    ellipse(mouseX, mouseY + 14, 9, 6);
-    ellipse(mouseX + 60, mouseY + 14, 9, 6);
-    ellipse(mouseX - 60, mouseY + 14, 9, 6);
-    ellipse(mouseX + 110, mouseY + 10, 8, 5);
-    ellipse(mouseX - 110, mouseY + 10, 8, 5);
-    ellipse(mouseX + 155, mouseY + 2, 7, 4);
-    ellipse(mouseX - 155, mouseY + 2, 7, 4);
+        ellipse(mouseX, mouseY + 14, 9, 6);
+        ellipse(mouseX + 60, mouseY + 14, 9, 6);
+        ellipse(mouseX - 60, mouseY + 14, 9, 6);
+        ellipse(mouseX + 110, mouseY + 10, 8, 5);
+        ellipse(mouseX - 110, mouseY + 10, 8, 5);
+        ellipse(mouseX + 155, mouseY + 2, 7, 4);
+        ellipse(mouseX - 155, mouseY + 2, 7, 4);
 
     //shine on cap
-    fill(40,30,60);
-    ellipse(mouseX + 30, mouseY - 40, 17, 10);
+    fill(50,40,70);
+        ellipse(mouseX + 30, mouseY - 40, 17, 10);
    
     pop();
 }
