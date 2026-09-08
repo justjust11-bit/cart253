@@ -1,6 +1,6 @@
 # TITLE OF PROJECT
 
-AUTHOR NAME
+JUSTINE CORMIER
 
 [View this project online](https://justjust11-bit.github.io/cart253/topics/hello-world/version-control-workflow/)
 
