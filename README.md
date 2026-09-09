@@ -2,7 +2,7 @@
 ## Course repository for CART253 (autumn 2026)
 
 
-![Banner](ufo.png)
+![Banner](.\Images\ufo.png)
 
 A paragraph describing the purpose of the website (to collect together and show off your prototyping work in this course)
 A sub-section of useful links to
