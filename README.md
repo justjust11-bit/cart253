@@ -2,8 +2,8 @@
 ##Course repository for CART253 (autumn 2026)
 
 
-![Banner](cart253\Images\ufo.png)
-Remember you will need to write the path to the image (ideally make an images folder in your repository and put it in there)
+![Banner](cart253/Images/ufo.png)
+
 A paragraph describing the purpose of the website (to collect together and show off your prototyping work in this course)
 A sub-section of useful links to
 any of your other web-presences you want to link to
