@@ -1,0 +1,7 @@
+# Reflective journal
+
+## September 9th 2026
+
+This is my first journal entry for my CART253 class. I used Github to host my website page for the class, and created this journal page you are currently reading. I used Markdown to format the pages. Initially when I read that we were going to use Markdown, I thought it would be an app or a mod, and I was surprised to see that it was the markers used on different websites such as Reddit. I'm familiar with the ones used on Youtube, and formerly Hangouts, and Google+, so it was not too difficult for me understand the concept.
+
+I started editing the README.md on the Github web page initially, then realized I was better off using VScode instead. I hadn't read all of the instructions before I started so I didn't know about the Markdown open preview, so I did many (too many) commits, trying to fix a problem I had with uploading an image. I'm looking forward to being able to apply Markdown more smoothly and to make small works of art using code. My aspiration when making art is to be able to make something that surprises people, that makes them think, or that makes them feel any sort of emotion. If the viewer feels an emotion when looking at my art, I feel proud of my work. I also like being able to surpass my own expectations. I feel satisfied when I do something that I have never done before, and use tools in different ways. I hope I can make works I can be proud of in this class!
