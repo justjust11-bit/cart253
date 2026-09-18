@@ -23,13 +23,18 @@ function setup() {
 function draw() {
     // night sky aka background
     background(40, 40, 90)
+ 
     
     //no stroke everywhere
     noStroke();
     
+    // house includes the pig
+    drawWolf();
+    drawWolfOutline();
     drawGround();
     drawMoon();
     drawHouse();
+    
 }
 
 /**
@@ -94,48 +99,80 @@ function drawHouse() {
     
     }
     
+
     function drawWindow() {
        
          
-    let c = color(255, 204, 0);
+        let c = color(255, 204, 0);
         // window
         push();
-        fill(102,52,40);
-        rect(470, 250, 60, 60, 3);
+        fill(102, 52, 40);
+        rect(470, 249, 60, 60, 3);
         pop();
         
         // inside house shine, added opacity
         push();
         fill(255, 255, 200, 40);
-        ellipse(110, 100, 150, 150);
+        ellipse(500, 290, 50, 50, 3);
         c.setAlpha(100);
         pop();
     }
+
+
+    
+        function drawPig() {
+            // pig head
+            push();
+            fill(26, 20, 15);
+            ellipse(500, 290, 28, 30);
+            pop();
+        
+            //pig body
+            push();
+            fill(22, 20, 15);
+            ellipse(503, 315, 40, 30);
+            pop();
+        
+            // pig ear
+            push();
+            fill(22, 20, 15);
+            triangle(500, 280, 500, 270, 511, 280);
+            pop();
+        
+            //pig snout
+            push();
+            fill(26, 20, 15);
+            ellipse(487, 292, 10, 10);
+            pop();
+        }
+    }
+
+function drawWolf() {
+
+    // wolf head
+    //snout
+    push();
+    fill(22, 20, 15);
+    rect(140, 280, 60, 38, 6);
+    //top part of head
+    rect(140, 270, 30, 20, 10);
+    pop();
+    
+    //wolf ears
     
     
-    function drawPig() {
-        // pig head
-        push();
-        fill(26, 20, 15);
-        ellipse(500, 290, 28, 30);
-        pop();
-        
-        //pig body
-        push();
-        fill(22, 20, 15);
-        ellipse(503, 315, 40, 30);
-        pop();
-        
-        // pig ear
-        push();
-        fill(22, 20, 15);
-        triangle(500, 280, 500, 270, 511, 280);
-        pop();
-        
-        //pig snout
-        push();
-        fill(26, 20, 15);
-        ellipse(487, 292, 10, 10);
-        pop();
-    } 
+    
+    //wolf body
+    push();
+    fill(22, 20, 15);
+    ellipse(140, 355, 80, 110);
+    pop();
+}
+    
+function drawWolfOutline() {
+    // blends in with background, used to make wolf body shaped better
+    push();
+    fill(40, 40, 90);
+    rect(160, 302, 80, 100, 30);
+    pop();
 }
