@@ -13,6 +13,7 @@
 */
 function setup() {
     createCanvas(640, 480);
+    
 }
 
 
@@ -44,14 +45,30 @@ function drawGround() {
  * Draws the moon
  */
 function drawMoon() {
+    
+    // MOON SHINE, alpha AKA opacity of the moon, making it glow
+    let c = color(255, 204, 0);
+    
+    //moon
+    push();
     fill(255, 255, 200);
     ellipse(110, 100, 100, 100);
+    pop();
+    
+    //moon glow
+    push();
+    fill(255, 255, 200, 40);
+    ellipse(110, 100, 150, 150);
+    c.setAlpha(100);
+    pop();
+    
+    
 }
 
 function drawHouse() {
     drawBody();
-    // drawWindow();
-    // drawPig();
+    drawWindow();
+    drawPig();
     
     /**
      * Draws the body AND THE ROOF and CHIMNEYof the house
@@ -60,20 +77,65 @@ function drawHouse() {
         // house body
         push();
         fill(22, 20, 15);
-        rect(180, 200, 240, 200);
+        rect(350, 200, 240, 200);
         pop();
 
         // roof
         push();
         fill(22, 20, 15);
-        triangle(180, 200, 320, 100, 420, 200);
+        triangle(340, 200, 470, 105, 600, 200);
         pop();
     
         // Chimney
         push();
         fill(22, 20, 15);
-        rect(360, 120, 42, 80);
+        rect(530, 120, 42, 80);
         pop();
     
     }
+    
+    function drawWindow() {
+       
+         
+    let c = color(255, 204, 0);
+        // window
+        push();
+        fill(102,52,40);
+        rect(470, 250, 60, 60, 3);
+        pop();
+        
+        // inside house shine, added opacity
+        push();
+        fill(255, 255, 200, 40);
+        ellipse(110, 100, 150, 150);
+        c.setAlpha(100);
+        pop();
+    }
+    
+    
+    function drawPig() {
+        // pig head
+        push();
+        fill(26, 20, 15);
+        ellipse(500, 290, 28, 30);
+        pop();
+        
+        //pig body
+        push();
+        fill(22, 20, 15);
+        ellipse(503, 315, 40, 30);
+        pop();
+        
+        // pig ear
+        push();
+        fill(22, 20, 15);
+        triangle(500, 280, 500, 270, 511, 280);
+        pop();
+        
+        //pig snout
+        push();
+        fill(26, 20, 15);
+        ellipse(487, 292, 10, 10);
+        pop();
+    } 
 }
