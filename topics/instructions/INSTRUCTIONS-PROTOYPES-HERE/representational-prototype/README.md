@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# Midnight snack
 
 AUTHOR NAME
 

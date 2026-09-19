@@ -1,9 +1,11 @@
 /**
- * Title of Project
+ * Midnight snack
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * A minimalistic approach to a representation of the third pig in the three little pigs story.
+ * The little pig is in his home with the light on, while the wolf is outside, thinking of a way to get
+ *  in.
+ *
  */
 
 "use strict";
@@ -28,7 +30,7 @@ function draw() {
     //no stroke everywhere
     noStroke();
     
-    // house includes the pig
+    // ps. drawHouse includes the pig
     drawWolf();
     drawWolfOutline();
     drawGround();
@@ -76,7 +78,7 @@ function drawHouse() {
     drawPig();
     
     /**
-     * Draws the body AND THE ROOF and CHIMNEYof the house
+     * Draws the body AND THE ROOF and CHIMNEY of the house
      */
     function drawBody() {
         // house body
@@ -153,19 +155,27 @@ function drawWolf() {
     //snout
     push();
     fill(22, 20, 15);
-    rect(140, 280, 60, 38, 6);
+    rect(140, 283, 60, 38, 6);
     //top part of head
-    rect(140, 270, 30, 20, 10);
+    rect(140, 275, 28, 20, 10);
     pop();
     
     //wolf ears
-    
-    
+    push();
+    fill(22, 20, 15);
+    triangle(140, 282, 140, 265, 150, 275);
+    pop();
     
     //wolf body
     push();
     fill(22, 20, 15);
-    ellipse(140, 355, 80, 110);
+    ellipse(135, 360, 80, 110);
+    pop();
+    
+    //wolf tail
+    push();
+    fill(22, 20, 15);
+    ellipse(92, 400, 40, 80);
     pop();
 }
     
