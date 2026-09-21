@@ -24,15 +24,7 @@ function setup() {
 function draw() {
     //dark background
     background(20, 40, 50);
-  fillGradient('linear', {
-    from : [0, 0],   // x, y : Coordinates
-    to : [400, 400], // x, y : Coordinates
-    steps : [
-        color(120,140,150),
-        color(20, 40, 50),
-        color(10,10,20)
-    ] // Array of p5.color objects or arrays containing [p5.color Object, Color Stop (0 to 1)]
-});
+
    
     drawQuad();
     drawMovingCircles();
@@ -115,17 +107,18 @@ function drawLines() {
 
     //lower lines
     push();
+    strokeCap(ROUND);
     strokeWeight(8);
     stroke(50, 100, 100,);
     //first= straight, second== length to down, third= spot on the x, last== size to up)
-    line(10, 50, 10, 100);
+    line(10, 500, 10, 100);
     //middle lines
-    line(100, 50, 10, 100);
-    line(-100, 50, 0, 100);
+    line(100, 500, 10, 100);
+    line(-100, 500, 0, 100);
     //
-    line(0, 50, 0, 100);
-    line(-50, 50, 0, 102);
-    line(50, 50, 10, 102)
+    line(0, 500, 0, 100);
+    line(-50, 500, 0, 100);
+    line(50, 500, 10, 100)
     
     pop();
     
@@ -133,14 +126,15 @@ function drawLines() {
     push();
     strokeWeight(8);
     stroke(50, 100, 100);
-    line(10, -50, 10, -100);
+    line(10, -500, 10, -100);
     //middle lines
-    line(100, -50, 10, -100);
-    line(-100, -50, 0, -100);
+    line(100, -500, 10, -100);
+    line(-100, -500, 0, -100);
     //
-    line(0, -50, 0, -100);
-    line(-50, -50, 0, -102);
-    line(50, -50, 10, -102)
+    line(0, -500, 0, -100);
+    line(-50, -500, 0, -100);
+    line(50, -500, 10, -100)
+    pop();
     
   
     
