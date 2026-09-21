@@ -12,9 +12,9 @@
  * Creates the canvas
 */
 function setup() {
-    //spinning quad
-    createCanvas(500, 1000, WEBGL)
-    
+    //activate spinning ability 
+    createCanvas(500, 800, WEBGL)
+ 
 }
 
 
@@ -22,26 +22,30 @@ function setup() {
  * Draws the abstract art
 */
 function draw() {
-    //pink background
-    background(230, 150, 200);
-    
+    //dark background
+    background(20, 40, 50);
+  
+   
     drawQuad();
     drawMovingCircles();
-    drawBkgCircles();
+    drawLines();
+    
 }
     
+
 /**
- * draws Quad
+ * draws the twirling quad in the center
  */
 function drawQuad() {
         
-    // Draw the quad.
+  
     push();
      // Rotate around the y-axis. (ps5 library)
     rotateY(frameCount * 0.02);
     strokeWeight(10);
-    stroke(240,240,50);
-    fill(100, 20, 250);
+    strokeCap(SQUARE);
+    stroke(100,100,50);
+    fill(255, 225, 200);
     //got this part from the ps5 library
     quad(-30, -30, 0, 30, -30, 0, 30, 30, 20, -30, 30, -20);
     pop();
@@ -51,57 +55,62 @@ function drawQuad() {
  * draws Circles
  */
 function drawMovingCircles() {
-    // draw the circles
-    //fastest circles X axis
+    // draw the circles X axis
+    //fastest
     push();
     rotateX(frameCount * 0.008);
-    strokeWeight(15);
-    stroke(150, 50, 50  );
-    fill(150, 20, 250);
-    ellipse(-50, -1000, 100, 100);
-    ellipse(-100, -200, 100, 100);
+    strokeWeight(5);
+    stroke(50, 50, 100  );
+    fill(170, 170, 255);
+    ellipse(200, -1000, 100, 100);
+    ellipse(-200, -400, 100, 100);
     pop();
     push();
     
     //second fastest circles X axis
     push();
     rotateX(frameCount * 0.006);
-    strokeWeight(15);
-    stroke(150, 50, 50  );
-    fill(150, 20, 250);
+    strokeWeight(5);
+    stroke(50, 50, 100  );
+    fill(170, 170, 255);
     ellipse(-100, -300, 200, 200);
+    ellipse(400, 400, 200, 200);
     pop();
     
   
     //third fastest circles X axis
     push();
     rotateX(frameCount * 0.004);
-    strokeWeight(15);
-    stroke(150, 50, 50  );
-    fill(150, 20, 250);
-    ellipse(-200, -400, 200, 200);
+    strokeWeight(5);
+    stroke(50, 50, 100  );
+    fill(170, 170, 255);
+    ellipse(100, -400, 200, 200);
+    ellipse(700, -700, 100,100)
     pop();
 
  
     //slowest circles X axis
     push();
     rotateX(frameCount * 0.002);
-    strokeWeight(15);
-    stroke(150, 50, 50  );
-    fill(150, 20, 250);
+    strokeWeight(5);
+    stroke(50, 50, 100  );
+    fill(170, 170, 255);
+    ellipse(300, -500, 200, 200);
     ellipse(-300, -500, 200, 200);
     pop();
 }
 
 /**
- * draws Background Circles
+ * Draws lines
  */
-function drawBkgCircles() {
-    // draw the circles
+function drawLines() {
+
     push();
-    //removes stroke
-    nostroke();
-    fill(255, 0, 0);
-    ellipse(-100, -500, 500, 500);
+    strokeWeight(8);
+    stroke(50, 100, 100,);
+    //first= straight, second== length to down, third= spot on the x, last== size to up)
+    line(-200, 500, -200, -100);
+    line(-100, 500, -100, -500);
+    line(-150, 500, -100, 10);
     pop();
 }
