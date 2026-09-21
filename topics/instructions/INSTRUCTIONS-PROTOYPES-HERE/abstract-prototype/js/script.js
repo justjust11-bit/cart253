@@ -1,9 +1,12 @@
 /**
- * Title of Project
+ * Movements
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * This prototype is an abstract work that uses motion 
+ * and emulates 3d graphics. Blue circles rotate around 
+ * the screen up and down, and there is a square in the 
+ * middle that self rotates. Enjoy watching these interesting
+ * movements.
  */
 
 "use strict";
@@ -40,13 +43,13 @@ function drawQuad() {
         
   
     push();
-     // Rotate around the y-axis. (ps5 library)
+     // Rotate around the y-axis. (p5 library)
     rotateY(frameCount * 0.02);
     strokeWeight(10);
     strokeCap(SQUARE);
     stroke(120,100,50);
     fill(255, 225, 200);
-    //got this part from the ps5 library
+    //got this part from the p5 library
     quad(-30, -30, 0, 30, -30, 0, 30, 30, 20, -30, 30, -20);
     pop();
 }
@@ -74,7 +77,7 @@ function drawMovingCircles() {
     stroke(50, 50, 100  );
     fill(170, 170, 255);
     ellipse(-100, -300, 200, 200);
-    ellipse(400, 400, 200, 200);
+    ellipse(400, 400, 400, 400);
     pop();
     
   
@@ -96,7 +99,7 @@ function drawMovingCircles() {
     stroke(50, 50, 100  );
     fill(170, 170, 255);
     ellipse(300, -500, 200, 200);
-    ellipse(-300, -500, 200, 200);
+    ellipse(-300, -500, 500, 500);
     pop();
 }
 
