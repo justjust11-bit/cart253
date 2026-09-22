@@ -8,7 +8,7 @@
 
 ## :star: Welcome to ==Justine's== course repository! :star:
 
-This website serves to present the prototyping work I will create in my class CART253, at Concordia University! I will be developing my coding skills using Javascript, making game prototypes, and adding them here gradually, throughout the autumn semester.
+This website serves to present the prototyping work I will create in my class CART253, at Concordia University! I will be developing my coding skills using Javascript, making prototypes, and adding them here gradually, throughout the autumn semester.
 
 ### Useful links :link::bangbang::bookmark:
 
@@ -16,7 +16,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ### Prototypes :space_invader: :space_invader:
 
-#### 3 Instructions Prototypes
+#### Instructions 3 Prototypes
 
 ![Midnight Snack](./topics/instructions/images/midnight-snack.png)
 [Midnight Snack](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)

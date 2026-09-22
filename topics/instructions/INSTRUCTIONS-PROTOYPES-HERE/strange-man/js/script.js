@@ -2,7 +2,7 @@
  * Strange man
  * Justine Cormier
  * 
- * Red man. It's hard to determine what emotion he is feeling.
+ * Red man. It's hard to determine what emotion he is feeling and what his intentions are.
  * sample code used from p5 library: 
  * function setup() {
   createCanvas(100, 100);

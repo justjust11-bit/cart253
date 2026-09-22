@@ -7,7 +7,23 @@
  * the screen up and down, and there is a square in the 
  * middle that self rotates. Enjoy watching these interesting
  * movements.
- */
+//  * sample code I used for the quad and the circles:
+//  * function setup() {
+//   createCanvas(100, 100, WEBGL);
+
+//   describe('A wavy white surface spins around on gray canvas.');
+// }
+
+// function draw() {
+//   background(200);
+
+//   // Rotate around the y-axis.
+//   rotateY(frameCount * 0.01);
+
+//   // Draw the quad.
+//   quad(-30, -30, 0, 30, -30, 0, 30, 30, 20, -30, 30, -20);
+// }
+//  */
 
 "use strict";
 

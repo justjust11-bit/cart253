@@ -2,11 +2,11 @@
 
 JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+Red man. It's hard to determine what emotion he is feeling and what his intentions are.
 
 ## Attribution
 

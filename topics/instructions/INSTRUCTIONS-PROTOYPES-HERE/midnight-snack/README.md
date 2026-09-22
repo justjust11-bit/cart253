@@ -1,20 +1,18 @@
 # Midnight snack
 
-AUTHOR NAME
+JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+A minimalistic approach to a representation of the third pig in the three little pigs story. The little pig is in his home with the light on, while the wolf is outside, thinking of a way to get in.
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
 
 ## License
 
