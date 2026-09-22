@@ -8,7 +8,7 @@ I started editing the README.md on the Github web page initially, then realized 
 
 **Edit, September 14th**: I wanted to make this website more visually entertaining so I added relevant emojis, a colourful banner, some text in _italics_, **in bold**, and a bullet point for my useful links. I had some trouble with the sizing of the photos, and the emojis so I asked for help in the Discord server, and that helped me speed up my process. Below, I added a screenshot of the main page of this site, that I finished today! I used Aseprite to make a pixel art banner, and vines. :last_quarter_moon_with_face: :star2:
 
-<img src="./topics/prototyping/Images/screenshot.png" alt="Screenshot" width="500">
+<img src="./topics/prototyping-website/Images/screenshot.png" alt="Screenshot" width="500">
 
 - [x] **Amazing work Justine I'm very impressed! Have 100$**
 - [ ] **What**

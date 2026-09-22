@@ -2,7 +2,7 @@
 
 ## Course repository for CART253 (Autumn 2026)
 
-<img src="./topics/prototyping/Images/banner.png" alt="banner" width="900">
+<img src="./topics/prototyping-website/Images/banner.png" alt="banner" width="900">
 
 ![Vines](./topics/prototyping-website/Images/vines.png)
 
@@ -15,3 +15,5 @@ This website serves to present the prototyping work I will create in my class CA
 - [My reflective journal](journal.md)
 
 ### Prototypes :space_invader: :space_invader:
+
+#### 3 Instructions Prototypes
