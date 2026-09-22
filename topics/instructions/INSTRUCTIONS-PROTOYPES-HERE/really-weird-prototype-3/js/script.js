@@ -26,13 +26,29 @@ function draw() {
     //black background
     background("black");
     
-   // drawHair();
+    drawHair();
     drawHead();
     drawNose();
     drawEyes();
     drawBangs();
+    drawMouth();
     
 
+}
+
+
+
+/**
+ * Draws the hair
+ */
+
+function drawHair() {
+    push();
+    fill(50, 10, 10);
+    ellipse(300, 200, 450, 500);
+    pop();
+      
+    
 }
 
 
@@ -105,8 +121,9 @@ function drawNose() {
     
     //nostrils
     push();
-    fill(210, 135, 85);
-    ellipse(300, 300, 10, 20);
+    fill(60, 20, 0);
+    ellipse(280, 330, 25, 15);
+    ellipse(320, 330, 25, 15);
     pop();
      
     
@@ -141,26 +158,47 @@ function drawEyes() {
     ellipse(360, 260, 80, 80);
     pop();
     
-        //black of the eyes
+    //iris 
     push();
-    fill(70, 0, 0);
-    ellipse(240, 260, 60, 40);
+    fill(70, 0, 200);
+    ellipse(240, 260, 45, 40);
     ellipse(360, 260, 40, 60);
     pop();
     
     //pupils
-            //black of the eyes
     push();
     fill(100, 0, 0);
     ellipse(240, 260, 20, 20);
     ellipse(360, 260, 20, 20);
     pop();
     
+}
 
+
+/**
+ * draws mouth
+ */
+function drawMouth() {
+    push();
+    fill(200,50,50)
+    arc(300, 350, 90, 80, 0, PI + QUARTER_PI, OPEN);
+    pop();
     
-    
-    
-    
+}
+
+/**
+ * draws bangs
+ */
+
+function drawBangs() {
+
+    push();
+    fill(50, 10, 10);
+    ellipse(200, 400, 300, 400);
+    pop();
+      
     
     
 }
+
+
