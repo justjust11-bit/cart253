@@ -2,7 +2,7 @@
 
 ## Course repository for CART253 (Autumn 2026)
 
-<img src="./topics/prototyping-website/Images/banner.png" alt="banner" width="900">
+<img src="./topics/prototyping/Images/banner.png" alt="banner" width="900">
 
 ![Vines](./topics/prototyping-website/Images/vines.png)
 
