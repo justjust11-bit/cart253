@@ -17,3 +17,10 @@ This website serves to present the prototyping work I will create in my class CA
 ### Prototypes :space_invader: :space_invader:
 
 #### 3 Instructions Prototypes
+
+![Midnight Snack](./topics/instructions/images/midnight-snack.png)
+[Midnight Snack](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+
+![Abstract Prototype](./topics/instructions/images/abstract.png)[Abstract Prototype](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/abstract-prototype/)
+
+![Strange Man](./topics/instructions/images/strange.png)[Strange Man](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man/)
