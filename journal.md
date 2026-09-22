@@ -13,3 +13,9 @@ I started editing the README.md on the Github web page initially, then realized 
 - [x] **Amazing work Justine I'm very impressed! Have 100$**
 - [ ] **What**
 - [ ] **Hello**
+
+## September 22nd 2026
+
+I finished my three "Instructions Prototypes" today. For my three prototypes I tried doing different styles and using different tools from the p5 library in each one of them. The first prototype I made was the three little pigs inspired piece. For this piece, I played around with the opacity, using alpha, for the moon, and the lighting inside of the house with the pig. I tried to use triangles as well to challenge, which -in retrospect, might have not been the best idea, but I'm rather satisfied with the end result. I also used a rounded rectangle the same colour as the background to give the wolf a more interesting shape. The second prototype I made was the abstract prototype, which I played around more with the 3D possibilities on javascript, using WEBGL. For my last piece, I used the code that uses pi from p5 to make an arc for the mouth of the man.
+
+Doing these prototypes took me longer than I expected. I was busy this weekend, and I wish I could've had more time to think about what I wanted to do. My approach for all of these was to have a vague idea of what I want and to just start adding stuff to see what sticks. I have a habit of doing things this way, but I think for next time, it would be fun to change my technique and maybe first draw out what I would like to do first, and once I like the drawing I did i could try recreating it.
