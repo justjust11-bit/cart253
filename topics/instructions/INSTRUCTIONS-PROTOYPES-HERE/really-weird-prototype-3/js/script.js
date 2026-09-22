@@ -83,6 +83,12 @@ function drawHead() {
     ellipse(150, 310, 35, 60);
     pop();
     
+    //butt chin
+    push();
+    fill(210, 140, 90);
+    ellipse(300, 450, 30, 30);
+    pop();
+    
 }
 
 /**
@@ -91,9 +97,16 @@ function drawHead() {
 
 function drawNose() {
     
+    //nose shadow
     push();
     fill(210, 135, 85);
     ellipse(300, 300, 120, 40);
+    pop();
+    
+    //nostrils
+    push();
+    fill(210, 135, 85);
+    ellipse(300, 300, 10, 20);
     pop();
      
     
@@ -110,9 +123,43 @@ function drawEyes() {
     //eye shadow
     push();
     fill(210, 140, 90);
-    ellipse(240, 260, 100, 80);
-    ellipse(360, 260, 100, 80);
+    ellipse(230, 240, 100, 80);
+    ellipse(370, 240, 100, 80);
     pop();
+    
+    //lashes
+    push();
+    fill(0, 0, 0);
+    ellipse(230, 255, 70, 70);
+    ellipse(370, 255, 70, 70);
+    pop();
+    
+    //white of the eyes
+    push();
+    fill(250, 230, 230);
+    ellipse(240, 260, 80, 80);
+    ellipse(360, 260, 80, 80);
+    pop();
+    
+        //black of the eyes
+    push();
+    fill(70, 0, 0);
+    ellipse(240, 260, 60, 40);
+    ellipse(360, 260, 40, 60);
+    pop();
+    
+    //pupils
+            //black of the eyes
+    push();
+    fill(100, 0, 0);
+    ellipse(240, 260, 20, 20);
+    ellipse(360, 260, 20, 20);
+    pop();
+    
+
+    
+    
+    
     
     
     
