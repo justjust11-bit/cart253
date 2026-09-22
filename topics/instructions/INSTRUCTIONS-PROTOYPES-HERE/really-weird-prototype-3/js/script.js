@@ -2,7 +2,20 @@
  * Strange man
  * Justine Cormier
  * 
- * Red man. It is hard to determine what emotion he is feeling.
+ * Red man. It's hard to determine what emotion he is feeling.
+ * sample code used from p5 library: 
+ * function setup() {
+  createCanvas(100, 100);
+
+  background(200);
+
+  // OPEN fill mode.
+  arc(50, 50, 80, 80, 0, PI + QUARTER_PI, OPEN);
+
+  describe(
+    'A white circle missing a section from the top-right. The bottom is outlined in black.'
+  );
+}
  */
 
 "use strict";
@@ -62,12 +75,7 @@ function drawBody() {
     ellipse(300, 610, 450, 500);
     pop();
     
-    push();
-    fill(150, 20, 80);
-    ellipse(300, 510, 50, 50);
-    pop();
-      
-     
+   
     
     
 }
