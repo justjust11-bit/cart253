@@ -1,9 +1,8 @@
 /**
- * Title of Project
+ * Strange man
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Red man. It is hard to determine what emotion he is feeling.
  */
 
 "use strict";
@@ -24,14 +23,16 @@ function setup() {
 */
 function draw() {
     //black background
-    background("black");
+    background(100,205,100);
     
     drawHair();
+    drawBody();
     drawHead();
     drawNose();
     drawEyes();
     drawBangs();
     drawMouth();
+   
     
 
 }
@@ -44,13 +45,32 @@ function draw() {
 
 function drawHair() {
     push();
-    fill(50, 10, 10);
+    fill(150, 10, 10);
     ellipse(300, 200, 450, 500);
     pop();
       
     
 }
 
+/**
+ * draws body
+ */
+
+function drawBody() {
+    push();
+    fill(150, 20, 80);
+    ellipse(300, 610, 450, 500);
+    pop();
+    
+    push();
+    fill(150, 20, 80);
+    ellipse(300, 510, 50, 50);
+    pop();
+      
+     
+    
+    
+}
 
 /**
  * Draws the head
@@ -105,6 +125,14 @@ function drawHead() {
     ellipse(300, 450, 30, 30);
     pop();
     
+    //blush
+    push();
+    fill(210, 100, 100);
+    ellipse(220, 340, 90, 60);
+    ellipse(380, 340, 90, 60);
+    pop();
+    
+    
 }
 
 /**
@@ -122,8 +150,8 @@ function drawNose() {
     //nostrils
     push();
     fill(60, 20, 0);
-    ellipse(280, 330, 25, 15);
-    ellipse(320, 330, 25, 15);
+    ellipse(280, 330, 15, 5);
+    ellipse(320, 330, 15, 5);
     pop();
      
     
@@ -154,8 +182,8 @@ function drawEyes() {
     //white of the eyes
     push();
     fill(250, 230, 230);
-    ellipse(240, 260, 80, 80);
-    ellipse(360, 260, 80, 80);
+    ellipse(240, 260, 80, 100);
+    ellipse(360, 260, 80, 100);
     pop();
     
     //iris 
@@ -180,25 +208,39 @@ function drawEyes() {
  */
 function drawMouth() {
     push();
-    fill(200,50,50)
-    arc(300, 350, 90, 80, 0, PI + QUARTER_PI, OPEN);
+    fill(20,0,0)
+    arc(300, 370, 10, 80, 0, PI + QUARTER_PI, OPEN);
     pop();
     
 }
 
 /**
- * draws bangs
+ * draws bangs, eyebrows, other hairs
  */
 
 function drawBangs() {
 
+    //front hair bang
+    push();
+    fill(220, 80, 80);
+    ellipse(220, 100, 250, 170);
+    pop();
+    
+    //eyebrows
     push();
     fill(50, 10, 10);
-    ellipse(200, 400, 300, 400);
+    ellipse(240, 220, 80, 30);
+    ellipse(360, 220, 80, 30);
     pop();
-      
     
-    
-}
+    //side burns
+        push();
+    fill( 150, 10, 10);
+    //right ear
+    ellipse(455, 270, 35, 60);
+    //left ear
+    ellipse(145, 270, 35, 60);
+    pop();
 
+}
 
