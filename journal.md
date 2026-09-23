@@ -1,6 +1,6 @@
 # Reflective journal :ledger::thought_balloon:
 
-## September 9th 2026
+## Entry 1: September 9th 2026
 
 This is my _first_ journal entry for my ==CART253== class. I used Github to host my website page for the class, and created this journal page you are currently reading. I used Markdown to format the pages. Initially when I read that we were going to use Markdown, I thought it would be an app or a mod, and I was surprised to see that it was the markers used on different websites such as Reddit. I'm familiar with the ones used on Youtube, and formerly Hangouts, and Google+, so it was not too difficult for me understand the concept.
 
@@ -14,7 +14,7 @@ I started editing the README.md on the Github web page initially, then realized 
 - [ ] **What**
 - [ ] **Hello**
 
-## September 22nd 2026
+## Entry 2: September 22nd 2026
 
 I finished my three "Instructions Prototypes" today. For my three prototypes I tried doing different styles and using different tools from the p5 library in each one of them. The first prototype I made was the Three Little Pigs inspired piece. For this prototype, I played around with the opacity (using alpha), for the moon, and the lighting inside of the house with the pig. I tried to use triangles as well to challenge myself, which -in retrospect, might have not been the best idea for time management, but I'm rather satisfied with the end result. I also used a rounded rectangle that was same colour as the background to cut the wolf a more interesting shape. The second prototype I made was the abstract prototype, which I played around more with the 3D possibilities on javascript, using WEBGL. I used the sample of the code that was used for a quad and modified it so the circles would also have the propreties that make it move, but look different. I like the way the 3D looks, and I think it might be my most eye-catching prototype. For my last piece, I used the code that uses pi from p5 to make an arc for the mouth of the man.
 
