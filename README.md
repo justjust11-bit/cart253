@@ -18,9 +18,19 @@ This website serves to present the prototyping work I will create in my class CA
 
 #### Instructions 3 Prototypes
 
-![Midnight Snack](./topics/instructions/images/midnight-snack.png)
-[Midnight Snack](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+##### The Last Little Pig - Midnight Snack
 
-![Abstract Prototype](./topics/instructions/images/abstract.png)[Abstract Prototype](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/abstract-prototype/)
+![Screenshot of Midnight Snack](./topics/instructions/images/midnight-snack.png)
+[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+[View code]()
 
-![Strange Man](./topics/instructions/images/strange.png)[Strange Man](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man/)
+##### Abstract Prototype
+
+![Screenshot of Abstract Prototype](./topics/instructions/images/abstract.png)[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/movements/)
+[View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/movements)
+
+##### Strange Man
+
+![Screenshot of Strange Man](./topics/instructions/images/strange.png)
+[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man/)
+[View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man)
