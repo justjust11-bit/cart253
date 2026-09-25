@@ -1,15 +1,14 @@
 /**
- * Title of Project
- * Author Name
+ * Introducing variables
+ * Justine Cormier (but really, Pippin Barr)
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Learning what a variable is and does
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * Create a canvas
 */
 function setup() {
 
