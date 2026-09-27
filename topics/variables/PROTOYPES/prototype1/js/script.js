@@ -10,7 +10,10 @@
 
 
 
-
+let skinShade = {
+    fill: "#",
+    cold: "#"
+}
 
 
 //tongue
@@ -32,13 +35,6 @@ let tongue = {
     },
 }
 
-let body = {
-    shade: {
-        fill: "#6d371a",
-        cold: "#83a4cf"
-    }
-}
-
 /**
  * creates canvas
 */
@@ -47,8 +43,6 @@ function setup() {
     createCanvas(640, 480);
     tongue.shade.fill = color(tongue.shade.fill);
     tongue.shade.cold = color(tongue.shade.cold);
-    body.shade.fill = color(body.shade.fill);
-    body.shade.cold = color(body.shade.cold);
 
 
 }
@@ -60,9 +54,6 @@ function setup() {
 function draw() {
     //makes tongue turn blue over time
     tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.0018);
-    if (red(tongue.shade.fill) <= red(tongue.shade.cold) + 1) {
-        body.shade.fill = lerpColor(body.shade.fill, body.shade.cold, 0.003);
-    }
     background("#d2dbe1");
 
 
@@ -127,7 +118,7 @@ function drawKid() {
     push();
     stroke("#5f3815")
     strokeWeight(3)
-    fill(body.shade.fill)
+    fill("#6d371a")
     rect(mouseX - 90, mouseY + 12, 190, 190, 80)
     //collar
     rect(mouseX - 60, mouseY + 15, 130, 30, 60)
@@ -175,9 +166,9 @@ function drawKid() {
     strokeWeight(3)
     fill("#334a35")
     ellipse(mouseX, mouseY - 160, 180, 120)
-    rect(mouseX - 110, mouseY - 150, 220, 50, 20)
+    rect(mouseX - 110, mouseY - 150, 220, 50, 12)
     //pompom
-    ellipse(mouseX, mouseY - 230, 60, 50)
+    ellipse(mouseX, mouseY - 240, 60, 60)
 
     pop();
 
