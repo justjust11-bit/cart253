@@ -16,8 +16,8 @@
 //grass
 let tongueShade = {
     
-    fill: "#647e46",
-    cold: "#273819",
+    fill: "#ad3751",
+    cold: "#7091bd",
 
 }
 
@@ -33,17 +33,27 @@ function setup() {
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * draws kid with tongue stuck on metal pole
 */
 function draw() {
     
-    grassShade.fill = lerpColor(tongueShade.fill, tongueShade.cold, 0.01);
-    background(grassShade.fill);
+    tongueShade.fill = lerpColor(tongueShade.fill, tongueShade.cold, 0.01);
+    background("#cad6de");
     //grass slowly become darker
-   
+    
+    //draws pole
+    push();
+    fill("#3c2f2f")
+    rect(400,700,40,800)
+    pop();
     
     
     
-    
+    //draws tongue
+    push();
+    fill(tongueShade.fill)
+    strokeWeight(20);
+    line(mouseX, mouseY, 500, 200);
+    pop(); 
   
 }
