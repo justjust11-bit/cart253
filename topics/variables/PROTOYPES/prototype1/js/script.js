@@ -14,10 +14,11 @@
 
 
 //grass
-let tongueShade = {
-    
-    fill: "#ad3751",
-    cold: "#7091bd",
+let tongue = {
+    shade: {
+        fill: "#ad3751",
+        cold: "#7091bd"
+    }
 
 }
 
@@ -27,6 +28,8 @@ let tongueShade = {
 function setup() {
 
     createCanvas(640, 480);
+    tongue.shade.fill = color(tongue.shade.fill);
+    tongue.shade.cold = color(tongue.shade.cold);
 
     
 }
@@ -37,7 +40,7 @@ function setup() {
 */
 function draw() {
     
-    tongueShade.fill = lerpColor(tongueShade.fill, tongueShade.cold, 0.01);
+    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.003);
     background("#cad6de");
     //grass slowly become darker
     
@@ -51,9 +54,10 @@ function draw() {
     
     //draws tongue
     push();
-    fill(tongueShade.fill)
-    strokeWeight(20);
-    line(mouseX, mouseY, 500, 200);
+    stroke(tongue.shade.fill);
+    strokeWeight(30);
+    line(mouseX, mouseY, 500, 250);
+    rect(500, 220, 1, 30, 30 )
     pop(); 
   
 }
