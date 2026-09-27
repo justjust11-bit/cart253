@@ -17,7 +17,7 @@
 let tongue = {
     shade: {
         fill: "#ad3751",
-        cold: "#7091bd"
+        cold: "#83a4cf"
     },
     tip: {
         x: 500,
@@ -32,6 +32,13 @@ let tongue = {
     },
 }
 
+let body = {
+    shade: {
+        fill: "#6d371a",
+        cold: "#83a4cf"
+    }
+}
+
 /**
  * creates canvas
 */
@@ -40,6 +47,8 @@ function setup() {
     createCanvas(640, 480);
     tongue.shade.fill = color(tongue.shade.fill);
     tongue.shade.cold = color(tongue.shade.cold);
+    body.shade.fill = color(body.shade.fill);
+    body.shade.cold = color(body.shade.cold);
 
 
 }
@@ -49,8 +58,11 @@ function setup() {
  * draws kid with tongue stuck on metal pole
 */
 function draw() {
-
-    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.002);
+    //makes tongue turn blue over time
+    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.0018);
+    if (red(tongue.shade.fill) <= red(tongue.shade.cold) + 1) {
+        body.shade.fill = lerpColor(body.shade.fill, body.shade.cold, 0.003);
+    }
     background("#d2dbe1");
 
 
@@ -89,20 +101,54 @@ function drawPole() {
  */
 function drawKid() {
 
+
+    //arms
+    push();
+    stroke("#5f3815")
+    strokeWeight(3)
+    fill("#6d371a")
+    //arm on the left
+    rect(mouseX - 150, mouseY + 35, 190, 50, 20)
+    //arm on the right
+    rect(mouseX - 30, mouseY + 35, 190, 50, 20)
+
+    pop();
+
+    //hands
+    push();
+    strokeWeight(2)
+    stroke("#b29b92")
+    fill("#d5bcb8")
+    rect(mouseX - 190, mouseY + 35, 50, 50, 40)
+    rect(mouseX + 150, mouseY + 35, 50, 50, 40)
+    pop();
+
+    //body
+    push();
+    stroke("#5f3815")
+    strokeWeight(3)
+    fill(body.shade.fill)
+    rect(mouseX - 90, mouseY + 12, 190, 190, 80)
+    //collar
+    rect(mouseX - 60, mouseY + 15, 130, 30, 60)
+    pop();
+
+
+
     //head
     push();
-    stroke("#de9893")
-    strokeWeight(0)
-    fill("#c2aca4")
-    ellipse(mouseX, mouseY - 60, 190, 195)
+    stroke("#b29b92")
+    strokeWeight(2)
+    fill("#d5bcb8")
+    ellipse(mouseX, mouseY - 80, 190, 200)
     pop();
 
 
     //mouth
     push();
-    stroke("#b86751")
+    stroke("#994e39")
     strokeWeight(2)
-    fill("#983d4c")
+    fill("#943444")
     ellipse(mouseX, mouseY - 25, 100, 75)
     pop();
 
@@ -110,7 +156,7 @@ function drawKid() {
     //eyes
     push();
     stroke("#5c3633")
-    strokeWeight(6)
+    strokeWeight(10)
     fill("#65483e")
     //bottom line of right eye
     line(mouseX + 20, mouseY - 80, mouseX + 60, mouseY - 90)
@@ -122,6 +168,19 @@ function drawKid() {
     //top line of left eye
     line(mouseX - 20, mouseY - 80, mouseX - 40, mouseY - 60)
     pop();
+
+    //draw hat
+    push();
+    stroke("#2e3f2e")
+    strokeWeight(3)
+    fill("#334a35")
+    ellipse(mouseX, mouseY - 160, 180, 120)
+    rect(mouseX - 110, mouseY - 150, 220, 50, 20)
+    //pompom
+    ellipse(mouseX, mouseY - 230, 60, 50)
+
+    pop();
+
 
 
 }
