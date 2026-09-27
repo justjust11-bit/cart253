@@ -11,22 +11,13 @@
 
 
 
-let roses = {
-    fill: "#9e1f3f",
-    x: 60,
-    y: 60,
-    w: 100,
-    h: 150,
-    minSizeW: 10,
-    minSizeH: 15,
-   
-};
+
 
 //grass
-let grassShade = {
+let tongueShade = {
     
     fill: "#647e46",
-    dark: "#273819",
+    cold: "#273819",
 
 }
 
@@ -36,8 +27,7 @@ let grassShade = {
 function setup() {
 
     createCanvas(640, 480);
-    grassShade.fill = color(grassShade.fill);
-    grassShade.dark = color(grassShade.dark);
+
     
 }
 
@@ -47,7 +37,7 @@ function setup() {
 */
 function draw() {
     
-    grassShade.fill = lerpColor(grassShade.fill, grassShade.dark, 0.01);
+    grassShade.fill = lerpColor(tongueShade.fill, tongueShade.cold, 0.01);
     background(grassShade.fill);
     //grass slowly become darker
    
@@ -55,10 +45,5 @@ function draw() {
     
     
     
-    //flower
-    push();
-    fill(roses.fill);
-    stroke(4);
-    ellipse(roses.x, roses.y, roses.w, roses.h,);
-    pop();
+  
 }
