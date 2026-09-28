@@ -82,7 +82,7 @@ function draw() {
     drawKid();
     //draws tongue
     drawTongue();
-
+    drawText();
 
 
 }
@@ -230,12 +230,11 @@ function drawTongue() {
 function drawText() {
 
     // writes the text at the top 
-    fill(0);
+    push();
+    fill("#d15b65")
     textAlign(LEFT);
     textStyle(BOLD);
-    textSize(32);
-    push();
-    textSize(20);
-    text("I'M STUCK!!", 90, 35);
+    textSize(90);
+    text("I'M STUCK!!", 70, 100);
     pop();
 }
