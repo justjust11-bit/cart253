@@ -34,13 +34,13 @@ let tongue = {
 let skin = {
     outline: {
         fill: "#b29b92",
-        cold: "#9296b2"
+        cold: "#7884cb"
     },
 
     tone: {
 
         fill: "#d5bcb8",
-        cold: "#b8c4d5"
+        cold: "#83a1ce"
     }
 
 }
@@ -54,6 +54,11 @@ function setup() {
     //makes the tongue turn blue
     tongue.shade.fill = color(tongue.shade.fill);
     tongue.shade.cold = color(tongue.shade.cold);
+    //prepares the skin colors to turn blue
+    skin.outline.fill = color(skin.outline.fill);
+    skin.outline.cold = color(skin.outline.cold);
+    skin.tone.fill = color(skin.tone.fill);
+    skin.tone.cold = color(skin.tone.cold);
 
 
 }
@@ -64,7 +69,10 @@ function setup() {
 */
 function draw() {
     //makes tongue turn blue over time
-    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.002);
+    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.003);
+    //makes the skin turn blue (a bit more slowly)
+    skin.outline.fill = lerpColor(skin.outline.fill, skin.outline.cold, 0.0005);
+    skin.tone.fill = lerpColor(skin.tone.fill, skin.tone.cold, 0.0005);
     background("#d2dbe1");
 
 
