@@ -10,10 +10,6 @@
 
 
 
-let skinShade = {
-    fill: "#",
-    cold: "#"
-}
 
 
 //tongue
@@ -35,12 +31,27 @@ let tongue = {
     },
 }
 
+let skin = {
+    outline: {
+        fill: "#b29b92",
+        cold: "#9296b2"
+    },
+
+    tone: {
+
+        fill: "#d5bcb8",
+        cold: "#b8c4d5"
+    }
+
+}
+
 /**
  * creates canvas
 */
 function setup() {
 
     createCanvas(640, 480);
+    //makes the tongue turn blue
     tongue.shade.fill = color(tongue.shade.fill);
     tongue.shade.cold = color(tongue.shade.cold);
 
@@ -53,7 +64,7 @@ function setup() {
 */
 function draw() {
     //makes tongue turn blue over time
-    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.0018);
+    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.002);
     background("#d2dbe1");
 
 
@@ -108,8 +119,8 @@ function drawKid() {
     //hands
     push();
     strokeWeight(2)
-    stroke("#b29b92")
-    fill("#d5bcb8")
+    stroke(skin.outline.fill)
+    fill(skin.tone.fill)
     rect(mouseX - 190, mouseY + 35, 50, 50, 40)
     rect(mouseX + 150, mouseY + 35, 50, 50, 40)
     pop();
@@ -128,10 +139,10 @@ function drawKid() {
 
     //head
     push();
-    stroke("#b29b92")
     strokeWeight(2)
-    fill("#d5bcb8")
-    ellipse(mouseX, mouseY - 80, 190, 200)
+    stroke(skin.outline.fill)
+    fill(skin.tone.fill)
+    ellipse(mouseX, mouseY - 80, 180, 200)
     pop();
 
 
@@ -159,6 +170,20 @@ function drawKid() {
     //top line of left eye
     line(mouseX - 20, mouseY - 80, mouseX - 40, mouseY - 60)
     pop();
+
+
+    //hair
+    push();
+    stroke("#27140e")
+    strokeWeight(3)
+    fill("#3e220b")
+    //pompom
+    ellipse(mouseX - 85, mouseY - 90, 35, 90)
+    ellipse(mouseX + 85, mouseY - 100, 25, 80)
+
+    pop();
+
+
 
     //draw hat
     push();
@@ -194,4 +219,15 @@ function drawTongue() {
 }
 
 
+function drawText() {
 
+    // writes the text at the top 
+    fill(0);
+    textAlign(LEFT);
+    textStyle(BOLD);
+    textSize(32);
+    push();
+    textSize(20);
+    text("I'M STUCK!!", 90, 35);
+    pop();
+}
