@@ -52,13 +52,14 @@ function draw() {
  */
 function drawPainting() {
 
-    //make the colours match to the map
+    //make the colours match to the map red, green, blue 
     const r = map(mouseX, start, width, start, maxColor);
     const g = map(mouseY, start, height, start, maxColor);
     const b = map(mouseY, start, height, start, maxColor);
 
     //makes it so when you click, all line start from the middle
     if (mouseIsPressed) {
+        //the lines
         const startX = pmouseX - width / half;
         const startY = pmouseY - height / half;
         const endX = mouseX - width / half;
