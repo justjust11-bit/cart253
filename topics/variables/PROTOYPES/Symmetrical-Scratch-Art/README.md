@@ -2,11 +2,11 @@
 
 JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Symmetrical-Scratch-Art/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+Create your own digital scratch art...Or cover the screen as much as possible! Using all the different colours that appear from each corner of the canvas, you will make a work of art. 100% satisfaction guaranteed. No refunds.
 
 ## Attribution
 

@@ -2,8 +2,10 @@
  * Symmetrical Scratch Art
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Create your own digital scratch art...Or cover the screen as 
+ * much as possible! Using all the different colours that appear 
+ * from each corner of the canvas, you will make a work of art. 
+ * 100% satisfaction guaranteed. No refunds.
  */
 
 
