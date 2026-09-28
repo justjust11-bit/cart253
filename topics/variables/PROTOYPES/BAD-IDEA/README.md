@@ -2,11 +2,12 @@
 
 JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/BAD-IDEA/)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+A child at recess decides to lick a metal pole. He is now STUCK onto the pole!!! Oh no!
+The cold from the pole makes his tongue turn blue, as well as his face!
 
 ## Attribution
 

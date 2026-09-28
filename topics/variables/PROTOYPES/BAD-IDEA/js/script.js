@@ -63,6 +63,7 @@ function setup() {
     skin.tone.cold = color(skin.tone.cold);
 
 
+
 }
 
 
@@ -77,22 +78,27 @@ function draw() {
     skin.tone.fill = lerpColor(skin.tone.fill, skin.tone.cold, 0.0005);
     background("#d2dbe1");
 
-
-    //draws pole
-    drawPole();
+    drawFloor();
     //draws kid
     drawKid();
-    //draws tongue
     drawTongue();
+    //draws pole
+    drawPole();
+
+    //draws tongue
+    drawTongueTip();
+    //draws text
     drawText();
 
 
 }
 
 /**
- * draws the pole and the floor
+ * draws te floor
  */
-function drawPole() {
+
+function drawFloor() {
+
     //floor
     push();
     strokeWeight(0);
@@ -100,6 +106,29 @@ function drawPole() {
     rect(0, 400, 640, 80)
     pop();
 
+
+}
+
+/**
+ * draws the long part of the tongue
+ */
+function drawTongue() {
+    push();
+    stroke(tongue.shade.fill);
+    strokeWeight(30);
+    //draws long part of tongue
+    line(mouseX, mouseY - 2, tongue.longPart.w, tongue.longPart.h);
+    //draws tip of tongue
+    rect(tongue.tip.x, tongue.tip.y, tongue.tip.w, tongue.tip.h, tongue.tip.radius);
+    pop();
+}
+
+
+
+/**
+ * draws the pole and the floor
+ */
+function drawPole() {
 
 
     push();
@@ -233,13 +262,11 @@ function drawKid() {
 /**
  * draws the tongue
  */
-function drawTongue() {
+function drawTongueTip() {
 
     push();
     stroke(tongue.shade.fill);
     strokeWeight(30);
-    //draws long part of tongue
-    line(mouseX, mouseY - 2, tongue.longPart.w, tongue.longPart.h);
     //draws tip of tongue
     rect(tongue.tip.x, tongue.tip.y, tongue.tip.w, tongue.tip.h, tongue.tip.radius);
     pop();
