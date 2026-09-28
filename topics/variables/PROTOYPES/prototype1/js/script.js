@@ -114,9 +114,9 @@ function drawKid() {
 
     //arms
     push();
-    stroke("#5f3815")
+    stroke("#5f2315")
     strokeWeight(3)
-    fill("#6d371a")
+    fill("#6d251a")
     //arm on the left
     rect(mouseX - 150, mouseY + 35, 190, 50, 20)
     //arm on the right
@@ -135,9 +135,9 @@ function drawKid() {
 
     //body
     push();
-    stroke("#5f3815")
+    stroke("#5f2315")
     strokeWeight(3)
-    fill("#6d371a")
+    fill("#6d251a")
     rect(mouseX - 90, mouseY + 12, 190, 190, 80)
     //collar
     rect(mouseX - 60, mouseY + 15, 130, 30, 60)
@@ -182,9 +182,9 @@ function drawKid() {
 
     //hair
     push();
-    stroke("#27140e")
+    stroke("#401e14")
     strokeWeight(3)
-    fill("#3e220b")
+    fill("#4d290c")
     //pompom
     ellipse(mouseX - 85, mouseY - 90, 35, 90)
     ellipse(mouseX + 85, mouseY - 100, 25, 80)
@@ -195,9 +195,9 @@ function drawKid() {
 
     //draw hat
     push();
-    stroke("#2e3f2e")
+    stroke("#334a33")
     strokeWeight(3)
-    fill("#334a35")
+    fill("#3c603f")
     ellipse(mouseX, mouseY - 160, 180, 120)
     rect(mouseX - 110, mouseY - 150, 220, 50, 12)
     //pompom
@@ -205,7 +205,15 @@ function drawKid() {
 
     pop();
 
-
+    //draw boots
+    push();
+    stroke("#1c0d0a")
+    strokeWeight(3)
+    fill("#23120f")
+    //feet part
+    rect(mouseX + 10, mouseY + 180, 100, 50, 70)
+    rect(mouseX - 100, mouseY + 180, 100, 50, 70)
+    pop();
 
 }
 
@@ -235,6 +243,6 @@ function drawText() {
     textAlign(LEFT);
     textStyle(BOLD);
     textSize(90);
-    text("I'M STUCK!!", 70, 100);
+    text("BAD IDEA!!", 70, 100);
     pop();
 }
