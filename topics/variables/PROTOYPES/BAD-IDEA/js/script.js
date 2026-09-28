@@ -9,9 +9,6 @@
 "use strict";
 
 
-
-
-
 //tongue
 let tongue = {
     shade: {
@@ -72,7 +69,7 @@ function setup() {
 */
 function draw() {
     //makes tongue turn blue over time
-    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.003);
+    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.0036);
     //makes the skin turn blue (a bit more slowly)
     skin.outline.fill = lerpColor(skin.outline.fill, skin.outline.cold, 0.0005);
     skin.tone.fill = lerpColor(skin.tone.fill, skin.tone.cold, 0.0005);
@@ -93,8 +90,11 @@ function draw() {
 
 }
 
+
+
+
 /**
- * draws te floor
+ * draws the floor
  */
 
 function drawFloor() {
@@ -109,42 +109,7 @@ function drawFloor() {
 
 }
 
-/**
- * draws the long part of the tongue
- */
-function drawTongue() {
-    push();
-    stroke(tongue.shade.fill);
-    strokeWeight(30);
-    //draws long part of tongue
-    line(mouseX, mouseY - 2, tongue.longPart.w, tongue.longPart.h);
-    //draws tip of tongue
-    rect(tongue.tip.x, tongue.tip.y, tongue.tip.w, tongue.tip.h, tongue.tip.radius);
-    pop();
-}
 
-
-
-/**
- * draws the pole and the floor
- */
-function drawPole() {
-
-
-    push();
-    fill("#5f5555");
-    rect(500, 30, 40, 470, 16);
-    pop();
-
-    //draws top of pole
-    push();
-    strokeWeight(0);
-    fill("#7e7676");
-    ellipse(520, 39, 30, 15);
-    pop();
-
-
-}
 
 
 /**draws the kid
@@ -185,7 +150,6 @@ function drawKid() {
     pop();
 
 
-
     //head
     push();
     strokeWeight(skin.stroke);
@@ -193,7 +157,6 @@ function drawKid() {
     fill(skin.tone.fill);
     ellipse(mouseX, mouseY - 80, 180, 200);
     pop();
-
 
     //mouth
     push();
@@ -203,12 +166,11 @@ function drawKid() {
     ellipse(mouseX, mouseY - 25, 100, 75);
     pop();
 
-
     //eyes
     push();
-    stroke("#5c3633");
+    stroke("#4c2c2a");
     strokeWeight(10);
-    fill("#65483e");
+    fill("#4a352e");
     //bottom line of right eye
     line(mouseX + 20, mouseY - 80, mouseX + 60, mouseY - 90);
     //top line of right eye
@@ -220,7 +182,6 @@ function drawKid() {
     line(mouseX - 20, mouseY - 80, mouseX - 40, mouseY - 60);
     pop();
 
-
     //hair
     push();
     stroke("#401e14");
@@ -229,10 +190,7 @@ function drawKid() {
     //pompom
     ellipse(mouseX - 85, mouseY - 90, 35, 90);
     ellipse(mouseX + 85, mouseY - 100, 25, 80);
-
     pop();
-
-
 
     //draw hat
     push();
@@ -243,7 +201,6 @@ function drawKid() {
     rect(mouseX - 110, mouseY - 150, 220, 50, 12);
     //pompom
     ellipse(mouseX, mouseY - 240, 60, 60);
-
     pop();
 
     //draw boots
@@ -255,6 +212,48 @@ function drawKid() {
     rect(mouseX + 10, mouseY + 180, 100, 50, 70);
     rect(mouseX - 100, mouseY + 180, 100, 50, 70);
     pop();
+
+}
+
+
+
+
+/**
+ * draws the long part of the tongue
+ */
+function drawTongue() {
+    push();
+    stroke(tongue.shade.fill);
+    strokeWeight(30);
+    //draws long part of tongue
+    line(mouseX, mouseY - 2, tongue.longPart.w, tongue.longPart.h);
+    //draws tip of tongue
+    rect(tongue.tip.x, tongue.tip.y, tongue.tip.w, tongue.tip.h, tongue.tip.radius);
+    pop();
+}
+
+
+
+/**
+ * draws the pole and the floor
+ */
+function drawPole() {
+
+
+    push();
+    stroke("#403939")
+    strokeWeight(2)
+    fill("#5f5555");
+    rect(500, 30, 40, 470, 16);
+    pop();
+
+    //draws top of pole
+    push();
+    strokeWeight(0);
+    fill("#7e7676");
+    ellipse(520, 39, 30, 15);
+    pop();
+
 
 }
 

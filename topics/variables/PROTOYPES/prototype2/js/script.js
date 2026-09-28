@@ -9,10 +9,11 @@
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * creates canvas
 */
 function setup() {
-
+    createCanvas(1920, 1080,)
+    fill(mouseX, mouseY)
 }
 
 
