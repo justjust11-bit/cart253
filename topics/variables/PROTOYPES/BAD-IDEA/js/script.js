@@ -71,7 +71,7 @@ function draw() {
     //makes tongue turn blue over time
     tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.0036);
     //makes the skin turn blue (a bit more slowly)
-    skin.outline.fill = lerpColor(skin.outline.fill, skin.outline.cold, 0.0005);
+    skin.outline.fill = lerpColor(skin.outline.fill, skin.outline.cold, 0.001);
     skin.tone.fill = lerpColor(skin.tone.fill, skin.tone.cold, 0.0005);
     background("#d2dbe1");
 
