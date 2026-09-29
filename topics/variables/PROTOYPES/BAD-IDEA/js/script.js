@@ -26,6 +26,7 @@ let tongue = {
         w: 500,
         h: 250
     },
+    speedToGetCold: 0.0036
 }
 
 //skin 
@@ -40,7 +41,8 @@ let skin = {
 
         fill: "#d5bcb8",
         cold: "#83a1ce"
-    }
+    },
+    speedToGetCold: 0.0015
 
 }
 
@@ -69,10 +71,10 @@ function setup() {
 */
 function draw() {
     //makes tongue turn blue over time
-    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, 0.0036);
+    tongue.shade.fill = lerpColor(tongue.shade.fill, tongue.shade.cold, tongue.speedToGetCold);
     //makes the skin turn blue (a bit more slowly)
-    skin.outline.fill = lerpColor(skin.outline.fill, skin.outline.cold, 0.001);
-    skin.tone.fill = lerpColor(skin.tone.fill, skin.tone.cold, 0.0005);
+    skin.outline.fill = lerpColor(skin.outline.fill, skin.outline.cold, skin.speedToGetCold);
+    skin.tone.fill = lerpColor(skin.tone.fill, skin.tone.cold, skin.speedToGetCold);
     background("#d2dbe1");
 
     drawFloor();

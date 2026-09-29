@@ -17,7 +17,7 @@
 "use strict";
 
 
-let brushSize = 30
+let brushSize = 100
 let maxColor = 255
 let half = 2
 let textPosition = {
