@@ -3,7 +3,7 @@
  * Justine Cormier
  * 
  * Water floods the whole city!! The sky turns grey, and water covers the city
- * past its highest building! Interacting with the screen won't stop or
+ * past its highest building, to emphasize despair. Interacting with the screen won't stop or
  * worsen the flood, representing the feelings of powerlessness you may feel
  * about the ongoing climate crisis... This might happen to Montreal one day....
  */

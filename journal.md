@@ -28,6 +28,6 @@ For my three Variables Protoypes, I wanted there to be a unique mechanic for eac
 
 I think I'm starting to get more used to coding, and using javascript... I'm starting to remember the syntax more, which isn't something that comes very naturally to me. The more I use different mechanics, and am able to make small things at a faster speed, the more I feel like the cloud of confusion is slightly being lifted.
 
-<img src="./topics/variables/images/Screenshot_variables.png" alt="Screenshot of constraint" width="500">
-
 I've been hovering over the p5 words that have a preset meaning(value?) to help myself understand more clearly how to format things more quickly, instead of just tinkering with every number or value to figure out what it does, which is what I would do for the previous prototypes. I'm sure I could come up with interesting ideas just by messing around, but it really speeds up the process if I already have an idea decided and I'm only focusing on executing.
+
+<img src="./topics/variables/images/Screenshot_variables.png" alt="Screenshot of constraint" width="500">
