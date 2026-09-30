@@ -16,7 +16,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ### Prototypes :space_invader: :space_invader:
 
-#### Instructions 3 Prototypes
+#### 3 Instructions Prototypes
 
 ##### The Last Little Pig - Midnight Snack
 
@@ -49,7 +49,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 - [View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/BAD-IDEA/)
 
-- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/variables/PROTOYPES/BAD-IDEA!/)
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/variables/PROTOYPES/BAD-IDEA/)
 
 ##### Symmetrical Scratch Art
 

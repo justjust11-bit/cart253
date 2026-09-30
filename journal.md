@@ -21,3 +21,7 @@ I finished my three "Instructions Prototypes" today. For my three prototypes I t
 <img src="./topics/instructions/images/moving_quad.png" alt="Screenshot" width="500">
 
 Doing these prototypes took me longer than I expected. I was busy this weekend, and I wish I could've had more time to think about what I wanted to do. My approach for all of these was to have a vague idea of what I want and to just start adding stuff to see what sticks. I have a habit of doing things this way, but I think for next time, it would be fun to change my technique and maybe first draw out what I would like to do first, and once I like the drawing I did, I could try recreating it.
+
+## Entry 3: September 29th 2026
+
+For my three Variables Protoypes, I wanted there to be a unique mechanic for each one of them. BAD IDEA has the lerpcolor, the mouseX and mouseY stuck to one corner, Symmetrical Scratch Art has pmouse
