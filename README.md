@@ -22,7 +22,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Midnight Snack](./topics/instructions/images/midnight-snack.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack)
 
@@ -30,7 +30,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Movements](./topics/instructions/images/abstract.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/movements/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/movements/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/movements)
 
@@ -38,8 +38,8 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Strange Man](./topics/instructions/images/strange.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man/) -
-[View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man)
+- [View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man/)
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/strange-man)
 
 #### 3 Variables Prototypes
 
@@ -47,7 +47,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of BAD IDEA](./topics/variables/images/bad-idea.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/BAD-IDEA/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/BAD-IDEA/)
 
 - [View code](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/BAD-IDEA!/)
 
@@ -55,7 +55,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Symmetrical Scratch Art](./topics/variables/images/symmetrical.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Symmetrical-Scratch-Art/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Symmetrical-Scratch-Art/)
 
 - [View code](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Symmetrical-Scratch-Art/)
 
@@ -63,6 +63,6 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Flooding City!](./topics/variables/images/flooding.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Flooding-City!/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Flooding-City!/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/variables/PROTOYPES/Flooding-City!)
