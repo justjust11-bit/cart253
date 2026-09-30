@@ -47,7 +47,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of BAD IDEA](./topics/instructions/images/midnight-snack.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+[View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/BAD-IDEA/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack)
 
@@ -55,7 +55,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Symmetrical Scratch Art](./topics/instructions/images/midnight-snack.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+[View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Symmetrical-Scratch-Art/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack)
 
@@ -63,6 +63,6 @@ This website serves to present the prototyping work I will create in my class CA
 
 ![Screenshot of Flooding City!](./topics/instructions/images/midnight-snack.png)
 
-[View online](https://justjust11-bit.github.io/cart253/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack/)
+[View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Flooding-City!/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/instructions/INSTRUCTIONS-PROTOYPES-HERE/midnight-snack)
