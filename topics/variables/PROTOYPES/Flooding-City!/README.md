@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# FLOODING CITY!
 
 JUSTINE CORMIER
 
@@ -6,7 +6,7 @@ JUSTINE CORMIER
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+Water floods the whole city!! The sky turns grey, and water covers the city past its highest building! With the ongoing climate crisis, this might happen to Montreal one day....
 
 ## Attribution
 
