@@ -65,13 +65,16 @@ function draw() {
 
     if (gameState === "title") {
         image(titleScreen, 0, 0, width, height);
+        fill("#a18f8f")
         textAlign(CENTER, CENTER);
-        textSize(50);
-        text("Ocean domination", width / 2, height / 2 - 30);
+        textSize(60);
+        textFont('Verdana')
+        text("Ocean domination", width / 2, height / 2 - 80);
         textSize(30);
-        text("Press space to start", width / 2, height / 2 + 25);
+        text("Use the up and down arrows to move", width / 2, height / 2 + 5);
+        text("Press space to start", width / 2, height / 2 + 35);
 
-        image(you, width / 2, height / 2 + 30)
+        image(you, width / 2, height / 2 + 60)
         return;
     }
 
@@ -119,17 +122,21 @@ function drawFoes() {
  */
 function moveFoes() {
 
-    meneImage.x += meneImage.velocity;
-    shrimpImage.x += shrimpImage.velocity;
+    if (gameState = "playing") {
 
-    // if the fish are outside of the canvas they come back at a random y
-    if (meneImage.x > width) {
-        meneImage.x = -mene.width * 0.1;
-        meneImage.y = random(0, height - mene.height * 0.2);
-    }
+        meneImage.x += meneImage.velocity;
+        shrimpImage.x += shrimpImage.velocity;
 
-    if (shrimpImage.x > width) {
-        shrimpImage.x = -shrimp.width * 0.2;
-        shrimpImage.y = random(0, height - shrimp.height * 0.2);
+        // if the fish are outside of the canvas they come back at a random y
+        if (meneImage.x > width) {
+            meneImage.x = -mene.width * 0.1;
+            meneImage.y = random(0, height - mene.height * 0.2);
+        }
+
+        if (shrimpImage.x > width) {
+            shrimpImage.x = -shrimp.width * 0.2;
+            shrimpImage.y = random(0, height - shrimp.height * 0.2);
+
+        }
     }
 }
