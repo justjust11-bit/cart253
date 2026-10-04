@@ -6,11 +6,15 @@
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
  */
 
+let gameState = "title";
+
 let you = undefined;
 let mene = undefined;
 let orca = undefined;
 let shrimp = undefined;
 let beluga = undefined;
+let titleScreen = undefined;
+let bkg = undefined;
 
 let player = {
     y: 300,
@@ -30,7 +34,6 @@ let shrimpImage = {
     velocity: 3
 }
 
-
 "use strict";
 
 //loading the image of the player (fish)
@@ -38,6 +41,8 @@ async function preload() {
     you = await loadImage("./images/groper.png");
     mene = await loadImage("./images/mene.png");
     shrimp = await loadImage("./images/shrimp.png");
+    titleScreen = await loadImage("./images/bkg.png");
+    bkg = await loadImage("./images/ingameBKG.png");
 }
 
 
@@ -57,13 +62,35 @@ async function setup() {
  * draws the ocean, the fish, the background
 */
 function draw() {
-    background("#4157b9");
 
+    if (gameState === "title") {
+        image(titleScreen, 0, 0, width, height);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        text("Ocean domination", width / 2, height / 2 - 30);
+        textSize(30);
+        text("Press space to start", width / 2, height / 2 + 25);
+
+        image(you, width / 2, height / 2 + 30)
+        return;
+    }
+
+    if (gameState === "playing") {
+        image(bkg, 0, 0, width, height);
+    } else {
+        return;
+    }
 
     image(you, player.x, player.y, you.width * 0.1, you.height * 0.2);
     drawYou();
     drawFoes();
     moveFoes();
+}
+
+function keyPressed() {
+    if (gameState === "title" && key === " ") {
+        gameState = "playing";
+    }
 }
 
 
@@ -95,6 +122,14 @@ function moveFoes() {
     meneImage.x += meneImage.velocity;
     shrimpImage.x += shrimpImage.velocity;
 
-    if (meneImage.x > width) { meneImage.x = -mene.width * 0.1; }
-    if (shrimpImage.x > width) { shrimpImage.x = -shrimp.width * 0.2; }
+    // if the fish are outside of the canvas they come back at a random y
+    if (meneImage.x > width) {
+        meneImage.x = -mene.width * 0.1;
+        meneImage.y = random(0, height - mene.height * 0.2);
+    }
+
+    if (shrimpImage.x > width) {
+        shrimpImage.x = -shrimp.width * 0.2;
+        shrimpImage.y = random(0, height - shrimp.height * 0.2);
+    }
 }
