@@ -6,14 +6,13 @@
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
  */
 
+let you = undefined;
+
 "use strict";
 
-
-
-let player = {
-    fish: loadImage("./images/groper.png"),
-    w: 100,
-    h: 100
+//loading the image of the player (fish)
+async function preload() {
+    you = await loadImage("./images/groper.png");
 }
 
 
@@ -21,9 +20,9 @@ let player = {
 /**
  * creates canvas
 */
-function setup() {
+async function setup() {
     createCanvas(1080, 800);
-
+    await preload();
 }
 
 
@@ -33,15 +32,6 @@ function setup() {
 function draw() {
     background("#4157b9");
 
-    drawPlayer();
+    image(you, 400, 300, you * 1, you * 1)
 }
 
-
-/**
- * draws the fish
- */
-function drawPlayer() {
-
-    image(player.fish, 400, 300, player.w * 1, player.h * 1)
-
-}
