@@ -8,10 +8,21 @@
 
 "use strict";
 
+
+
+let fish;
+
+function preload() {
+    fish = loadImage("./images/groper.png");
+}
+
+
+
 /**
- * draws canvas
+ * creates canvas
 */
 function setup() {
+    createCanvas(1080, 800);
 
 }
 
@@ -20,5 +31,8 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
+    background("#4157b9");
 
+    image(fish, 340, 300, 400, 115);
 }
+
