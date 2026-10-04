@@ -10,10 +10,10 @@
 
 
 
-let fish;
-
-function preload() {
-    fish = loadImage("./images/groper.png");
+let player = {
+    fish: loadImage("./images/groper.png"),
+    w: 100,
+    h: 100
 }
 
 
@@ -33,6 +33,15 @@ function setup() {
 function draw() {
     background("#4157b9");
 
-    image(fish, 340, 300, 400, 115);
+    drawPlayer();
 }
 
+
+/**
+ * draws the fish
+ */
+function drawPlayer() {
+
+    image(player.fish, 400, 300, player.w * 1, player.h * 1)
+
+}
