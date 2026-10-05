@@ -4,8 +4,9 @@
  * 
  * A game where you are a fish, you eat smaller fish and get bigger until you can eat orcas!... 
  * Would've been nice. 
+ * The fish keep coming, but you can't touch a single one.
  * 
- * code used a ref: https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
+ * code used as ref: https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
  * https://p5js.org/reference/p5/millis/
  * https://editor.p5js.org/pippinbarr/sketches/NLnxtLMat
  * https://editor.p5js.org/pippinbarr/sketches/exJrLtvvU

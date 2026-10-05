@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# OCEAN DOMINATION
 
 JUSTINE CORMIER
 
@@ -6,7 +6,9 @@ JUSTINE CORMIER
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+A game where you are a fish, you eat smaller fish and get bigger until you can eat orcas!...
+Would've been nice.
+The fish keep coming, but you can't touch a single one.
 
 ## Attribution
 
