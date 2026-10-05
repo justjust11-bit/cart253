@@ -66,3 +66,13 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/variables/PROTOYPES/Flooding-City!/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/variables/PROTOYPES/Flooding-City!)
+
+#### 3 Conditionals Prototypes
+
+##### Ocean Domination
+
+![Screenshot of Ocean Domination](.topics/conditionals/images/ocean-domination.png)
+
+- [View online]()
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/ocean-domination)
