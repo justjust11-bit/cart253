@@ -51,6 +51,20 @@ let mene3 = {
     active: false
 };
 
+let mene4 = {
+    x: 0,
+    y: 0,
+    velocity: 4,
+    active: false
+};
+
+let mene5 = {
+    x: 0,
+    y: 0,
+    velocity: 4,
+    active: false
+};
+
 
 "use strict";
 
@@ -70,9 +84,12 @@ async function preload() {
 async function setup() {
     createCanvas(1080, 800);
     await preload();
-    mene1.y = random(0, height - mene.height * meneSize * 2);
-    mene2.y = random(0, height - mene.height * meneSize * 2);
-    mene3.y = random(0, height - mene.height * meneSize * 2);
+    //where they can appear on the y canvas
+    mene1.y = random(0, height - meneSize * 2);
+    mene2.y = random(0, height - meneSize * 2);
+    mene3.y = random(0, height - meneSize * 2);
+    mene4.y = random(0, height - meneSize * 2);
+    mene5.y = random(0, height - meneSize * 2);
 
 }
 
@@ -145,6 +162,14 @@ function drawMene() {
     if (mene3.active) {
         image(mene, mene3.x, mene3.y, mene.width * meneSize, mene.height * meneSize * 2);
     }
+
+    if (mene4.active) {
+        image(mene, mene4.x, mene4.y, mene.width * meneSize, mene.height * meneSize * 2);
+    }
+
+    if (mene5.active) {
+        image(mene, mene5.x, mene5.y, mene.width * meneSize, mene.height * meneSize * 2);
+    }
 }
 
 
@@ -186,6 +211,21 @@ function moveMene() {
             mene3.active = false;
         }
     }
+
+    if (mene4.active) {
+        mene4.x += mene4.velocity;
+        if (mene4.x > width) {
+            mene4.active = false;
+        }
+    }
+
+    if (mene5.active) {
+        mene5.x += mene5.velocity;
+        if (mene5.x > width) {
+            mene5.active = false;
+        }
+
+    }
 }
 
 /**
@@ -206,5 +246,15 @@ function spawnMene() {
         mene3.x = 0
         mene3.y = random(0, height - meneSize);
         mene3.active = true;
+    }
+    else if (!mene4.active) {
+        mene4.x = 0
+        mene4.y = random(0, height - meneSize);
+        mene4.active = true;
+
+    } else if (!mene5.active) {
+        mene5.x = 0
+        mene5.y = random(0, height - meneSize);
+        mene5.active = true;
     }
 }
