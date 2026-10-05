@@ -10,12 +10,10 @@
  * https://editor.p5js.org/pippinbarr/sketches/NLnxtLMat
  */
 // put the gameState to playing while i work on it
-let gameState = "playing";
+let gameState = "title";
 
 let you = undefined;
 let mene = undefined;
-let shrimp = undefined;
-// let beluga = undefined;
 let titleScreen = undefined;
 let bkg = undefined;
 
@@ -23,9 +21,10 @@ let player = {
     y: 300,
     x: 850,
     speed: 5,
-    scale: 0.13
+    size: 0.6
 }
 
+let meneSize = 0.12;
 let oneSecond = 1000
 let lastFoeSpawn = 0;
 
@@ -56,9 +55,8 @@ let mene3 = {
 
 //loading the image of the player (fish)
 async function preload() {
-    you = await loadImage("./images/groper.png");
     mene = await loadImage("./images/mene.png");
-    shrimp = await loadImage("./images/shrimp.png");
+    you = await loadImage("./images/groper.png");
     titleScreen = await loadImage("./images/bkg.png");
     bkg = await loadImage("./images/ingameBKG.png");
 }
@@ -71,9 +69,9 @@ async function preload() {
 async function setup() {
     createCanvas(1080, 800);
     await preload();
-    mene1.y = random(0, height - mene.height * 0.2);
-    mene2.y = random(0, height - mene.height * 0.2);
-    mene3.y = random(0, height - mene.height * 0.2);
+    mene1.y = random(0, height - mene.height * meneSize * 2);
+    mene2.y = random(0, height - mene.height * meneSize * 2);
+    mene3.y = random(0, height - mene.height * meneSize * 2);
 
 }
 
@@ -91,8 +89,8 @@ function draw() {
         textFont('Verdana')
         text("Ocean domination", width / 2, height / 2 - 80);
         textSize(30);
-        text("Use the up and down arrows to move", width / 2, height / 2 + 5);
-        text("Press space to start", width / 2, height / 2 + 35);
+        text("Use the UP and DOWN arrows to move", width / 2, height / 2 + 5);
+        text("Click to start", width / 2, height / 2 + 55);
 
         image(you, width / 2, height / 2 + 60)
         return;
@@ -100,18 +98,19 @@ function draw() {
 
     if (gameState === "playing") {
         image(bkg, 0, 0, width, height);
-        drawYou();
+
         moveFoes();
-        eatingFoes();
-        image(you, player.x, player.y, you.width * player.scale, you.height * player.scale);
+        image(you, player.x, player.y, you.width * player.size, you.height * player.size);
         drawFoes();
+        drawYou();
     } else {
         return;
     }
 }
 
-function keyPressed() {
-    if (gameState === "title" && key === " ") {
+//start the game when you click on the screen
+function mouseClicked() {
+    if (gameState === "title") {
         gameState = "playing";
     }
 }
@@ -122,8 +121,11 @@ function keyPressed() {
  */
 function drawYou() {
 
-    if (keyIsDown(DOWN_ARROW) === true) { player.y += player.speed; }
-    else if (keyIsDown(UP_ARROW) === true) { player.y -= player.speed; }
+    if (keyIsDown(DOWN_ARROW)) { player.y += player.speed; }
+    else if (keyIsDown(UP_ARROW)) { player.y -= player.speed; }
+
+    //keeps fish inside the canvas
+    player.y = constrain(player.y, 0, height - player.size);
 }
 
 /**
@@ -132,15 +134,15 @@ function drawYou() {
 function drawFoes() {
 
     if (mene1.active) {
-        image(mene, mene1.x, mene1.y, mene.width * 0.1, mene.height * 0.2);
+        image(mene, mene1.x, mene1.y, mene.width * meneSize, mene.height * meneSize * 2);
     }
 
     if (mene2.active) {
-        image(mene, mene2.x, mene2.y, mene.width * 0.1, mene.height * 0.2);
+        image(mene, mene2.x, mene2.y, mene.width * meneSize, mene.height * meneSize * 2);
     }
 
     if (mene3.active) {
-        image(mene, mene3.x, mene3.y, mene.width * 0.1, mene.height * 0.2);
+        image(mene, mene3.x, mene3.y, mene.width * meneSize, mene.height * meneSize * 2);
     }
 }
 
@@ -171,16 +173,16 @@ function moveFoes() {
  */
 function spawnMene() {
     if (!mene1.active) {
-        mene1.x = -mene.width * 0.1;
-        mene1.y = random(0, height - mene.height * 0.2);
+        mene1.x = 0
+        mene1.y = random(0, height - meneSize);
         mene1.active = true;
     } else if (!mene2.active) {
-        mene2.x = -mene.width * 0.1;
-        mene2.y = random(0, height - mene.height * 0.2);
+        mene2.x = 0
+        mene2.y = random(0, height - meneSize);
         mene2.active = true;
     } else if (!mene3.active) {
-        mene3.x = -mene.width * 0.1;
-        mene3.y = random(0, height - mene.height * 0.2);
+        mene3.x = 0
+        mene3.y = random(0, height - meneSize);
         mene3.active = true;
     }
 }
@@ -208,42 +210,6 @@ function moveMene() {
         mene3.x += mene3.velocity;
         if (mene3.x > width) {
             mene3.active = false;
-        }
-    }
-}
-
-
-/**
- * you get bigger when you touch the others
- */
-//im using the same logic as for circles, since the foes can only touch
-//the tip of his mouth (width corner x) and not his height
-function eatingFoes() {
-    const playerWidth = you.width * player.scale;
-    const playerHeight = you.height * player.scale;
-    const playerDiameter = max(playerWidth, playerHeight);
-    const foes = [mene1, mene2, mene3];
-
-    for (const foe of foes) {
-        if (foe.active) {
-            const foeWidth = mene.width * 0.1;
-            const foeHeight = mene.height * 0.2;
-            const foeDiameter = max(foeWidth, foeHeight);
-
-            // Calculate the distance between the centres of the fish
-            const d = dist(
-                player.x + playerWidth / 2,
-                player.y + playerHeight / 2,
-                foe.x + foeWidth / 2,
-                foe.y + foeHeight / 2
-            );
-            // Check if they're overlapping
-            const overlap = (d < playerDiameter / 2 + foeDiameter / 2);
-
-            if (overlap) {
-                foe.active = false;
-                player.scale += 0.01;
-            }
         }
     }
 }
