@@ -7,15 +7,16 @@
  * 
  * code used a ref: https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
  * https://p5js.org/reference/p5/millis/
+ * https://editor.p5js.org/pippinbarr/sketches/NLnxtLMat
  */
 // put the gameState to playing while i work on it
 let gameState = "playing";
 
 let you = undefined;
 let mene = undefined;
-let orca = undefined;
-let shrimp = undefined;
-let beluga = undefined;
+// let orca = undefined;
+// let shrimp = undefined;
+// let beluga = undefined;
 let titleScreen = undefined;
 let bkg = undefined;
 
@@ -30,10 +31,7 @@ let oneSecond = 1000
 let mene1 = { x: 100, y: 0, velocity: 4, active: true };
 let mene2 = { x: 0, y: 0, velocity: 4, active: false };
 let mene3 = { x: 0, y: 0, velocity: 4, active: false };
-let shrimp1 = { x: 100, y: 0, velocity: 3, active: true };
-let shrimp2 = { x: 0, y: 0, velocity: 3, active: false };
-let shrimp3 = { x: 0, y: 0, velocity: 3, active: false };
-let lastFoeSpawn = 0;
+
 
 "use strict";
 
@@ -57,9 +55,7 @@ async function setup() {
     mene1.y = random(0, height - mene.height * 0.2);
     mene2.y = random(0, height - mene.height * 0.2);
     mene3.y = random(0, height - mene.height * 0.2);
-    shrimp1.y = random(0, height - shrimp.height * 0.2);
-    shrimp2.y = random(0, height - shrimp.height * 0.2);
-    shrimp3.y = random(0, height - shrimp.height * 0.2);
+
 }
 
 
@@ -94,6 +90,7 @@ function draw() {
     drawYou();
     drawFoes();
     moveFoes();
+    eatingFoes();
 }
 
 function keyPressed() {
@@ -142,6 +139,7 @@ function moveFoes() {
         //if theres been a spawn that spawned 1 second ago, generate another spawn
         if (millis() - lastFoeSpawn >= oneSecond) {
             lastFoeSpawn = millis();
+            //30% of the time
             if (random() < 0.5) {
                 spawnMene();
             }
@@ -195,4 +193,27 @@ function moveMene() {
             mene3.active = false;
         }
     }
+}
+
+
+/**
+ * you get bigger when you touch the others
+ */
+//im using the same logic as for circles, since the foes can only touch
+//the tip of his mouth (width corner x) and not his height
+function eatingFoes() {
+
+    const d = dist(player.x, player.y, targetCircle.x, targetCircle.y);
+    // Check if that distance is smaller than their two radii, 
+    // because if it is, they are overlapping by the amazing
+    // power of geometry!
+    const overlap = (d < player.size / 2 + targetCircle.size / 2);
+    // Set fill based on whether they overlap
+    if (overlap) {
+        targetCircle.fill = targetCircle.fills.overlap;
+    }
+    else {
+        targetCircle.fill = targetCircle.fills.noOverlap;
+    }
+
 }
