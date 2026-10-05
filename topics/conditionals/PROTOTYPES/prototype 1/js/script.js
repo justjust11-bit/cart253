@@ -151,6 +151,9 @@ function moveFoes() {
     moveMene();
 }
 
+/**
+ * spawns the mene
+ */
 function spawnMene() {
     if (!mene1.active) {
         mene1.x = -mene.width * 0.1;
@@ -166,6 +169,10 @@ function spawnMene() {
         mene3.active = true;
     }
 }
+
+/**
+ * moves the mene
+ */
 
 function moveMene() {
     if (mene1.active) {
