@@ -8,6 +8,7 @@
  * code used a ref: https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
  * https://p5js.org/reference/p5/millis/
  * https://editor.p5js.org/pippinbarr/sketches/NLnxtLMat
+ * https://editor.p5js.org/pippinbarr/sketches/exJrLtvvU
  */
 // put the gameState to playing while i work on it
 let gameState = "title";
@@ -26,7 +27,7 @@ let player = {
 
 let meneSize = 0.12;
 let oneSecond = 1000
-let lastFoeSpawn = 0;
+let lastMeneSpawn = 0;
 
 //the first mene to spawn, so hes "active"
 let mene1 = {
@@ -99,9 +100,9 @@ function draw() {
     if (gameState === "playing") {
         image(bkg, 0, 0, width, height);
 
-        moveFoes();
+        moveMene();
         image(you, player.x, player.y, you.width * player.size, you.height * player.size);
-        drawFoes();
+        drawMene();
         drawYou();
     } else {
         return;
@@ -131,7 +132,7 @@ function drawYou() {
 /**
  * draws the other fish and sea animals
  */
-function drawFoes() {
+function drawMene() {
 
     if (mene1.active) {
         image(mene, mene1.x, mene1.y, mene.width * meneSize, mene.height * meneSize * 2);
@@ -149,15 +150,14 @@ function drawFoes() {
 
 
 /**
- * moves the opponents
+ * moves and spawns the mene
  */
-function moveFoes() {
-
+function moveMene() {
     //millis is the milliseconds since the sketch started running
     if (gameState === "playing") {
         //if theres been a spawn that spawned 1 second ago, generate another spawn
-        if (millis() - lastFoeSpawn >= oneSecond) {
-            lastFoeSpawn = millis();
+        if (millis() - lastMeneSpawn >= oneSecond) {
+            lastMeneSpawn = millis();
             //30% of the time
             if (random() < 0.5) {
                 spawnMene();
@@ -165,35 +165,9 @@ function moveFoes() {
         }
     }
 
-    moveMene();
-}
-
-/**
- * spawns the mene
- */
-function spawnMene() {
-    if (!mene1.active) {
-        mene1.x = 0
-        mene1.y = random(0, height - meneSize);
-        mene1.active = true;
-    } else if (!mene2.active) {
-        mene2.x = 0
-        mene2.y = random(0, height - meneSize);
-        mene2.active = true;
-    } else if (!mene3.active) {
-        mene3.x = 0
-        mene3.y = random(0, height - meneSize);
-        mene3.active = true;
-    }
-}
-
-/**
- * moves the mene
- */
-
-function moveMene() {
     if (mene1.active) {
         mene1.x += mene1.velocity;
+        //if the mene goes outside of the canvas, he disappears
         if (mene1.x > width) {
             mene1.active = false;
         }
@@ -211,5 +185,26 @@ function moveMene() {
         if (mene3.x > width) {
             mene3.active = false;
         }
+    }
+}
+
+/**
+ * spawns the mene
+ */
+function spawnMene() {
+    if (!mene1.active) {
+        //start at the edge of the canvas
+        mene1.x = 0
+        //appears anywhere on the y canvas, except it doesnt get its own size cut out
+        mene1.y = random(0, height - meneSize);
+        mene1.active = true;
+    } else if (!mene2.active) {
+        mene2.x = 0
+        mene2.y = random(0, height - meneSize);
+        mene2.active = true;
+    } else if (!mene3.active) {
+        mene3.x = 0
+        mene3.y = random(0, height - meneSize);
+        mene3.active = true;
     }
 }
