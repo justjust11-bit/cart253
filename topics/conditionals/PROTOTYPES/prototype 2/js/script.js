@@ -12,7 +12,7 @@
  * draws canvas
 */
 function setup() {
-
+    createCanvas(800, 600)
 }
 
 
@@ -20,5 +20,6 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
+    background(("#7b8104"))
 
 }
