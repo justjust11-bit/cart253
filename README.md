@@ -71,8 +71,8 @@ This website serves to present the prototyping work I will create in my class CA
 
 ##### Ocean Domination
 
-![Screenshot of Ocean Domination](.topics/conditionals/images/ocean-domination.png)
+![Screenshot of Ocean Domination](.topics/conditionals/PROTOTYPES/images/ocean-domination.png)
 
-- [View online]()
+- [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/ocean-domination/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/ocean-domination)
