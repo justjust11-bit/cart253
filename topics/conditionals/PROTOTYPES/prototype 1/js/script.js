@@ -14,8 +14,7 @@ let gameState = "playing";
 
 let you = undefined;
 let mene = undefined;
-// let orca = undefined;
-// let shrimp = undefined;
+let shrimp = undefined;
 // let beluga = undefined;
 let titleScreen = undefined;
 let bkg = undefined;
@@ -23,14 +22,34 @@ let bkg = undefined;
 let player = {
     y: 300,
     x: 850,
-    speed: 5
+    speed: 5,
+    scale: 0.13
 }
 
 let oneSecond = 1000
+let lastFoeSpawn = 0;
 
-let mene1 = { x: 100, y: 0, velocity: 4, active: true };
-let mene2 = { x: 0, y: 0, velocity: 4, active: false };
-let mene3 = { x: 0, y: 0, velocity: 4, active: false };
+//the first mene to spawn, so hes "active"
+let mene1 = {
+    x: 100,
+    y: 0,
+    velocity: 4,
+    active: true
+};
+
+let mene2 = {
+    x: 0,
+    y: 0,
+    velocity: 4,
+    active: false
+};
+
+let mene3 = {
+    x: 0,
+    y: 0,
+    velocity: 4,
+    active: false
+};
 
 
 "use strict";
@@ -81,16 +100,14 @@ function draw() {
 
     if (gameState === "playing") {
         image(bkg, 0, 0, width, height);
-        image(you, player.x, player.y, you.width * 0.13, you.height * 0.13);
+        drawYou();
+        moveFoes();
+        eatingFoes();
+        image(you, player.x, player.y, you.width * player.scale, you.height * player.scale);
+        drawFoes();
     } else {
         return;
     }
-
-
-    drawYou();
-    drawFoes();
-    moveFoes();
-    eatingFoes();
 }
 
 function keyPressed() {
@@ -202,18 +219,31 @@ function moveMene() {
 //im using the same logic as for circles, since the foes can only touch
 //the tip of his mouth (width corner x) and not his height
 function eatingFoes() {
+    const playerWidth = you.width * player.scale;
+    const playerHeight = you.height * player.scale;
+    const playerDiameter = max(playerWidth, playerHeight);
+    const foes = [mene1, mene2, mene3];
 
-    const d = dist(player.x, player.y, targetCircle.x, targetCircle.y);
-    // Check if that distance is smaller than their two radii, 
-    // because if it is, they are overlapping by the amazing
-    // power of geometry!
-    const overlap = (d < player.size / 2 + targetCircle.size / 2);
-    // Set fill based on whether they overlap
-    if (overlap) {
-        targetCircle.fill = targetCircle.fills.overlap;
-    }
-    else {
-        targetCircle.fill = targetCircle.fills.noOverlap;
-    }
+    for (const foe of foes) {
+        if (foe.active) {
+            const foeWidth = mene.width * 0.1;
+            const foeHeight = mene.height * 0.2;
+            const foeDiameter = max(foeWidth, foeHeight);
 
+            // Calculate the distance between the centres of the fish
+            const d = dist(
+                player.x + playerWidth / 2,
+                player.y + playerHeight / 2,
+                foe.x + foeWidth / 2,
+                foe.y + foeHeight / 2
+            );
+            // Check if they're overlapping
+            const overlap = (d < playerDiameter / 2 + foeDiameter / 2);
+
+            if (overlap) {
+                foe.active = false;
+                player.scale += 0.01;
+            }
+        }
+    }
 }
