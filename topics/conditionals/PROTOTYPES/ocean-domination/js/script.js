@@ -4,7 +4,8 @@
  * 
  * A game where you are a fish, you eat smaller fish and get bigger until you can eat orcas!... 
  * Would've been nice. 
- * The fish keep coming, but you can't touch a single one.
+ * The fish keep coming, but you can't interact with a single one.
+ * Maybe you're the one being dominated by the ocean.
  * 
  * code used as ref: https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
  * https://p5js.org/reference/p5/millis/
@@ -77,6 +78,14 @@ let mene5 = {
     w: 2
 };
 
+let mene6 = {
+    x: 0,
+    y: 0,
+    velocity: 3,
+    active: false,
+    w: 1.5
+};
+
 
 "use strict";
 
@@ -100,11 +109,13 @@ async function setup() {
     createCanvas(1080, 720);
     await preload();
     //where they can appear on the y canvas
+    //the ones with .w are ones i played around with the size at the top
     mene1.y = random(0, height - mene.height * meneSize);
     mene2.y = random(0, height - mene.height * meneSize * mene2.w);
     shrimp.y = random(0, height - shrimpImage.height * meneSize * shrimp.w);
     mene4.y = random(0, height - mene.height * meneSize);
     mene5.y = random(0, height - mene.height * meneSize * mene5.w);
+    mene6.y = random(0, height - mene.height * meneSize * mene6.w);
 
 }
 
@@ -192,7 +203,7 @@ function drawYou() {
  */
 function drawFoes() {
 
-    //makes the height and width adjust to the "size" variable i made
+    // *meneSize or *shrimpSize makes the height and width adjust to the "size" variable i made
     if (mene1.active) {
         image(mene, mene1.x, mene1.y, mene.width * meneSize, mene.height * meneSize);
     }
@@ -212,6 +223,10 @@ function drawFoes() {
     if (mene5.active) {
         image(mene, mene5.x, mene5.y, mene.width * meneSize, mene.height * meneSize * mene5.w);
     }
+
+    if (mene6.active) {
+        image(mene, mene6.x, mene6.y, mene.width * meneSize, mene.height * meneSize * mene6.w);
+    }
 }
 
 
@@ -226,9 +241,6 @@ function moveFoes() {
         //so it looks like its looping but it just keeps spawning
         if (millis() - lastSpawned >= oneSecond) {
             lastSpawned = millis();
-            //80% chance of spawning
-            if (random() < 0.8)
-            //if it the randomness decides so, it spawns a foe! 
             {
                 spawnFoes();
             }
@@ -272,6 +284,14 @@ function moveFoes() {
         }
 
     }
+
+    if (mene6.active) {
+        mene6.x += mene6.velocity;
+        if (mene6.x > width) {
+            mene6.active = false;
+        }
+
+    }
 }
 
 /**
@@ -301,5 +321,10 @@ function spawnFoes() {
         mene5.x = 0
         mene5.y = random(0, height - mene.height * meneSize * mene5.w);
         mene5.active = true;
+
+    } else if (!mene6.active) {
+        mene6.x = 0
+        mene6.y = random(0, height - mene.height * meneSize * mene6.w);
+        mene6.active = true;
     }
 }

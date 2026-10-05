@@ -2,13 +2,12 @@
 
 JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/ocean-domination/)
 
 ## Description
 
 A game where you are a fish, you eat smaller fish and get bigger until you can eat orcas!...
-Would've been nice.
-The fish keep coming, but you can't touch a single one.
+Would've been nice. The fish keep coming, but you can't interact with a single one. Maybe you're the one being dominated by the ocean.
 
 ## Attribution
 
