@@ -79,7 +79,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ##### Fortune Cookie
 
-![Screenshot of Fortune Cookie](./topics/conditionals/PROTOTYPES/ocean-domination/images/Screenshot.png)
+![Screenshot of Fortune Cookie](./topics/conditionals/PROTOTYPES/fortune-cookie/images/Screenshot.png)
 
 - [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/fortune-cookie/)
 
