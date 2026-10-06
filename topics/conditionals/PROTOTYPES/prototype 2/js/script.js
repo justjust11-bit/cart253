@@ -26,7 +26,7 @@ let cookiePic = undefined;
 let jar = undefined;
 let wrapper = undefined;
 let pickedWrapper = undefined;
-let cookieSize = 1.36
+let cookieSize = 1.33
 let drop = undefined
 
 
@@ -144,6 +144,18 @@ function draw() {
     else if (gameState === "fortune") {
         drawFortune();
     }
+
+    //write the text at the top 
+    if (gameState === "jar") {
+        push();
+        textAlign(CENTER, TOP);
+        textSize(25);
+        textStyle(BOLD)
+        textFont('Verdana');
+        fill("#141414");
+        text("Drag a cookie from the jar", width / 2, 20);
+        pop();
+    }
 }
 
 
@@ -247,7 +259,7 @@ function drawWrappers() {
 function drawFortune() {
     //make bkg darker when you picked fortune
     push();
-    background(100, 20, 20)
+    background(125, 10, 10)
     pop();
 
     push();
@@ -278,6 +290,8 @@ function mousePressed() {
     if (gameState !== "jar") {
         return;
     }
+
+
 
     //where the jar is
     //new const for this section only
@@ -357,8 +371,20 @@ function mouseReleased() {
         else if (fortuneRoll < 0.61) {
             drop = "You've forgotten to do something very important";
         }
+        else if (fortuneRoll < 0.71) {
+            drop = "Your smile lights up the life of everyone around you";
+        }
+        else if (fortuneRoll < 0.81) {
+            drop = "Listen to your subconscious";
+        }
+        else if (fortuneRoll < 0.89) {
+            drop = "Don't listen to your subconscious";
+        }
+        else if (fortuneRoll < 0.91) {
+            drop = "Your phone is begging for you to scroll more";
+        }
         else {
-            drop = "Clear the way for people leaving the train before you enter\n22 33 74 82 98";
+            drop = "Clear the way for people leaving the train before you enter";
         }
 
         gameState = "fortune";
