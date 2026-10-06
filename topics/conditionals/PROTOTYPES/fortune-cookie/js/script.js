@@ -1,5 +1,5 @@
 /**
- * Fortune cookie
+ * Fortune Cookie
  * Justine Cormier
  * 
  * Pick a fortune cookie from the cookie jar, have your fortune 
@@ -26,7 +26,9 @@ let cookiePic = undefined;
 let jar = undefined;
 let wrapper = undefined;
 let pickedWrapper = undefined;
-let cookieSize = 1.33
+
+//cookie including text on fortune
+let cookieSize = 1.25
 let drop = undefined
 
 
@@ -52,8 +54,8 @@ async function setup() {
 
 
     jar = {
-        y: 90,
-        size: 1.1
+        y: 80,
+        size: 1.2
     }
 
     wrapper = {
@@ -263,7 +265,7 @@ function drawFortune() {
     pop();
 
     push();
-    tint(210, 210, 255);
+    tint(200, 200, 255);
     imageMode(CENTER);
     image(cookiePic, width / 2, height / 2, cookiePic.width * cookieSize, cookiePic.height * cookieSize);
     pop();
@@ -276,8 +278,8 @@ function drawFortune() {
     textFont('Verdana')
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
-    textSize(18);
-    fill(160, 60, 60);
+    textSize(18.5);
+    fill(150, 60, 60);
     text(drop, 150, 140, 350, 200);
     pop();
 }
