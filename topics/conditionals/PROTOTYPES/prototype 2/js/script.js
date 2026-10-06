@@ -8,6 +8,9 @@
  * refs used: https://p5js.org/reference/p5/imageMode/
  * https://p5js.org/reference/p5/rotate/
  * https://p5js.org/reference/p5/translate/
+ * https://p5js.org/reference/p5/mousePressed/
+ * https://p5js.org/reference/p5/mouseDragged/
+ * https://editor.p5js.org/pippinbarr/sketches/5hnVN-_C0
  */
 
 "use strict";
@@ -18,6 +21,9 @@ let cookiePic = undefined;
 
 let jar = undefined;
 let wrapper = undefined;
+let pickedWrapper = undefined;
+let gameState = "jar";
+let cookieSize = 1.36
 
 
 
@@ -38,6 +44,8 @@ async function setup() {
     createCanvas(800, 600);
 
     await preload();
+
+
 
     jar = {
         y: 90,
@@ -124,10 +132,13 @@ function draw() {
 
     drawJar();
     drawWrappers();
-    // drawFortune();
 
-
-
+    if (gameState === "dragging") {
+        drawPickedWrapper();
+    }
+    else if (gameState === "fortune") {
+        drawFortune();
+    }
 }
 
 
@@ -225,10 +236,91 @@ function drawWrappers() {
 }
 
 // /**
-//  * draws the fortune after choosing a cookie
+//  * draws the fortune gamestate, after choosing a cookie (letting go of the mouse drag)
 //  */
 
-//function drawFortune() {
+function drawFortune() {
+    //make bkg darker when you picked fortune
+    push();
+    background(100, 20, 20)
+    pop();
 
+    push();
+    //similar but lighter tint as the jar and cookie, but no opacity
+    tint(200, 200, 255);
+    imageMode(CENTER);
+    image(cookiePic, width / 2, height / 2, cookiePic.width * cookieSize, cookiePic.height * cookieSize);
+    pop();
+}
 
-// }
+/**
+ * when you press down using your mouse on jar, it spawns a cookie on your mousex mousey
+ */
+function mousePressed() {
+    // Only start a new cookie drag from the jar's initial state.
+    if (gameState !== "jar") {
+        return;
+    }
+
+    //where the jar is
+    //new const for this section only
+    //jar is in the middle
+    const jarX = width / 2;
+    const jarY = height / 2 + jar.y;
+    //the jars size stays adjustable
+    const jarWidth = jarPic.width * jar.size;
+    const jarHeight = jarPic.height * jar.size;
+
+    // hitbox, check if the mouse is inside the jars area, so all 4 sides
+    const overJar = (
+        //checking if the mouse is to the right of the jar's left side
+        mouseX >= jarX - jarWidth / 2 &&
+        // mouse to the left of the jar's right side
+        mouseX <= jarX + jarWidth / 2 &&
+        // mouse below the jar's top side
+        mouseY >= jarY - jarHeight / 2 &&
+        // mouse above the jar's bottom side
+        mouseY <= jarY + jarHeight / 2
+    );
+
+    // if all of the above are true, the mouse clicked inside the jar
+
+    if (overJar) {
+        pickedWrapper = {
+            x: mouseX,
+            y: mouseY,
+            size: 0.16,
+        };
+        gameState = "dragging";
+    }
+}
+
+/**
+ * dragging function to drag the cookie
+ */
+function mouseDragged() {
+    // move the wrapper only while it is being dragged.
+    if (gameState === "dragging") {
+        pickedWrapper.x = mouseX;
+        pickedWrapper.y = mouseY;
+    }
+}
+
+/**
+ * function for state change when you release the click, the wrapper switches from wrapper to fortune
+ */
+function mouseReleased() {
+    // opening the wrapper changes from wrapper to opened cookie
+    if (gameState === "dragging") {
+        gameState = "fortune";
+    }
+}
+
+function drawPickedWrapper() {
+    push();
+    tint(170, 170, 255, 210);
+    imageMode(CENTER);
+    translate(pickedWrapper.x, pickedWrapper.y);
+    image(wrapperPic, 0, 0, wrapperPic.width * pickedWrapper.size, wrapperPic.height * pickedWrapper.size);
+    pop();
+}
