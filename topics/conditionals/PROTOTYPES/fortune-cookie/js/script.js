@@ -280,7 +280,7 @@ function drawFortune() {
     textStyle(BOLD);
     textSize(18.5);
     fill(150, 60, 60);
-    text(drop, 150, 140, 350, 200);
+    text(drop, 150, 140, 349, 200);
     pop();
 }
 

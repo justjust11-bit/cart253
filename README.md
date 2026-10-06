@@ -76,3 +76,11 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/ocean-domination/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/ocean-domination)
+
+##### Fortune Cookie
+
+![Screenshot of Fortune Cookie](./topics/conditionals/PROTOTYPES/ocean-domination/images/Screenshot.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/fortune-cookie/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/fortune-cookie)
