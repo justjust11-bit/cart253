@@ -11,9 +11,13 @@
  * https://p5js.org/reference/p5/mousePressed/
  * https://p5js.org/reference/p5/mouseDragged/
  * https://editor.p5js.org/pippinbarr/sketches/5hnVN-_C0
+ * https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
  */
 
 "use strict";
+
+
+let gameState = "jar";
 
 let jarPic = undefined;
 let wrapperPic = undefined;
@@ -22,8 +26,8 @@ let cookiePic = undefined;
 let jar = undefined;
 let wrapper = undefined;
 let pickedWrapper = undefined;
-let gameState = "jar";
 let cookieSize = 1.36
+let drop = undefined
 
 
 
@@ -121,6 +125,7 @@ async function setup() {
         }
     }
 
+
 }
 
 
@@ -134,7 +139,7 @@ function draw() {
     drawWrappers();
 
     if (gameState === "dragging") {
-        drawPickedWrapper();
+        mouseDragged();
     }
     else if (gameState === "fortune") {
         drawFortune();
@@ -246,10 +251,22 @@ function drawFortune() {
     pop();
 
     push();
-    //similar but lighter tint as the jar and cookie, but no opacity
-    tint(200, 200, 255);
+    tint(255);
     imageMode(CENTER);
     image(cookiePic, width / 2, height / 2, cookiePic.width * cookieSize, cookiePic.height * cookieSize);
+    pop();
+
+    //fortune format
+    push();
+    angleMode(DEGREES)
+    translate(width / 4 - 40, height / 4 - 125)
+    rotate(-4)
+    textFont('Verdana')
+    textAlign(CENTER, CENTER);
+    textStyle(BOLD);
+    textSize(18);
+    fill(160, 60, 60);
+    text(drop, 150, 140, 350, 200);
     pop();
 }
 
@@ -299,28 +316,51 @@ function mousePressed() {
  * dragging function to drag the cookie
  */
 function mouseDragged() {
-    // move the wrapper only while it is being dragged.
+    // draws and moves the wrapper only while it is being dragged.
     if (gameState === "dragging") {
         pickedWrapper.x = mouseX;
         pickedWrapper.y = mouseY;
+        //the wrapper you drag out
+        push();
+        tint(170, 170, 255, 210);
+        imageMode(CENTER);
+        translate(pickedWrapper.x, pickedWrapper.y);
+        image(wrapperPic, 0, 0, wrapperPic.width * pickedWrapper.size, wrapperPic.height * pickedWrapper.size);
+        pop();
     }
 }
 
 /**
- * function for state change when you release the click, the wrapper switches from wrapper to fortune
+ * FORTUNES---function for state change when you release the click, the wrapper switches from wrapper to fortune
+ * 
  */
 function mouseReleased() {
     // opening the wrapper changes from wrapper to opened cookie
     if (gameState === "dragging") {
+        const fortuneRoll = random();
+
+        if (fortuneRoll < 0.11) {
+            drop = "All your wishes will come true ";
+        }
+        else if (fortuneRoll < 0.21) {
+            drop = "Don't do anything outside of your comfort zone";
+        }
+        else if (fortuneRoll < 0.31) {
+            drop = "Someone is thinking about you today";
+        }
+        else if (fortuneRoll < 0.41) {
+            drop = "Burgundy is your lucky colour of the day";
+        }
+        else if (fortuneRoll < 0.51) {
+            drop = "Don't do that thing you've been meaning to do";
+        }
+        else if (fortuneRoll < 0.61) {
+            drop = "You've forgotten to do something very important";
+        }
+        else {
+            drop = "Clear the way for people leaving the train before you enter\n22 33 74 82 98";
+        }
+
         gameState = "fortune";
     }
-}
-
-function drawPickedWrapper() {
-    push();
-    tint(170, 170, 255, 210);
-    imageMode(CENTER);
-    translate(pickedWrapper.x, pickedWrapper.y);
-    image(wrapperPic, 0, 0, wrapperPic.width * pickedWrapper.size, wrapperPic.height * pickedWrapper.size);
-    pop();
 }
