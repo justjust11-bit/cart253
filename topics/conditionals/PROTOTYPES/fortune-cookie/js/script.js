@@ -1,9 +1,9 @@
 /**
- * Title of Project
+ * Fortune cookie
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Pick a fortune cookie from the cookie jar, have your fortune 
+ * be read!
  * 
  * refs used: https://p5js.org/reference/p5/imageMode/
  * https://p5js.org/reference/p5/rotate/
@@ -257,13 +257,13 @@ function drawWrappers() {
 //  */
 
 function drawFortune() {
-    //make bkg darker when you picked fortune
+    //make bkg darker when you picked fortune/opened cookie
     push();
     background(125, 10, 10)
     pop();
 
     push();
-    tint(255);
+    tint(210, 210, 255);
     imageMode(CENTER);
     image(cookiePic, width / 2, height / 2, cookiePic.width * cookieSize, cookiePic.height * cookieSize);
     pop();
@@ -286,12 +286,16 @@ function drawFortune() {
  * when you press down using your mouse on jar, it spawns a cookie on your mousex mousey
  */
 function mousePressed() {
+    if (gameState === "fortune") {
+        //if you click your mouse on the fortune screen, it brings you back to the jar
+        gameState = "jar";
+        return;
+    }
+
     // Only start a new cookie drag from the jar's initial state.
     if (gameState !== "jar") {
         return;
     }
-
-
 
     //where the jar is
     //new const for this section only
