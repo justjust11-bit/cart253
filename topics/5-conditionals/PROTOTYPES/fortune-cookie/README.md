@@ -6,7 +6,7 @@ JUSTINE CORMIER
 
 ## Description
 
-Pick a fortune cookie from the cookie jar, have your fortune be read!
+Pick a fortune cookie from the cookie jar, have your fortune be read! The fortune is randomized.
 
 ## Attribution
 

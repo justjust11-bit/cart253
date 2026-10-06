@@ -3,7 +3,7 @@
  * Justine Cormier
  * 
  * Pick a fortune cookie from the cookie jar, have your fortune 
- * be read!
+ * be read! The fortune is randomized.
  * 
  * refs used: https://p5js.org/reference/p5/imageMode/
  * https://p5js.org/reference/p5/rotate/
