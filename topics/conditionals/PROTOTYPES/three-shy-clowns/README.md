@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# THREE SHY CLOWNS
 
 JUSTINE CORMIER
 
@@ -6,7 +6,7 @@ JUSTINE CORMIER
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+They only want to appear if directly interacted with. They also dont want to be on the screen at the same time as the others. Click on the holes until you find your favourite tint and size.
 
 ## Attribution
 

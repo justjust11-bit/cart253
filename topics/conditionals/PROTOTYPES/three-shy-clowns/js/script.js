@@ -2,8 +2,8 @@
  * Three Shy Clowns
  * Justine Cormier
  * 
- * They only want to appear if directly called at. They also dont want to be on the screen
- * at the same time as the others. Click on the holes until you find your favourite tone and size.
+ * They only want to appear if directly interacted with. They also dont want to be on the screen
+ * at the same time as the others. Click on the holes until you find your favourite tint and size.
  * 
  * 
  * refs used: https://editor.p5js.org/pippinbarr/sketches/NLnxtLMat
