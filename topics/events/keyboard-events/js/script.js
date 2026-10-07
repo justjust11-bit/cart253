@@ -44,3 +44,11 @@ function draw() {
     ellipse(ball.x, ball.y, ball.size);
     pop();
 }
+
+function keyPressed() {
+    ball.fill = ball.fills.red;
+}
+
+function keyReleased() {
+    ball.fill = ball.fill.white;
+}
