@@ -11,6 +11,7 @@ They only want to appear if directly interacted with. They also dont want to be 
 ## Attribution
 
 > - This project uses [p5.js](https://p5js.org).
+> - The clown image is a capture of the clown from the Apple emoji character set.
 
 ## License
 

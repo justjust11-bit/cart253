@@ -84,3 +84,11 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/fortune-cookie/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/fortune-cookie)
+
+##### Three Shy Clowns
+
+![Screenshot of Three Shy Clowns](./topics/conditionals/PROTOTYPES/three-shy-clowns/assets/images/clowns.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/three-shy-clowns/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/three-shy-clowns)
