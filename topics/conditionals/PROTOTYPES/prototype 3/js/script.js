@@ -1,5 +1,5 @@
 /**
- * Title of Project
+ * Clown 
  * Justine Cormier
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
@@ -8,9 +8,26 @@
 
 "use strict";
 
+let clown = undefined;
+let clownHole = 0;
 
+const hole1 = {
+    x: 170,
+    y: 390,
+    size: 150
+}
 
-let holes = undefined;
+const hole2 = {
+    x: 400,
+    y: 390,
+    size: 150
+}
+
+const hole3 = {
+    x: 630,
+    y: 390,
+    size: 150
+}
 
 
 
@@ -18,9 +35,9 @@ let holes = undefined;
 /**
  * draws canvas
 */
-function setup() {
-
+async function setup() {
     createCanvas(800, 600)
+    clown = await loadImage("./assets/images/clown.png");
 }
 
 
@@ -31,7 +48,17 @@ function draw() {
     background("#875737")
 
     drawHoles();
-    weaselsPop();
+
+    if (clownHole === 1) {
+        imageMode(CENTER);
+        image(clown, hole1.x, hole1.y, 100, 100);
+    } else if (clownHole === 2) {
+        imageMode(CENTER);
+        image(clown, hole2.x, hole2.y, 100, 100);
+    } else if (clownHole === 3) {
+        imageMode(CENTER);
+        image(clown, hole3.x, hole3.y, 100, 100);
+    }
 }
 
 /**
@@ -39,32 +66,23 @@ function draw() {
  */
 function drawHoles() {
 
-    holes =
-        push();
+    push();
     fill("#2b0a0a")
-    //top holes from left to right
-    ellipse(170, 320, 130, 130)
-    ellipse(400, 320, 130, 130)
-    ellipse(630, 320, 130, 130)
-    //second row, left to right
-    ellipse(170, 500, 130, 130)
-    ellipse(400, 500, 130, 130)
-    ellipse(630, 500, 130, 130)
-    pop();
+    //holes from left to right
+    ellipse(hole1.x, hole1.y, hole1.size)
+    ellipse(hole2.x, hole2.y, hole2.size)
+    ellipse(hole3.x, hole3.y, hole3.size)
 
+    pop();
 
 }
 
-
-/**
-//  * weasels appear out of random holes
-//  */
-function weaselsPop() {
-    //if 3 seconds passed since the beginning of the time weve been on the screen.... weasel pop
-    if (millis() - 0 >= 1000 * 3) {
-
-        random(0, 6)
-
+function mouseClicked() {
+    if (dist(mouseX, mouseY, hole1.x, hole1.y) < hole1.size / 2) {
+        clownHole = 1;
+    } else if (dist(mouseX, mouseY, hole2.x, hole2.y) < hole2.size / 2) {
+        clownHole = 2;
+    } else if (dist(mouseX, mouseY, hole3.x, hole3.y) < hole3.size / 2) {
+        clownHole = 3;
     }
-
 }
