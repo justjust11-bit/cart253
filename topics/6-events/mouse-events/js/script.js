@@ -45,3 +45,30 @@ function draw() {
     ellipse(ball.x, ball.y, ball.size);
     pop();
 }
+/**
+ * 
+ *starts the ball moving right
+ */
+function mousePressed() {
+    ball.velocity.x = ball.speed;
+}
+
+
+/**
+ * stops the ball
+ */
+function mouseReleased() {
+
+    ball.velocity.x = 0;
+}
+
+//delta tells us how far it scrolled, if its greater than 0 it gets bigger
+//if less than 0 it gets smaller
+function mouseWheel(event) {
+    if (event.delta > 0) {
+        ball.size += 5;
+    }
+    else {
+        ball.size -= 2;
+    }
+}
