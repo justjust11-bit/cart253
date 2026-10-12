@@ -1,7 +1,7 @@
 /**
  * Traffic Light
  * Pippin Barr
- * 
+ *  
  * A starting point for creating a traffic light
 */
 
