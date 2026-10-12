@@ -21,6 +21,12 @@ const ball = {
         white: "#ffffff",
         red: "#ff0000",
         blue: "#0000ff"
+    },
+    //keys to control the colour
+    keys: {
+        redKey: 82, //R
+        blueKey: 66 //B
+
     }
 }
 
@@ -45,10 +51,28 @@ function draw() {
     pop();
 }
 
-function keyPressed() {
-    ball.fill = ball.fills.red;
+
+/**
+ * 
+ * Controls th eballs colour
+ */
+function keyPressed(grosBeb) {
+    if (grosBeb.keyCode === ball.keys.redKey) {
+        ball.fill = ball.fills.red;
+        ball.size += 10;
+    }
+    else if (grosBeb.keyCode === ball.keys.blueKey) {
+        ball.fill = ball.fills.blue;
+    }
 }
 
-function keyReleased() {
-    ball.fill = ball.fill.white;
+/**
+ * resets the ball to white after release
+ */
+function keyReleased(grosBeb) {
+    if (grosBeb.keyCode === ball.keys.redKey || grosBeb.key === ball.keys.blueKey) {
+        ball.fill = ball.fills.white;
+    }
+
+
 }
