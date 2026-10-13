@@ -15,8 +15,8 @@ let gamePlay = true;
 let gameOver = false;
 let gameWin = false;
 
-//the game lasts 10 seconds
-let gameDuration = 10 * 1000;
+//the game lasts 5 seconds
+let gameDuration = 5 * 1000;
 
 //background colour
 let bg = {
@@ -188,11 +188,13 @@ function drawGameOver() {
         fill("#7b0404")
         textSize(80)
         textStyle(BOLD)
+        strokeWeight(6)
+        stroke("#3f0606")
         textAlign(CENTER, CENTER)
         text(clickAmount)
-        text("NOT FAST ENOUGH.", width / 2, width / 2)
-        text(clickAmount, width / 2 - 100, height / 2 - 200)
-        text("hits", width / 2 + 80, height / 2 - 200)
+        text("NOT FAST ENOUGH.", width / 2, height - 110)
+        text(clickAmount, width / 2 - 100, height / 2 - 250)
+        text("hits", width / 2 + 80, height / 2 - 250)
         pop();
     }
 
@@ -205,10 +207,12 @@ function drawGameWin() {
         fill("#1a721a")
         textStyle(BOLD)
         textSize(100)
+        strokeWeight(5)
+        stroke("#073511")
         textAlign(CENTER, CENTER)
-        text("YAAAAAAYYY", width / 2, height / 2)
-        text(clickAmount, width / 2 - 100, height / 2 - 200)
-        text("hits!", width / 2 + 80, height / 2 - 200)
+        text("YAAAAAAYYY", width / 2, height - 110)
+        text(clickAmount, width / 2 - 100, height / 2 - 250)
+        text("hits!", width / 2 + 80, height / 2 - 250)
         pop();
 
     }
