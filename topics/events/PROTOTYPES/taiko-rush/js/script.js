@@ -16,8 +16,8 @@ let gamePlay = true;
 let gameOver = false;
 let gameWin = false;
 
-//the game lasts 5 seconds
-let gameDuration = 5 * 1000;
+//the game lasts 6 seconds
+let gameDuration = 6 * 1000;
 
 //click tally starts at 0
 let clickAmount = 0

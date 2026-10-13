@@ -7,7 +7,7 @@ JUSTINE CORMIER
 ## Description
 
 Try to hit the drums as fast as possible! See if you pass or fail..
-There is a counter that keeps track of how many times you clicked. You can click for 5 seconds until your victory or defeat is announced.
+There is a counter that keeps track of how many times you clicked. You can click for 6 seconds until your victory or defeat is announced.
 
 ## Attribution
 
