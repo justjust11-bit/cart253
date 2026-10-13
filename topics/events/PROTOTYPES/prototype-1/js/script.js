@@ -9,7 +9,7 @@
 "use strict";
 
 
-//gameOver = false;
+gamePlay = true
 
 
 let bg = {
@@ -38,7 +38,7 @@ let clickAmount = 0
 */
 function setup() {
     createCanvas(800, 800)
-
+    setTimeout(endGame, gameDuration);
 }
 
 
@@ -47,10 +47,25 @@ function setup() {
 */
 function draw() {
     background(bg.fill)
+    if (gamePlay) {
 
-    //might change later
-    drawButton();
-    clickCounter();
+        //might change later
+        drawButton();
+        clickCounter();
+    }
+    drawGameOver();
+}
+
+/**
+ * ends the game, either in game over or game win
+ */
+function endGame() {
+
+    if (clickAmount >= 30) {
+        gameOver = true
+    }
+    else gameWin = true
+
 }
 
 
@@ -59,11 +74,14 @@ function draw() {
  */
 function drawButton() {
     push();
-    fill("#d49b75")
+    fill("#d4ac75")
     ellipse(drum.x, drum.y, drum.size)
     pop();
 }
 
+/**counter at the top right, showcasing the amount of clicks you've
+ * done since the game started
+*/
 function clickCounter() {
 
     push();
@@ -73,14 +91,31 @@ function clickCounter() {
     pop();
 }
 
+/**
+ * clicking the drum will make the click counter go up
+ */
+
 function mouseClicked() {
-    //if (gameOver){
-    //return}
-    // Check if the drum was clicked
-    const d = dist(mouseX, mouseY, drum.x, drum.y);
-    const clicked = (d < drum.size / 2);
-    // If so, shrink the bug
-    if (clicked) {
-        clickAmount += 1
+    if (gamePlay) {
+
+        // Check if the drum was clicked
+        const d = dist(mouseX, mouseY, drum.x, drum.y);
+        const clicked = (d < drum.size / 2);
+        // If so, shrink the bug
+        if (clicked) {
+            clickAmount += 1
+        }
     }
+}
+
+/**
+ * draws the gameOver screen
+ */
+
+function drawGameOver() {
+    push();
+    text(clickAmount)
+    text("NOT FAST ENOUGH.")
+    pop();
+
 }
