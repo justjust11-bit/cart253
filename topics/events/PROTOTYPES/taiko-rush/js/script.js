@@ -19,7 +19,13 @@ let gameWin = false;
 //the game lasts 5 seconds
 let gameDuration = 5 * 1000;
 
-//background colour
+//click tally starts at 0
+let clickAmount = 0
+
+//how many hits you need to win
+let winningAmount = 30
+
+//background colour and possible other colours for lose or win game
 let bg = {
     fill: ("#e0aa3e"),
     fills: {
@@ -34,9 +40,6 @@ let drum = {
     x: 800 / 2,
     y: 800 / 2
 }
-
-//click tally starts at 0
-let clickAmount = 0
 
 
 
@@ -53,7 +56,7 @@ async function preload() {
  * creates canvas and sets time for the game
 */
 async function setup() {
-    createCanvas(800, 800)
+    createCanvas(800, 800);
 
     setTimeout(endGame, gameDuration);
 
@@ -67,7 +70,7 @@ async function setup() {
  * draws the drums, tally in the top left, game over and game win
 */
 function draw() {
-    background(bg.fill)
+    background(bg.fill);
     if (gamePlay) {
 
         //might change later
@@ -86,8 +89,8 @@ function draw() {
  * ends the game, either in game over or game win
  */
 function endGame() {
-    (gamePlay = false)
-    if (clickAmount >= 30) {
+    (gamePlay = false);
+    if (clickAmount >= winningAmount) {
         gameWin = true
     }
     else gameOver = true
@@ -102,29 +105,29 @@ function drawDrum() {
     //blue part of the drum
     push();
     strokeWeight(3);
-    fill("#45b1bb")
-    rect(272, 290, 257, 335, 120)
+    fill("#45b1bb");
+    rect(272, 290, 257, 335, 120);
     pop();
 
     //white part of the drum
     push();
     strokeWeight(3)
     fill("#f2eaea")
-    ellipse(drum.x, drum.y, drum.size + 60)
+    ellipse(drum.x, drum.y, drum.size + 60);
     pop();
 
     //hittable spot of the drum
     push();
-    strokeWeight(0)
-    fill("#d13624")
-    ellipse(drum.x, drum.y, drum.size)
+    strokeWeight(0);
+    fill("#d13624");
+    ellipse(drum.x, drum.y, drum.size);
     pop();
 
     //face
     push();
     fill("black")
-    ellipse(width / 2 + 60, height / 2 - 10, 50)
-    ellipse(width / 2 - 60, height / 2 - 10, 50)
+    ellipse(width / 2 + 60, height / 2 - 10, 50);
+    ellipse(width / 2 - 60, height / 2 - 10, 50);
     pop();
 
     //mouth
@@ -140,7 +143,6 @@ function drawDrum() {
     bezier(-5, -50, 25, -50, 40, 0, 0, 0);
     //left lip
     bezier(0, 0, 25, 0, 40, 45, -3, 50);
-
     pop();
 
 
@@ -152,17 +154,17 @@ function drawDrum() {
 function clickCounter() {
 
     push();
-    fill("white")
-    textSize(100)
-    textStyle(BOLD)
-    text(clickAmount, 120, 230)
+    fill("white");
+    textSize(100);
+    textStyle(BOLD);
+    text(clickAmount, 120, 280);
     pop();
 
     push();
     fill("white");
     textSize(70);
-    textStyle(BOLD)
-    text("Drum hits:", 50, 100);
+    textStyle(BOLD);
+    text("Drum hits:", 50, 150);
     pop();
 }
 
@@ -185,7 +187,7 @@ function mouseClicked() {
 }
 
 /**
- * draws the gameOver screen
+ * draws the screen if you lost the game
  */
 
 function drawGameOver() {
@@ -194,36 +196,39 @@ function drawGameOver() {
         //turn the bg to red
         (bg.fill = bg.fills.lost)
         push();
-        fill("#560808")
-        textSize(80)
-        textStyle(BOLD)
-        strokeWeight(6)
-        stroke("#2a0404")
-        textAlign(CENTER, CENTER)
-        text(clickAmount)
-        text("NOT FAST ENOUGH.", width / 2, height - 110)
-        text(clickAmount, width / 2 - 100, height / 2 - 250)
-        text("hits", width / 2 + 80, height / 2 - 250)
+        fill("#560808");
+        textSize(80);
+        textStyle(BOLD);
+        strokeWeight(6);
+        stroke("#2a0404");
+        textAlign(CENTER, CENTER);
+        text(clickAmount);
+        text("NOT FAST ENOUGH.", width / 2, height - 110);
+        text(clickAmount, width / 2 - 100, height / 2 - 250);
+        text("hits", width / 2 + 80, height / 2 - 250);
         pop();
     }
 
 }
 
+/**
+ * draws the screen if you win the game
+ */
 function drawGameWin() {
     drawDrum();
     if (gameWin === true) {
         //change the bg to greenish
         (bg.fill = bg.fills.won)
         push();
-        fill("#0c6640")
-        textStyle(BOLD)
-        textSize(100)
-        strokeWeight(5)
-        stroke("#053627")
-        textAlign(CENTER, CENTER)
-        text("YAAAAAAYYY", width / 2, height - 110)
-        text(clickAmount, width / 2 - 100, height / 2 - 250)
-        text("hits!", width / 2 + 80, height / 2 - 250)
+        fill("#0c6640");
+        textStyle(BOLD);
+        textSize(100);
+        strokeWeight(5);
+        stroke("#053627");
+        textAlign(CENTER, CENTER);
+        text("YAAAAAAYYY", width / 2, height - 110);
+        text(clickAmount, width / 2 - 100, height / 2 - 250);
+        text("hits!", width / 2 + 80, height / 2 - 250);
         pop();
 
     }
