@@ -46,5 +46,7 @@ function changeBG(event) {
     }
 }
 
+//write the window event listener, then an event handler so a function
+//with an event inside, and any of these:
 //mouse down, mouseup, mousemove, mouseenter, mouseleave,dblclick, 
 // keydown, keyup, online, offline
