@@ -8,10 +8,26 @@
 
 "use strict";
 
+
+//gameOver = false;
+
+
+let bg = {
+
+    fill: ("#000000"),
+    fills: {
+        blue: "#226083",
+        red: "#914343"
+
+    }
+}
+
+
 /**
  * creates canvas
 */
 function setup() {
+    createCanvas(800, 800)
 
 }
 
@@ -20,5 +36,8 @@ function setup() {
  * draws
 */
 function draw() {
+    background(bg.fill)
 
+    //might change later
+    drawButton();
 }
