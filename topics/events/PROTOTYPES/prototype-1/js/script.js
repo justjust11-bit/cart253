@@ -8,41 +8,52 @@
 
 "use strict";
 
+//drum hit sfx
+let donSFX = undefined;
 
 let gamePlay = true;
 let gameOver = false;
 let gameWin = false;
 
 //the game lasts 10 seconds
-let gameDuration = 5 * 1000;
+let gameDuration = 10 * 1000;
 
+//background colour
 let bg = {
-
-    fill: ("#b4872d"),
-    fills: {
-        blue: "#226083",
-        red: "#914343"
-
-    }
+    fill: ("#e0aa3e"),
 }
 
+//center of the drum, where you can hit it
 let drum = {
     size: 200,
     x: 800 / 2,
     y: 800 / 2
 }
 
-
+//click tally starts at 0
 let clickAmount = 0
 
 
 
 /**
- * creates canvas
+ *  loads the drum hit sound
+ */
+async function preload() {
+    donSFX = await loadSound("assets/sounds/don.wav");
+}
+
+
+
+/**
+ * creates canvas and sets time for the game
 */
-function setup() {
+async function setup() {
     createCanvas(800, 800)
+
     setTimeout(endGame, gameDuration);
+
+    await preload();
+
 
 }
 
@@ -71,7 +82,7 @@ function draw() {
  */
 function endGame() {
     (gamePlay = false)
-    if (clickAmount >= 3) {
+    if (clickAmount >= 30) {
         gameWin = true
     }
     else gameOver = true
@@ -86,21 +97,21 @@ function drawDrum() {
     //blue part of the drum
     push();
     strokeWeight(3);
-    fill("#2e8f97")
+    fill("#45b1bb")
     rect(272, 290, 257, 335, 120)
     pop();
 
     //white part of the drum
     push();
     strokeWeight(3)
-    fill("#dac8c8")
+    fill("#f2eaea")
     ellipse(drum.x, drum.y, drum.size + 60)
     pop();
 
     //hittable spot of the drum
     push();
     strokeWeight(0)
-    fill("#c93424")
+    fill("#d13624")
     ellipse(drum.x, drum.y, drum.size)
     pop();
 
@@ -160,6 +171,7 @@ function mouseClicked() {
         const clicked = (d < drum.size / 2);
         // If so, shrink the bug
         if (clicked) {
+            donSFX.play();
             clickAmount += 1
         }
     }
@@ -173,12 +185,14 @@ function drawGameOver() {
     drawDrum();
     if (gameOver === true) {
         push();
-        fill("#700e0e")
+        fill("#7b0404")
         textSize(80)
         textStyle(BOLD)
         textAlign(CENTER, CENTER)
         text(clickAmount)
         text("NOT FAST ENOUGH.", width / 2, width / 2)
+        text(clickAmount, width / 2 - 100, height / 2 - 200)
+        text("hits", width / 2 + 80, height / 2 - 200)
         pop();
     }
 
@@ -190,10 +204,11 @@ function drawGameWin() {
         push();
         fill("#1a721a")
         textStyle(BOLD)
-        textSize(90)
+        textSize(100)
         textAlign(CENTER, CENTER)
         text("YAAAAAAYYY", width / 2, height / 2)
-        text(clickAmount)
+        text(clickAmount, width / 2 - 100, height / 2 - 200)
+        text("hits!", width / 2 + 80, height / 2 - 200)
         pop();
 
     }
