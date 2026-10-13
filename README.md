@@ -92,3 +92,29 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/three-shy-clowns/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/three-shy-clowns)
+
+#### 3 Events Prototypes
+
+##### Taiko rush!!
+
+![Screenshot of Taiko Rush!!](./topics/events/PROTOTYPES/taiko-rush/assets/images/taiko.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/events/PROTOTYPES/taiko-rush/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/events/PROTOTYPES/taiko-rush)
+
+##### Fortune Cookie
+
+![Screenshot of Fortune Cookie](./topics/conditionals/PROTOTYPES/fortune-cookie/images/Screenshot.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/fortune-cookie/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/fortune-cookie)
+
+##### Three Shy Clowns
+
+![Screenshot of Three Shy Clowns](./topics/conditionals/PROTOTYPES/three-shy-clowns/assets/images/clowns.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/conditionals/PROTOTYPES/three-shy-clowns/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/conditionals/PROTOTYPES/three-shy-clowns)

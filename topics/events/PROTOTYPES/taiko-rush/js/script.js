@@ -154,12 +154,14 @@ function clickCounter() {
     push();
     fill("white")
     textSize(100)
+    textStyle(BOLD)
     text(clickAmount, 120, 230)
     pop();
 
     push();
     fill("white");
-    textSize(50);
+    textSize(70);
+    textStyle(BOLD)
     text("Drum hits:", 50, 100);
     pop();
 }
