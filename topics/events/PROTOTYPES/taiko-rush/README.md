@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# TAIKO RUSH!!
 
 JUSTINE CORMIER
 
@@ -6,15 +6,16 @@ JUSTINE CORMIER
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+Try to hit the drums as fast as possible! See if you pass or fail..
+There is a counter that keeps track of how many times you clicked. You can click for 5 seconds until your victory or defeat is announced.
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - The drum/taiko is a representation of Don-Chan, from the game Taiko No Tatsujin from Bandai Namco
+> - The drum hit sound effect is "Rubber on Wood"from bfxr.net: https://www.bfxr.net/
 
 ## License
 

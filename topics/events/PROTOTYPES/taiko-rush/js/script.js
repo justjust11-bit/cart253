@@ -1,9 +1,10 @@
 /**
- * Title of Project
+ * Taiko rush!!
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Try to hit the drums as fast as possible! See if you pass or fail..
+ * There is a counter that keeps track of how many times you clicked. You
+ * can click for 5 seconds until your victory or defeat is announced.
  */
 
 "use strict";
@@ -21,6 +22,10 @@ let gameDuration = 5 * 1000;
 //background colour
 let bg = {
     fill: ("#e0aa3e"),
+    fills: {
+        lost: "#a92516",
+        won: "#04c58e"
+    }
 }
 
 //center of the drum, where you can hit it
@@ -184,12 +189,14 @@ function mouseClicked() {
 function drawGameOver() {
     drawDrum();
     if (gameOver === true) {
+        //turn the bg to red
+        (bg.fill = bg.fills.lost)
         push();
-        fill("#7b0404")
+        fill("#560808")
         textSize(80)
         textStyle(BOLD)
         strokeWeight(6)
-        stroke("#3f0606")
+        stroke("#2a0404")
         textAlign(CENTER, CENTER)
         text(clickAmount)
         text("NOT FAST ENOUGH.", width / 2, height - 110)
@@ -203,12 +210,14 @@ function drawGameOver() {
 function drawGameWin() {
     drawDrum();
     if (gameWin === true) {
+        //change the bg to greenish
+        (bg.fill = bg.fills.won)
         push();
-        fill("#1a721a")
+        fill("#0c6640")
         textStyle(BOLD)
         textSize(100)
         strokeWeight(5)
-        stroke("#073511")
+        stroke("#053627")
         textAlign(CENTER, CENTER)
         text("YAAAAAAYYY", width / 2, height - 110)
         text(clickAmount, width / 2 - 100, height / 2 - 250)
