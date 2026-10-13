@@ -18,7 +18,7 @@ let gameDuration = 5 * 1000;
 
 let bg = {
 
-    fill: ("#000000"),
+    fill: ("#b4872d"),
     fills: {
         blue: "#226083",
         red: "#914343"
@@ -55,7 +55,7 @@ function draw() {
     if (gamePlay) {
 
         //might change later
-        drawButton();
+        drawDrum();
         clickCounter();
     }
     else if (gameOver) {
@@ -71,7 +71,7 @@ function draw() {
  */
 function endGame() {
     (gamePlay = false)
-    if (clickAmount >= 30) {
+    if (clickAmount >= 3) {
         gameWin = true
     }
     else gameOver = true
@@ -82,11 +82,52 @@ function endGame() {
 /**
  * draws the drum
  */
-function drawButton() {
+function drawDrum() {
+    //blue part of the drum
     push();
-    fill("#d4ac75")
+    strokeWeight(3);
+    fill("#2e8f97")
+    rect(272, 290, 257, 335, 120)
+    pop();
+
+    //white part of the drum
+    push();
+    strokeWeight(3)
+    fill("#dac8c8")
+    ellipse(drum.x, drum.y, drum.size + 60)
+    pop();
+
+    //hittable spot of the drum
+    push();
+    strokeWeight(0)
+    fill("#c93424")
     ellipse(drum.x, drum.y, drum.size)
     pop();
+
+    //face
+    push();
+    fill("black")
+    ellipse(width / 2 + 60, height / 2 - 10, 50)
+    ellipse(width / 2 - 60, height / 2 - 10, 50)
+    pop();
+
+    //mouth
+
+    push();
+    translate(width / 2, height / 2 + 45); // mouth position
+    rotate(HALF_PI);                       // 90 degrees
+
+    noFill();
+    stroke("black");
+    strokeWeight(7);
+    //right lip
+    bezier(-5, -50, 25, -50, 40, 0, 0, 0);
+    //left lip
+    bezier(0, 0, 25, 0, 40, 45, -3, 50);
+
+    pop();
+
+
 }
 
 /**counter at the top right, showcasing the amount of clicks you've
@@ -97,7 +138,13 @@ function clickCounter() {
     push();
     fill("white")
     textSize(100)
-    text(clickAmount, 70, 140)
+    text(clickAmount, 120, 230)
+    pop();
+
+    push();
+    fill("white");
+    textSize(50);
+    text("Drum hits:", 50, 100);
     pop();
 }
 
@@ -123,7 +170,7 @@ function mouseClicked() {
  */
 
 function drawGameOver() {
-    drawButton();
+    drawDrum();
     if (gameOver === true) {
         push();
         fill("#700e0e")
@@ -138,15 +185,15 @@ function drawGameOver() {
 }
 
 function drawGameWin() {
-    drawButton();
+    drawDrum();
     if (gameWin === true) {
         push();
-        fill("#0e701e")
-        textSize(80)
+        fill("#1a721a")
         textStyle(BOLD)
+        textSize(90)
         textAlign(CENTER, CENTER)
-        text(clickAmount)
         text("YAAAAAAYYY", width / 2, height / 2)
+        text(clickAmount)
         pop();
 
     }
