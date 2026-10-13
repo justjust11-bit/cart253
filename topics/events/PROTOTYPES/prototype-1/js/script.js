@@ -9,8 +9,12 @@
 "use strict";
 
 
-gamePlay = true
+let gamePlay = true;
+let gameOver = false;
+let gameWin = false;
 
+//the game lasts 10 seconds
+let gameDuration = 5 * 1000;
 
 let bg = {
 
@@ -39,11 +43,12 @@ let clickAmount = 0
 function setup() {
     createCanvas(800, 800)
     setTimeout(endGame, gameDuration);
+
 }
 
 
 /**
- * draws
+ * draws the drums, tally in the top left, game over and game win
 */
 function draw() {
     background(bg.fill)
@@ -53,18 +58,23 @@ function draw() {
         drawButton();
         clickCounter();
     }
-    drawGameOver();
+    else if (gameOver) {
+        drawGameOver();
+    }
+    else if (gameWin) {
+        drawGameWin();
+    }
 }
 
 /**
  * ends the game, either in game over or game win
  */
 function endGame() {
-
+    (gamePlay = false)
     if (clickAmount >= 30) {
-        gameOver = true
+        gameWin = true
     }
-    else gameWin = true
+    else gameOver = true
 
 }
 
@@ -113,9 +123,32 @@ function mouseClicked() {
  */
 
 function drawGameOver() {
-    push();
-    text(clickAmount)
-    text("NOT FAST ENOUGH.")
-    pop();
+    drawButton();
+    if (gameOver === true) {
+        push();
+        fill("#700e0e")
+        textSize(80)
+        textStyle(BOLD)
+        textAlign(CENTER, CENTER)
+        text(clickAmount)
+        text("NOT FAST ENOUGH.", width / 2, width / 2)
+        pop();
+    }
+
+}
+
+function drawGameWin() {
+    drawButton();
+    if (gameWin === true) {
+        push();
+        fill("#0e701e")
+        textSize(80)
+        textStyle(BOLD)
+        textAlign(CENTER, CENTER)
+        text(clickAmount)
+        text("YAAAAAAYYY", width / 2, height / 2)
+        pop();
+
+    }
 
 }
