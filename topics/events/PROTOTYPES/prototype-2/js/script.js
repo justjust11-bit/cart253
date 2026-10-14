@@ -13,12 +13,17 @@
 */
 function setup() {
 
+    createCanvas(1080, 800)
+    background("#250802")
+
 }
 
 
 /**
- * draws
+ * draws the hotbar,(ETC ADD MORE LATER)
 */
 function draw() {
+
+    drawHotbar();
 
 }
