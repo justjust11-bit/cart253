@@ -3,6 +3,7 @@
  * Justine Cormier
  * 
  * refs used: https://p5js.org/reference/p5/createGraphics/
+ * https://p5js.org/reference/p5/save/
  */
 
 "use strict";
@@ -28,7 +29,7 @@ let userCanvas = undefined;
 
 //the stamp you have selected
 let selectedStamp = undefined;
-//the image of the stamp that will be used to put on the canvas
+//the layer where you will draw your stamps on the canvas
 let stampImage = undefined;
 //starts off as unpressed 
 let pressedOnStamp = false;
@@ -82,6 +83,7 @@ function draw() {
     drawHotbar();
     drawStamps();
     drawUserCanvas();
+    drawText();
 
 }
 
@@ -288,4 +290,32 @@ function placeSelectedStamp() {
             selectedStamp, mouseX - 250 - stampSize / 2, mouseY - 30 - stampSize / 2, stampSize, stampSize
         );
     }
+}
+
+/**
+ * saves the user canvas drawing if you do ctrl-s
+ */
+function keyPressed(event) {
+    // metaKey is Command on a Mac.
+    if ((event.ctrlKey || event.metaKey)) {
+        //dont do the ctrl s that your laptop would automatically do
+        event.preventDefault();
+        saveCanvas("amazing-art-thanks-justine", "png");
+        return false;
+    }
+}
+
+/**
+ * draws the text that indicates how you can save
+ */
+
+function drawText() {
+
+    push();
+    textSize(20)
+    textFont('Verdana')
+    fill("#4c1212")
+    textStyle(ITALIC)
+    text("Press Ctrl or Cmd to save your drawing", 430, 23)
+    pop();
 }
