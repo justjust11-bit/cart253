@@ -5,6 +5,10 @@
  * Try to hit the drums as fast as possible! See if you pass or fail..
  * There is a counter that keeps track of how many times you clicked. You
  * can click for 5 seconds until your victory or defeat is announced.
+ * 
+ * //refs used are all from the events learning materials provided by Pippin Barr:
+ * debugging events, traffic light, Hot tip: Sounds
+ * 
  */
 
 "use strict";
@@ -13,17 +17,17 @@
 let donSFX = undefined;
 
 let gamePlay = true;
-let gameOver = false;
+let gameOver = false
 let gameWin = false;
 
 //the game lasts 6 seconds
 let gameDuration = 6 * 1000;
 
 //click tally starts at 0
-let clickAmount = 0
+let clickAmount = 0;
 
 //how many hits you need to win
-let winningAmount = 30
+let winningAmount = 30;
 
 //background colour and possible other colours for lose or win game
 let bg = {
@@ -72,8 +76,6 @@ async function setup() {
 function draw() {
     background(bg.fill);
     if (gamePlay) {
-
-        //might change later
         drawDrum();
         clickCounter();
     }
@@ -130,7 +132,7 @@ function drawDrum() {
     ellipse(width / 2 - 60, height / 2 - 10, 50);
     pop();
 
-    //mouth
+    //eyes
 
     push();
     translate(width / 2, height / 2 + 45); // mouth position
@@ -178,7 +180,7 @@ function mouseClicked() {
         // Check if the drum was clicked
         const d = dist(mouseX, mouseY, drum.x, drum.y);
         const clicked = (d < drum.size / 2);
-        // If so, shrink the bug
+        // If so, increase score and play sfx
         if (clicked) {
             donSFX.play();
             clickAmount += 1
@@ -192,22 +194,20 @@ function mouseClicked() {
 
 function drawGameOver() {
     drawDrum();
-    if (gameOver === true) {
-        //turn the bg to red
-        (bg.fill = bg.fills.lost)
-        push();
-        fill("#560808");
-        textSize(80);
-        textStyle(BOLD);
-        strokeWeight(6);
-        stroke("#2a0404");
-        textAlign(CENTER, CENTER);
-        text(clickAmount);
-        text("NOT FAST ENOUGH.", width / 2, height - 110);
-        text(clickAmount, width / 2 - 100, height / 2 - 250);
-        text("hits", width / 2 + 80, height / 2 - 250);
-        pop();
-    }
+    //turn the bg to red
+    (bg.fill = bg.fills.lost)
+    push();
+    fill("#560808");
+    textSize(80);
+    textStyle(BOLD);
+    strokeWeight(6);
+    stroke("#2a0404");
+    textAlign(CENTER, CENTER);
+    text(clickAmount);
+    text("NOT FAST ENOUGH.", width / 2, height - 110);
+    text(clickAmount, width / 2 - 100, height / 2 - 250);
+    text("hits", width / 2 + 80, height / 2 - 250);
+    pop();
 
 }
 
@@ -216,21 +216,18 @@ function drawGameOver() {
  */
 function drawGameWin() {
     drawDrum();
-    if (gameWin === true) {
-        //change the bg to greenish
-        (bg.fill = bg.fills.won)
-        push();
-        fill("#0c6640");
-        textStyle(BOLD);
-        textSize(100);
-        strokeWeight(5);
-        stroke("#053627");
-        textAlign(CENTER, CENTER);
-        text("YAAAAAAYYY", width / 2, height - 110);
-        text(clickAmount, width / 2 - 100, height / 2 - 250);
-        text("hits!", width / 2 + 80, height / 2 - 250);
-        pop();
-
-    }
+    //change the bg to greenish
+    (bg.fill = bg.fills.won)
+    push();
+    fill("#0c6640");
+    textStyle(BOLD);
+    textSize(100);
+    strokeWeight(5);
+    stroke("#053627");
+    textAlign(CENTER, CENTER);
+    text("YAAAAAAYYY", width / 2, height - 110);
+    text(clickAmount, width / 2 - 100, height / 2 - 250);
+    text("hits!", width / 2 + 80, height / 2 - 250);
+    pop();
 
 }
