@@ -1,4 +1,4 @@
-# TITLE OF PROJECT
+# MAKE YOUR OWN SCENE
 
 JUSTINE CORMIER
 
@@ -6,7 +6,7 @@ JUSTINE CORMIER
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+I drew the pixel art using Aseprite.
 
 ## Attribution
 

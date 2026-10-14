@@ -1,5 +1,5 @@
 /**
- * Title of Project
+ * Make Your Own Scene
  * Justine Cormier
  * 
  * refs used: https://p5js.org/reference/p5/createGraphics/
