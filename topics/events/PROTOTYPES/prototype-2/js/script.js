@@ -2,8 +2,7 @@
  * Title of Project
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * refs used: https://p5js.org/reference/p5/createGraphics/
  */
 
 "use strict";
@@ -174,15 +173,93 @@ function drawStamps() {
  * that item becomes "selected"
  */
 function mouseClicked() {
-    //if the user clicks on the GRASS
+    //since the x of each column stays the same, accordingly, i created a variable do i wouldnt repeat
+    //the numbers 17,97 or 125, 205 too much
+
+    const leftColumn = mouseX >= 17 && mouseX <= 97;
+    const rightColumn = mouseX >= 125 && mouseX <= 205;
+
+    //all the stamps in their rows, from left to right, top down
+
+    //GRASS STAMP
     if (mouseY >= 50 && mouseY <= 130) {
-        if (mouseX >= 17 && mouseX <= 97) {
+        if (leftColumn) {
             selectedStamp = grass;
         }
+        //GRASS WITH BLADE STAMP
+        else if (rightColumn) {
+            selectedStamp = grassBlades;
+        }
+    }
+    //SKY STAMP
+    else if (mouseY >= 150 && mouseY <= 230) {
+        if (leftColumn) {
+            selectedStamp = sky;
+        }
+        //FLOWER STAMP
+        else if (rightColumn) {
+            selectedStamp = flower;
+        }
+    }
+    //FLOWERS STAMP
+    else if (mouseY >= 250 && mouseY <= 330) {
+        if (leftColumn) {
+            selectedStamp = flowers;
+        }
 
+        //CLOUD STAMP
+        else if (rightColumn) {
+            selectedStamp = cloud;
+        }
+    }
+    //BUNNY STAMP
+    else if (mouseY >= 350 && mouseY <= 430) {
+        if (leftColumn) {
+            selectedStamp = bunny;
+        }
+        //FOX STAMP
+        else if (rightColumn) {
+            selectedStamp = fox;
+        }
+    }
 
+    //LOG STAMP
+    else if (mouseY >= 450 && mouseY <= 530) {
+        if (leftColumn) {
+            selectedStamp = log;
+        }
+        //LEAVES STAMP
+        else if (rightColumn) {
+            selectedStamp = leaves;
+        }
+    }
+
+    //WOOD STAMP
+    else if (mouseY >= 550 && mouseY <= 630) {
+        if (leftColumn) {
+            selectedStamp = wood;
+        }
+
+        //DOOR STAMP
+        else if (rightColumn) {
+            selectedStamp = door;
+        }
+    }
+
+    //WATER STAMP
+    else if (mouseY >= 650 && mouseY <= 730) {
+        if (leftColumn) {
+            selectedStamp = water;
+        }
+
+        //HEART STAMP
+        else if (rightColumn) {
+            selectedStamp = heart;
+        }
     }
 }
+
+
 
 /**
  * places stamps continuously when dragging over the users canvas
