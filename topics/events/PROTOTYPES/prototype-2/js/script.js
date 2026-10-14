@@ -8,7 +8,7 @@
 
 "use strict";
 
-
+//the stamps you can use on the canvas
 let grass = undefined;
 let grassBlades = undefined;
 let sky = undefined;
@@ -24,9 +24,23 @@ let door = undefined;
 let water = undefined;
 let heart = undefined;
 
+//the canvas you can draw on
+let userCanvas = undefined;
+
+//the stamp you have selected
+let selectedStamp = undefined;
+//the image of the stamp that will be used to put on the canvas
+let stampImage = undefined;
+//starts off as unpressed 
+let pressedOnStamp = false;
+
+
+//size of the stamps as you put them on the canvas
+const stampSize = 100;
+
 
 /**
- * preloads images
+ * preloads images for the stamps
  */
 async function preload() {
     grass = await loadImage("./assets/images/grass.png");
@@ -51,15 +65,18 @@ async function preload() {
  * creates canvas
 */
 async function setup() {
-    createCanvas(1080, 800)
-    background("#e6ddd3")
+    createCanvas(1080, 800);
+    background("#ded2cb");
+    //since i have a user canvas, to make sort of layer, i am 
+    //using a p5 object called createGraphics
+    stampImage = createGraphics(800, 750);
     await preload();
 
 }
 
 
 /**
- * draws the hotbar,(ETC ADD MORE LATER)
+ * creates canvas, draws hotbar, usercanvas, stamps
 */
 function draw() {
 
@@ -70,7 +87,7 @@ function draw() {
 }
 
 /**
- * draws the hotbar
+ * draws the hotbar, where you can pick the stamps from
  */
 
 function drawHotbar() {
@@ -93,7 +110,8 @@ function drawHotbar() {
 
 
 /**
- * draws the users canvas, on the right of the hotbar
+ * draws the users canvas, on the right of the hotbar, where you can draw with
+ * the stamps
  */
 
 function drawUserCanvas() {
@@ -101,8 +119,13 @@ function drawUserCanvas() {
     push();
     fill("white");
     strokeWeight(0)
-    rect(250, 30, 800, 750)
+    rect(250, 30, 800, 750);
+
+    //draws the stamps that will be stamped later... when the user selected one
+    //the x,y, are those of the canvas
+    image(stampImage, 250, 30);
     pop();
+
 }
 
 
@@ -147,9 +170,45 @@ function drawStamps() {
 }
 
 /**
- * you can click and draw the stamps
+ * if the user clicks on a specific stamp on the hotbar,
+ * that item becomes "selected"
  */
-function mouseDragged(event) {
+function mouseClicked() {
+    //if the user clicks on the GRASS
+    if (mouseY >= 50 && mouseY <= 130) {
+        if (mouseX >= 17 && mouseX <= 97) {
+            selectedStamp = grass;
+        }
 
 
+    }
+}
+
+/**
+ * places stamps continuously when dragging over the users canvas
+ */
+function mouseDragged() {
+    placeSelectedStamp();
+
+}
+
+
+
+/**
+ * places the stamps on the canvas depending on where you mouse is
+ */
+function placeSelectedStamp() {
+    //the canvas being used for the user, it has its own layer, so the stamps
+    //can be cropped out of the canvas in a way that feels natural
+    //the user mouse must be WITHIN the user canvas....
+    const userCanvas = mouseX >= 250 && mouseX <= 1050 &&
+        mouseY >= 30 && mouseY <= 780;
+
+    //if there is a selected stamp, and their mouse is on the usercanvas, the selected stamp 
+    // prints on the canvas
+    if (selectedStamp !== undefined && userCanvas) {
+        stampImage.image(
+            selectedStamp, mouseX - 250 - stampSize / 2, mouseY - 30 - stampSize / 2, stampSize, stampSize
+        );
+    }
 }
