@@ -2,6 +2,13 @@
  * Make Your Own Scene
  * Justine Cormier
  * 
+ * Click on any of the icons on the left hotbar to select one, 
+ * then click on the canvas to use the image as a stamp! 
+ * You can smudge the images by clicking and dragging on the 
+ * user canvas, and make all sorts of scenes. Try to use the 
+ * stamps in different ways, and see the result!
+ You can take a screenshot of your canvas (including the hotbar) by pressing ctrl or cmd.
+ You cannot undo or redo.
  * refs used: https://p5js.org/reference/p5/createGraphics/
  * https://p5js.org/reference/p5/save/
  */

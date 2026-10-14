@@ -2,22 +2,20 @@
 
 JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/events/PROTOTYPES/make-your-own-scene/)
 
 ## Description
 
-I drew the pixel art using Aseprite.
+Click on any of the icons on the left hotbar to select one, then click on the canvas to use the image as a stamp! You can smudge the images by clicking and dragging on the user canvas, and make all sorts of scenes. Try to use the stamps in different ways, and see the result!
+
+You can take a screenshot of your canvas (including the hotbar) by pressing ctrl or cmd.
+You cannot undo or redo.
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
-
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - I made all the pixel-styled stamps using Aseprite
 
 ## License
-
-This bit could include the license you want to apply to your work. For example:
 
 > This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
