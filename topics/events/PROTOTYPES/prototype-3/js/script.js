@@ -11,24 +11,28 @@
 //
 let gamePlay = true;
 
-//the song exerpt is 19 seconds
-let gameDuration = 19 * 1000;
+//the song exerpt is 19 seconds, so ill leave an extra second for the song to end
+let gameDuration = 20 * 1000;
 
 let song = undefined;
 
 
-
+//button at the bottom 
 let touchPad = {
     x: 1080 / 2,
     y: 650,
     size: 150
 }
 
+//moving button
 let tapNote = {
     x: 1080 / 2,
     y: -10,
     size: 150
 }
+
+//so the tap note can disappear after being pressed on time
+let tapNoteDisappear = false;
 
 
 /**
@@ -79,21 +83,44 @@ function drawTouchPad() {
     pop();
 }
 
+/**
+ * draws the tap notes... they will also disappear once you click at the right time
+ */
 function drawTapNotes() {
-    push();
-    stroke("#5d3b3b");
-    strokeWeight(5);
-    fill("pink");
-    ellipse(tapNote.x, tapNote.y, tapNote.size);
-    pop();
+    if (!tapNoteDisappear) {
+        push();
+        stroke("#5d3b3b");
+        strokeWeight(5);
+        fill("pink");
+        ellipse(tapNote.x, tapNote.y, tapNote.size);
+        pop();
+    }
 
 }
 
+/**
+ * moves the tap notes from up to down onto the 
+ */
 function moveTapNotes() {
-    if (gamePlay === true) { tapNote.y += 4 }
+    if (gamePlay === true) {
+        tapNote.y += 3
+    }
+
+    // Calculate distance between tapnote and touch pad
+    const d = dist(tapNote.x, tapNote.y, touchPad.x, touchPad.y);
+    const onTop = (d < tapNote.size / 2 + touchPad.size / 2);
+
+    //&& tapped.keyCode === 40
+    if (onTop) {
+        tapNoteDisappear = true;
+    }
+
 
 }
 
+/**
+ * ends the game after 19 seconds
+ */
 function endGame() {
     (!gamePlay);
     endScreen = true
@@ -101,6 +128,10 @@ function endGame() {
 
 }
 
+
+/**
+ * draws the end screen
+ */
 function drawEndScreen() {
 
     push();
@@ -109,4 +140,7 @@ function drawEndScreen() {
     text(clickAmount, width / 2, height / 2);
     pop();
 }
+
+
+
 
