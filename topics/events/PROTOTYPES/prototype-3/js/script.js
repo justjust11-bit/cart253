@@ -8,11 +8,18 @@
 
 "use strict";
 
+
+
+//the song exerpt is 19 seconds
+let gameDuration = 19 * 1000;
+
+
+
 /**
  * creates canvas
 */
 function setup() {
-
+    createCanvas(1080, 800)
 }
 
 
@@ -20,5 +27,23 @@ function setup() {
  * draws
 */
 function draw() {
+    background("brown")
+
+    drawTouchPad();
 
 }
+
+
+/**
+ * draws the touch pad
+ */
+function drawTouchPad() {
+
+    push();
+    stroke("#461f1f")
+    strokeWeight(5)
+    fill("grey")
+    ellipse(width / 2, 650, 150)
+    pop();
+}
+
