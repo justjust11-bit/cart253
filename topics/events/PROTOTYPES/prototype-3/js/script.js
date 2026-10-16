@@ -15,12 +15,12 @@ let titleScreen = true;
 let endScreen = false;
 
 //the song exerpt is 19 seconds, so ill leave an extra second for the song to end
-let gameDuration = 20 * 1000;
+let gameDuration = 29 * 1000;
 
 let song = undefined;
 
-const beatDuration = 2000; // in milliseconds
-const timeOnScreen = 1500;
+const beatDuration = 1500; // 2 seconds milliseconds
+const timeOnScreen = 1000; // how you can change the rythm
 
 //button at the bottom, that will receive the notes 
 let touchPad = {
@@ -49,7 +49,7 @@ let tapNoteDisappear = false;
  */
 
 async function preload() {
-    song = await loadSound("assets/sounds/turn-it-into-love.wav");
+    song = await loadSound("assets/sounds/laserbeam.mp3");
 }
 
 
