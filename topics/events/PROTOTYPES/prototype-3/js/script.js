@@ -37,11 +37,21 @@ let tapNote = {
     //where the y starts off
     yInitial: -10,
     size: 150,
-    timer: beatDuration //  countdown for each beat (time between the notes)
+    timer: beatDuration, //  countdown for each beat (time between the notes)
+    hit: false,
+    fill: "pink",
+    fills: {
+        perfect: "#6f1985",
+        good: "#0d3b53",
+        miss: "#191616"
+    }
+
 }
 
 //so the tap note can disappear 
 let tapNoteDisappear = false;
+let points = 0;
+let tapNoteScored = false;
 
 
 /**
@@ -75,6 +85,12 @@ function draw() {
         drawTouchPad();
         moveTapNotes();
         drawTapNotes();
+        push();
+        fill("#000000");
+        textSize(24);
+        textAlign(LEFT, TOP);
+        text("Points: " + points, 20, 20);
+        pop();
     }
     else if (endScreen) {
         drawEndScreen();
@@ -104,7 +120,7 @@ function drawTapNotes() {
         push();
         stroke("#5d3b3b");
         strokeWeight(5);
-        fill("pink");
+        fill(tapNote.fill);
         ellipse(tapNote.x, tapNote.y, tapNote.size);
         pop();
     }
@@ -127,6 +143,7 @@ function moveTapNotes() {
         //to remove the delay caused by the tapnote coming off of the screen before it respawns
         let delay = beatDuration - timeOnScreen + tapNote.timer
         tapNote.timer = timeOnScreen - delay
+        tapNote.hit = false;
     }
 
     // // this is for debug purposes
@@ -157,6 +174,17 @@ function keyPressed(event) {
         song.play();
         setTimeout(endGame, gameDuration);
     }
+    else if (event.keyCode === 32 && gamePlay && !tapNote.hit) {
+        if (tapNote.timer < 100 && tapNote.timer > -100)
+            addPoint()
+
+
+        tapNote.hit = true
+    }
+}
+
+function addPoint() {
+    points += 1;
 }
 /**
  * ends the game after 19 seconds
@@ -184,6 +212,4 @@ function drawEndScreen() {
     text("GG", width / 2, height / 2);
     pop();
 }
-
-
 
