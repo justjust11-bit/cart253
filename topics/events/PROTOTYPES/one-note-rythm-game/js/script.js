@@ -1,10 +1,15 @@
 /**
- * Title of Project
+ * One Note Rythm Game
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ *Using the spacebar, try to catch the moment the two circles perfectly overlap, 
+ while listening to the beat of the song. Depending on the accuracy of 
+ your hit, you can achieve PERFECT, GREAT, GOOD, BAD, or MISS. You get different 
+ points for each hit, a receive a higher score with a higher accuracy. If you get
+  1000 points or more by the end of the song, you win!
+  
  * refs used: https://p5js.org/reference/p5/deltaTime/
+ * I looked at some of my past prototypes to help myself with some parts of the code
  */
 
 "use strict";
@@ -173,10 +178,12 @@ function drawTitleScreen() {
     background("#7ec292")
     fill("#041640")
     textAlign(CENTER, CENTER);
-    textSize(140);
+    textSize(90)
     textStyle(BOLD)
     textFont('Verdana')
-    text("RYTHM GAME", width / 2, height / 4);
+    text("ONE NOTE", width / 2, 130);
+    textSize(140);
+    text("RYTHM GAME", width / 2, height / 3.5);
     textSize(40);
     fill("white")
     text("Listen to the music and play according to the beat", 200, height / 2, 700);
@@ -188,7 +195,7 @@ function drawTitleScreen() {
 
 /**
  * 
- *when the player presses space, depeding on the time frame she/he presses it on, you receive different amounts
+ *when the player presses space, depending on the time frame she/he presses it on, you receive different amounts
  of points, and the fill of the tapnote changess
  */
 function keyPressed(event) {
