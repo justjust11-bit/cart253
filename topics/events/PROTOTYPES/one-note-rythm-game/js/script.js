@@ -343,8 +343,8 @@ function drawEndScreen() {
     fill("#1a1c6d");
     textFont('Verdana');
     textStyle(BOLD)
-    textSize(30);
-    text("Refresh to retry!", 894, 660, 170, 200);
+    textSize(26);
+    text("Press space to retry!", 906, 648, 170, 200);
     pop();
 
 
