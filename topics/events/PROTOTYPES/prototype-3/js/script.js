@@ -4,6 +4,7 @@
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * refs used: https://p5js.org/reference/p5/deltaTime/
  */
 
 "use strict";
@@ -12,26 +13,32 @@
 let gamePlay = true;
 
 //the song exerpt is 19 seconds, so ill leave an extra second for the song to end
-let gameDuration = 20 * 1000;
+let gameDuration = 5 * 1000;
 
 let song = undefined;
 
+const beatDuration = 2000; // in milliseconds
+const timeOnScreen = 1500;
 
-//button at the bottom 
+//button at the bottom, that will receive the notes 
 let touchPad = {
     x: 1080 / 2,
     y: 650,
     size: 150
 }
 
-//moving button
+//moving button, that represents the "notes"
 let tapNote = {
     x: 1080 / 2,
-    y: -10,
-    size: 150
+    //the y will change because the note will move the y axis only
+    y: undefined,
+    //where the y starts off
+    yInitial: -10,
+    size: 150,
+    timer: beatDuration //  countdown for each beat (time between the notes)
 }
 
-//so the tap note can disappear after being pressed on time
+//so the tap note can disappear 
 let tapNoteDisappear = false;
 
 
@@ -45,12 +52,11 @@ async function preload() {
 
 
 /**
- * creates canvas
+ * creates canvas, sets time of game until game end screen
 */
 async function setup() {
     createCanvas(1080, 800);
-
-    setTimeout(endGame, gameDuration)
+    setTimeout(endGame, gameDuration);
 }
 
 
@@ -61,17 +67,16 @@ function draw() {
     background("brown");
 
     drawTouchPad();
-    //JUSTINE!!!! MAYBE YOU CAN ADD LONG NOTES!!
-    drawTapNotes();
+
 
     //moves the tap notes
     moveTapNotes();
-
+    drawTapNotes();
 }
 
 
 /**
- * draws the touch pad
+ * draws the touch pad at the bottom center
  */
 function drawTouchPad() {
 
@@ -84,9 +89,10 @@ function drawTouchPad() {
 }
 
 /**
- * draws the tap notes... they will also disappear once you click at the right time
+ * draws the tap notes... they go down the y axis
  */
 function drawTapNotes() {
+    //i put this conditional at the top to be able to make the note disappear
     if (!tapNoteDisappear) {
         push();
         stroke("#5d3b3b");
@@ -99,22 +105,28 @@ function drawTapNotes() {
 }
 
 /**
- * moves the tap notes from up to down onto the 
+ * moves the tap notes from up to down in a rythmic fashion... 
  */
 function moveTapNotes() {
-    if (gamePlay === true) {
-        tapNote.y += 3
+
+    // I received help from someone knowledgeable in math to help me solve the math equation necessary
+    //for the beat/rythmic loop to happen.... We used deltaTime, which is the amount of time it took the p5 draw()
+    //to execute the previous frame
+    tapNote.y = tapNote.timer * (tapNote.yInitial - touchPad.y) / timeOnScreen + touchPad.y
+    tapNote.timer -= deltaTime
+
+    // check whether its been more than half a second since the note passed the touchPad
+    if (tapNote.timer < (timeOnScreen - beatDuration)) {
+        //to remove the delay caused by the tapnote coming off of the screen before it respawns
+        let delay = beatDuration - timeOnScreen + tapNote.timer
+        tapNote.timer = timeOnScreen - delay
     }
 
-    // Calculate distance between tapnote and touch pad
-    const d = dist(tapNote.x, tapNote.y, touchPad.x, touchPad.y);
-    const onTop = (d < tapNote.size / 2 + touchPad.size / 2);
-
-    //&& tapped.keyCode === 40
-    if (onTop) {
-        tapNoteDisappear = true;
-    }
-
+    // // this is for debug purposes
+    // push()
+    // textSize(30)
+    // text(tapNote.timer, width / 4, height / 4)
+    // pop()
 
 }
 
