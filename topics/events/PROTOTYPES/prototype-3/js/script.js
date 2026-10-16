@@ -81,7 +81,7 @@ async function setup() {
  * draws
 */
 function draw() {
-    background("#6a51c4");
+    background("#a79bd4");
 
     if (titleScreen) {
         drawTitleScreen();
@@ -91,7 +91,7 @@ function draw() {
         moveTapNotes();
         drawTapNotes();
         push();
-        fill("#18a786");
+        fill("#223455");
         textSize(90);
         textAlign(LEFT, TOP);
         textFont('Verdana')
@@ -111,9 +111,9 @@ function draw() {
 function drawTouchPad() {
 
     push();
-    stroke("#461f1f");
-    strokeWeight(5);
-    fill("grey");
+    stroke("#44465c");
+    strokeWeight(10);
+    fill("#c2bfbf");
     ellipse(touchPad.x, touchPad.y, touchPad.size);
     pop();
 }
@@ -125,8 +125,8 @@ function drawTapNotes() {
     //i put this conditional at the top to be able to make the note disappear
     if (!tapNoteDisappear) {
         push();
-        stroke("#5d3b3b");
-        strokeWeight(5);
+        stroke("#360f0f");
+        strokeWeight(10);
         fill(tapNote.fill);
         ellipse(tapNote.x, tapNote.y, tapNote.size);
         pop();
@@ -154,7 +154,7 @@ function moveTapNotes() {
         tapNote.fill = tapNote.fills.neutral
     }
 
-    // // this is for debug purposes
+    // // this is for debugging
     // push()
     // textSize(30)
     // text(tapNote.timer, width / 4, height / 4)
@@ -165,13 +165,19 @@ function moveTapNotes() {
 
 function drawTitleScreen() {
     push();
-    background("#e8b9d2")
+    background("#7ec292")
+    fill("#041640")
     textAlign(CENTER, CENTER);
-    textSize(60);
+    textSize(140);
+    textStyle(BOLD)
     textFont('Verdana')
-    text("Rythm game", width / 2, height / 2 - 80);
-    textSize(30);
-    text("Press SPACE to start", width / 2, height / 2 + 55);
+    text("RYTHM GAME", width / 2, height / 4);
+    textSize(40);
+    fill("white")
+    text("Listen to the music and play according to the beat", 200, height / 2, 700);
+    textSize(35);
+    fill("#0c0847")
+    text("Press SPACE to start, and to play!", width / 2, height / 2 + 180);
     pop();
 }
 
@@ -184,27 +190,31 @@ function keyPressed(event) {
     }
     else if (event.keyCode === 32 && gamePlay && !tapNote.hit) {
         if (tapNote.timer < 20 && tapNote.timer > -20) {
-            points += 10
+            points += 50
             tapNote.fill = tapNote.fills.perfect
+            push();
+            fill("#000000")
+            text("Perfect!", 200, 400)
+            pop();
         }
 
         else if (tapNote.timer < 50 && tapNote.timer > -50) {
-            points += 5
+            points += 20
             tapNote.fill = tapNote.fills.great
         }
 
         else if (tapNote.timer < 100 && tapNote.timer > -100) {
-            points += 3
+            points += 10
             tapNote.fill = tapNote.fills.good
         }
 
         else if (tapNote.timer < 150 && tapNote.timer > -150) {
-            points += 1
+            points += 5
             tapNote.fill = tapNote.fills.bad
         }
 
         else {
-            points += 1
+            points += 0
             tapNote.fill = tapNote.fills.miss
         }
 
@@ -233,11 +243,43 @@ function endGame() {
  */
 function drawEndScreen() {
 
+
     push();
-    fill("#000000")
-    textAlign(CENTER, CENTER);
-    textSize(48);
-    text("GG", width / 2, height / 2);
-    text(points, width / 2, height / 2 + 200);
+    strokeWeight(0);
+    fill("#dec6c3");
+    ellipse(width / 2, height / 2.8, 620, 280);
     pop();
+
+    push();
+    strokeWeight(0);
+    fill("#dec6c3");
+    ellipse(width / 2, height / 2, 700, 400);
+    pop();
+
+    push();
+    fill("#4d2357");
+    textAlign(CENTER, CENTER);
+    textSize(100);
+    textStyle(BOLD);
+    text("Total score:", width / 2, height / 2 - 100);
+    pop();
+
+    push();
+    fill("#8e135d");
+    textAlign(CENTER, CENTER);
+    textSize(140);
+    textStyle(BOLD);
+    text(points, width / 2, height / 2 + 100);
+    pop();
+
+    push();
+    fill("#080746");
+    textAlign(CENTER, CENTER);
+    textSize(50);
+    textFont('Verdana');
+    textStyle(BOLD);
+    text("Wow!!!", width / 2, height - 100);
+    pop();
+
+
 }
