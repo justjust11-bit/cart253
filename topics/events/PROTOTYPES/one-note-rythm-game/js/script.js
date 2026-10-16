@@ -16,8 +16,8 @@
 
 //game starts on the title screen
 let gamePlay = false;
-let titleScreen = true;
-let endScreen = false;
+let titleScreen = false;
+let endScreen = true;
 
 //the song exerpt is 19 seconds, so ill leave an extra second for the song to end
 let gameDuration = 29 * 1000;
@@ -296,11 +296,11 @@ function drawEndScreen() {
     //different message at the bottom if the player makes 1000 points or less
     if (points >= 1000) {
         push();
-        fill("#ececf2");
+        fill("#b7e4c5");
         textAlign(CENTER, CENTER);
         strokeWeight(10);
         stroke("#41ba72");
-        textSize(50);
+        textSize(85);
         textFont('Verdana');
         textStyle(BOLD);
         text("You passed!!", width / 2, height - 100);
@@ -313,7 +313,7 @@ function drawEndScreen() {
         textAlign(CENTER, CENTER);
         strokeWeight(10)
         stroke("#102519");
-        textSize(50);
+        textSize(70);
         textFont('Verdana');
         textStyle(BOLD);
         text("You didn't pass", width / 2, height - 100);
@@ -323,9 +323,9 @@ function drawEndScreen() {
     //replay button circle
     push();
     strokeWeight(5);
-    stroke("#241d3d");
+    stroke("#343043");
     fill("#cac4e2");
-    ellipse(920, 690, 170);
+    ellipse(960, 690, 170);
     pop();
     //replay button text
     push();
@@ -333,7 +333,7 @@ function drawEndScreen() {
     textFont('Verdana');
     textStyle(BOLD)
     textSize(30);
-    text("Refresh to retry", 856, 660, 170, 200);
+    text("Refresh to retry!", 894, 660, 170, 200);
     pop();
 }
 

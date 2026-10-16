@@ -111,10 +111,10 @@ This website serves to present the prototyping work I will create in my class CA
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/events/PROTOTYPES/make-your-own-scene)
 
-##### Three Shy Clowns
+##### One Note Rythm Game
 
-![Screenshot of Three Shy Clowns](./topics/conditionals/PROTOTYPES/three-shy-clowns/assets/images/clowns.png)
+![Screenshot of One Note Rythm Game](./topics/events/PROTOTYPES/one-note-rythm-game/assets/images/rythm.png)
 
-- [View online](https://justjust11-bit.github.io/cart253/topics/events/PROTOTYPES/make-your-own-scene)
+- [View online](https://justjust11-bit.github.io/cart253/topics/events/PROTOTYPES/one-note-rythm-game/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/events/PROTOTYPES/make-your-own-scene)
