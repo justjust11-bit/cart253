@@ -16,10 +16,10 @@
 
 //game starts on the title screen
 let gamePlay = false;
-let titleScreen = false;
-let endScreen = true;
+let titleScreen = true;
+let endScreen = false;
 
-//the song exerpt is 19 seconds, so ill leave an extra second for the song to end
+//the song exerpt is 29 seconds
 let gameDuration = 29 * 1000;
 
 let song = undefined;
@@ -245,6 +245,17 @@ function keyPressed(event) {
 
         tapNote.hit = true;
     }
+
+    //when the game ends if you press spacebar you can reset the game
+    if (endScreen === true && event.keyCode === 32) {
+        endScreen = false
+        titleScreen = true
+        points = 0
+        tapNote.timer = 3 / 4 * beatDuration;
+        tapNote.hit = false;
+        tapNote.fill = tapNote.fills.neutral
+        return;
+    }
 }
 
 
@@ -335,6 +346,8 @@ function drawEndScreen() {
     textSize(30);
     text("Refresh to retry!", 894, 660, 170, 200);
     pop();
+
+
 }
 
 
