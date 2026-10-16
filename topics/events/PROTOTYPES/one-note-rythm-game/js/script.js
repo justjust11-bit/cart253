@@ -14,7 +14,7 @@
 
 "use strict";
 
-//
+//game starts on the title screen
 let gamePlay = false;
 let titleScreen = true;
 let endScreen = false;
@@ -58,8 +58,7 @@ let tapNote = {
     fill: "#b58a8a"
 }
 
-//so the tap note can disappear 
-let tapNoteDisappear = false;
+
 let points = 0;
 let tapNoteScored = false;
 
@@ -83,7 +82,7 @@ async function setup() {
 
 
 /**
- * draws
+ * draws all states, touchpad, tapnotes, texts, etc
 */
 function draw() {
     background("#a79bd4");
@@ -135,15 +134,14 @@ function drawTouchPad() {
  * draws the tap notes... they go down the y axis
  */
 function drawTapNotes() {
-    //i put this conditional at the top to be able to make the note disappear
-    if (!tapNoteDisappear) {
-        push();
-        stroke("#552727");
-        strokeWeight(10);
-        fill(tapNote.fill);
-        ellipse(tapNote.x, tapNote.y, tapNote.size);
-        pop();
-    }
+
+    push();
+    stroke("#552727");
+    strokeWeight(10);
+    fill(tapNote.fill);
+    ellipse(tapNote.x, tapNote.y, tapNote.size);
+    pop();
+
 
 }
 
@@ -174,22 +172,28 @@ function moveTapNotes() {
  * draws the title screen, when you open the game
  */
 function drawTitleScreen() {
+
+    //title screen
     push();
-    background("#7ec292")
-    fill("#041640")
+    background("#7ec292");
+    //top center title
+    fill("#495779");
     textAlign(CENTER, CENTER);
-    textSize(90)
-    textStyle(BOLD)
-    textFont('Verdana')
-    text("ONE NOTE", width / 2, 130);
+    textSize(90);
+    textStyle(BOLD);
+    textFont('Verdana');
+    text("ONE NOTE", width / 2, 140);
     textSize(140);
-    text("RYTHM GAME", width / 2, height / 3.5);
+    fill("#0a2157");
+    text("RYTHM GAME", width / 2, height / 3);
     textSize(40);
-    fill("white")
-    text("Listen to the music and play according to the beat", 200, height / 2, 700);
+    //middle text
+    fill("white");
+    text("Listen to the music and play according to the beat", 200, height / 2 + 90, 700);
+    //bottom text
     textSize(35);
-    fill("#0c0847")
-    text("Press SPACE to start, and to play!", width / 2, height / 2 + 180);
+    fill("#0c0847");
+    text("Press SPACE to start, and to play!", width / 2, height / 2 + 240);
     pop();
 }
 
@@ -199,51 +203,58 @@ function drawTitleScreen() {
  of points, and the fill of the tapnote changess
  */
 function keyPressed(event) {
+    //if on the title screen, pressing space will go to gameplay mode, song starts playing
     if (event.keyCode === 32 && titleScreen) {
         titleScreen = false;
         gamePlay = true;
         song.play();
         setTimeout(endGame, gameDuration);
     }
+
+    // TAPPING ACCURACY DECIDER.. perfect, great, good, bad, miss
+    //tracks the milliseconds passed before and after the circles overlap
+    // points are given according to the accuracy
     else if (event.keyCode === 32 && gamePlay && !tapNote.hit) {
+
+        //perfect
         if (tapNote.timer < 20 && tapNote.timer > -20) {
             points += 100
             tapNote.fill = tapNote.fills.perfect
 
         }
-
+        //great
         else if (tapNote.timer < 50 && tapNote.timer > -50) {
             points += 50
             tapNote.fill = tapNote.fills.great
         }
-
+        //good
         else if (tapNote.timer < 100 && tapNote.timer > -100) {
             points += 30
             tapNote.fill = tapNote.fills.good
         }
-
+        //bad
         else if (tapNote.timer < 150 && tapNote.timer > -150) {
             points += 10
             tapNote.fill = tapNote.fills.bad
         }
-
+        //miss
         else {
             points += 0
             tapNote.fill = tapNote.fills.miss
         }
 
-        tapNote.hit = true
+        tapNote.hit = true;
     }
 }
 
 
 /**
- * ends the game after 19 seconds
+ * ends the game & song after 19 seconds
  */
 function endGame() {
     gamePlay = false;
     titleScreen = false;
-    endScreen = true
+    endScreen = true;
     if (song.isPlaying()) {
         song.stop();
     }
@@ -256,7 +267,7 @@ function endGame() {
  */
 function drawEndScreen() {
 
-
+    //decorative circles behind "total score"
     push();
     strokeWeight(0);
     fill("#e7dae5");
@@ -264,6 +275,7 @@ function drawEndScreen() {
     ellipse(width / 2, height / 2, 700, 400);
     pop();
 
+    //"total score" is written
     push();
     fill("#4d2357");
     textAlign(CENTER, CENTER);
@@ -272,6 +284,7 @@ function drawEndScreen() {
     text("Total score:", width / 2, height / 2 - 100);
     pop();
 
+    //points the player accumulated is displayed
     push();
     fill("#8e135d");
     textAlign(CENTER, CENTER);
@@ -280,12 +293,13 @@ function drawEndScreen() {
     text(points, width / 2, height / 2 + 100);
     pop();
 
+    //different message at the bottom if the player makes 1000 points or less
     if (points >= 1000) {
         push();
         fill("#ececf2");
         textAlign(CENTER, CENTER);
-        strokeWeight(10)
-        stroke("#41ba72")
+        strokeWeight(10);
+        stroke("#41ba72");
         textSize(50);
         textFont('Verdana');
         textStyle(BOLD);
@@ -298,7 +312,7 @@ function drawEndScreen() {
         fill("#85858e");
         textAlign(CENTER, CENTER);
         strokeWeight(10)
-        stroke("#102519")
+        stroke("#102519");
         textSize(50);
         textFont('Verdana');
         textStyle(BOLD);
@@ -310,12 +324,12 @@ function drawEndScreen() {
     push();
     strokeWeight(5);
     stroke("#241d3d");
-    fill("#cac4e2")
+    fill("#cac4e2");
     ellipse(920, 690, 170);
     pop();
     //replay button text
     push();
-    fill("#1a1c6d")
+    fill("#1a1c6d");
     textFont('Verdana');
     textStyle(BOLD)
     textSize(30);
@@ -334,65 +348,65 @@ function drawAccuracy() {
     //if player gets perfect.. slightly bigger than the other texts
     if (gamePlay && tapNote.fill === tapNote.fills.perfect) {
         push();
-        strokeWeight(10)
-        textFont('Verdana')
-        stroke("#521446")
-        fill(" #ba25b5")
-        textStyle(BOLD)
-        textSize(70)
-        text("PERFECT!", 120, 400)
+        strokeWeight(10);
+        textFont('Verdana');
+        stroke("#521446");
+        fill(" #ba25b5");
+        textStyle(BOLD);
+        textSize(75);
+        text("PERFECT!", 100, 400);
         pop();
     }
 
     //if player gets great
     if (gamePlay && tapNote.fill === tapNote.fills.great) {
         push();
-        strokeWeight(10)
-        textFont('Verdana')
-        stroke("#0e3f10")
-        fill("#1aa51a")
-        textStyle(BOLD)
-        textSize(60)
-        text("GREAT", 120, 400)
+        strokeWeight(10);
+        textFont('Verdana');
+        stroke("#0e3f10");
+        fill("#1aa51a");
+        textStyle(BOLD);
+        textSize(65);
+        text("GREAT", 120, 400);
         pop();
     }
 
     //if player gets good
     if (gamePlay && tapNote.fill === tapNote.fills.good) {
         push();
-        strokeWeight(10)
-        textFont('Verdana')
-        stroke("#182050")
-        fill("#1a6ba5")
-        textStyle(BOLD)
-        textSize(60)
-        text("GOOD", 120, 400)
+        strokeWeight(10);
+        textFont('Verdana');
+        stroke("#182050");
+        fill("#1a6ba5");
+        textStyle(BOLD);
+        textSize(60);
+        text("GOOD", 120, 400);
         pop();
     }
 
     //if player gets a bad
     if (gamePlay && tapNote.fill === tapNote.fills.bad) {
         push();
-        strokeWeight(10)
-        textFont('Verdana')
-        stroke("#182050")
-        fill("#1a6ba5")
-        textStyle(BOLD)
-        textSize(60)
-        text("BAD", 120, 400)
+        strokeWeight(10);
+        textFont('Verdana');
+        stroke("#182050");
+        fill("#1a6ba5");
+        textStyle(BOLD);
+        textSize(60);
+        text("BAD", 120, 400);
         pop();
     }
 
     //if player misses.. slightly smaller and to the left
     if (gamePlay && tapNote.fill === tapNote.fills.miss) {
         push();
-        strokeWeight(10)
-        textFont('Verdana')
-        stroke("#080809")
-        fill("#64686b")
-        textStyle(BOLD)
-        textSize(50)
-        text("MISS...", 100, 400)
+        strokeWeight(10);
+        textFont('Verdana');
+        stroke("#080809");
+        fill("#64686b");
+        textStyle(BOLD);
+        textSize(50);
+        text("MISS...", 100, 400);
         pop();
     }
 
