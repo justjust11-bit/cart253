@@ -19,7 +19,8 @@ let gameDuration = 29 * 1000;
 
 let song = undefined;
 
-const beatDuration = 1500; // 2 seconds milliseconds
+//the amount of seconds, the bpm, the 4/4, and *1000 for milliseconds
+const beatDuration = 60 / 135 * 4 * 1000;
 const timeOnScreen = 1000; // how you can change the rythm
 
 //button at the bottom, that will receive the notes 
@@ -37,15 +38,19 @@ let tapNote = {
     //where the y starts off
     yInitial: -10,
     size: 150,
-    timer: beatDuration, //  countdown for each beat (time between the notes)
-    hit: false,
-    fill: "pink",
-    fills: {
-        perfect: "#6f1985",
-        good: "#0d3b53",
-        miss: "#191616"
-    }
 
+    //the first beat starts in 3/4 instead of 4/4
+    timer: 3 / 4 * beatDuration, //  countdown for each beat (time between the notes)
+    hit: false,
+    fills: {
+        neutral: "#b97575",
+        perfect: "#c41eed",
+        great: "#18b223",
+        good: "#0d3b53",
+        bad: "#605252",
+        miss: "#1c0f0f"
+    },
+    fill: "#b97575"
 }
 
 //so the tap note can disappear 
@@ -76,7 +81,7 @@ async function setup() {
  * draws
 */
 function draw() {
-    background("brown");
+    background("#6a51c4");
 
     if (titleScreen) {
         drawTitleScreen();
@@ -86,10 +91,12 @@ function draw() {
         moveTapNotes();
         drawTapNotes();
         push();
-        fill("#000000");
-        textSize(24);
+        fill("#18a786");
+        textSize(90);
         textAlign(LEFT, TOP);
-        text("Points: " + points, 20, 20);
+        textFont('Verdana')
+        textStyle(BOLD)
+        text("Points: " + points, 50, 70);
         pop();
     }
     else if (endScreen) {
@@ -144,6 +151,7 @@ function moveTapNotes() {
         let delay = beatDuration - timeOnScreen + tapNote.timer
         tapNote.timer = timeOnScreen - delay
         tapNote.hit = false;
+        tapNote.fill = tapNote.fills.neutral
     }
 
     // // this is for debug purposes
@@ -175,17 +183,37 @@ function keyPressed(event) {
         setTimeout(endGame, gameDuration);
     }
     else if (event.keyCode === 32 && gamePlay && !tapNote.hit) {
-        if (tapNote.timer < 100 && tapNote.timer > -100)
-            addPoint()
+        if (tapNote.timer < 20 && tapNote.timer > -20) {
+            points += 10
+            tapNote.fill = tapNote.fills.perfect
+        }
+
+        else if (tapNote.timer < 50 && tapNote.timer > -50) {
+            points += 5
+            tapNote.fill = tapNote.fills.great
+        }
+
+        else if (tapNote.timer < 100 && tapNote.timer > -100) {
+            points += 3
+            tapNote.fill = tapNote.fills.good
+        }
+
+        else if (tapNote.timer < 150 && tapNote.timer > -150) {
+            points += 1
+            tapNote.fill = tapNote.fills.bad
+        }
+
+        else {
+            points += 1
+            tapNote.fill = tapNote.fills.miss
+        }
 
 
         tapNote.hit = true
     }
 }
 
-function addPoint() {
-    points += 1;
-}
+
 /**
  * ends the game after 19 seconds
  */
@@ -210,6 +238,6 @@ function drawEndScreen() {
     textAlign(CENTER, CENTER);
     textSize(48);
     text("GG", width / 2, height / 2);
+    text(points, width / 2, height / 2 + 200);
     pop();
 }
-
