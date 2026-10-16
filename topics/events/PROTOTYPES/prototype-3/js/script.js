@@ -225,7 +225,6 @@ function keyPressed(event) {
             tapNote.fill = tapNote.fills.miss
         }
 
-
         tapNote.hit = true
     }
 }
