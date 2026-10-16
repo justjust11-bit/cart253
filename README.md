@@ -117,4 +117,4 @@ This website serves to present the prototyping work I will create in my class CA
 
 - [View online](https://justjust11-bit.github.io/cart253/topics/events/PROTOTYPES/one-note-rythm-game/)
 
-- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/events/PROTOTYPES/make-your-own-scene)
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/events/PROTOTYPES/one-note-rythm-game)
