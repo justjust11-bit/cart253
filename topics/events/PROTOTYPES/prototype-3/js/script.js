@@ -10,10 +10,12 @@
 "use strict";
 
 //
-let gamePlay = true;
+let gamePlay = false;
+let titleScreen = true;
+let endScreen = false;
 
 //the song exerpt is 19 seconds, so ill leave an extra second for the song to end
-let gameDuration = 5 * 1000;
+let gameDuration = 20 * 1000;
 
 let song = undefined;
 
@@ -47,7 +49,7 @@ let tapNoteDisappear = false;
  */
 
 async function preload() {
-    song = await loadSound("assets/sounds/turn-it-into-love.mp3");
+    song = await loadSound("assets/sounds/turn-it-into-love.wav");
 }
 
 
@@ -56,7 +58,7 @@ async function preload() {
 */
 async function setup() {
     createCanvas(1080, 800);
-    setTimeout(endGame, gameDuration);
+    await preload();
 }
 
 
@@ -66,12 +68,17 @@ async function setup() {
 function draw() {
     background("brown");
 
-    drawTouchPad();
-
-
-    //moves the tap notes
-    moveTapNotes();
-    drawTapNotes();
+    if (titleScreen) {
+        drawTitleScreen();
+    }
+    else if (gamePlay) {
+        drawTouchPad();
+        moveTapNotes();
+        drawTapNotes();
+    }
+    else if (endScreen) {
+        drawEndScreen();
+    }
 }
 
 
@@ -130,13 +137,37 @@ function moveTapNotes() {
 
 }
 
+
+function drawTitleScreen() {
+    push();
+    background("#e8b9d2")
+    textAlign(CENTER, CENTER);
+    textSize(60);
+    textFont('Verdana')
+    text("Rythm game", width / 2, height / 2 - 80);
+    textSize(30);
+    text("Press SPACE to start", width / 2, height / 2 + 55);
+    pop();
+}
+
+function keyPressed(event) {
+    if (event.keyCode === 32 && titleScreen) {
+        titleScreen = false;
+        gamePlay = true;
+        song.play();
+        setTimeout(endGame, gameDuration);
+    }
+}
 /**
  * ends the game after 19 seconds
  */
 function endGame() {
-    (!gamePlay);
+    gamePlay = false;
+    titleScreen = false;
     endScreen = true
-    drawEndScreen();
+    if (song.isPlaying()) {
+        song.stop();
+    }
 
 }
 
@@ -148,11 +179,11 @@ function drawEndScreen() {
 
     push();
     fill("#000000")
+    textAlign(CENTER, CENTER);
+    textSize(48);
     text("GG", width / 2, height / 2);
-    text(clickAmount, width / 2, height / 2);
     pop();
 }
-
 
 
 
