@@ -11,17 +11,17 @@
 
 //
 let gamePlay = false;
-let titleScreen = false;
-let endScreen = true;
+let titleScreen = true;
+let endScreen = false;
 
 //the song exerpt is 19 seconds, so ill leave an extra second for the song to end
 let gameDuration = 29 * 1000;
 
 let song = undefined;
 
-//the amount of seconds, the bpm, the 4/4, and *1000 for milliseconds
+//the amount of seconds, the bpm, the 4/4, and *1000 for milliseconds..((there are 16 notes that pass now))
 const beatDuration = 60 / 135 * 4 * 1000;
-const timeOnScreen = 1000; // how you can change the rythm
+const timeOnScreen = 1000; // adjust the speed of the notes (the amount of notes stays the same)
 
 //button at the bottom, that will receive the notes 
 let touchPad = {
@@ -43,14 +43,14 @@ let tapNote = {
     timer: 3 / 4 * beatDuration, //  countdown for each beat (time between the notes)
     hit: false,
     fills: {
-        neutral: "#b97575",
+        neutral: "#b58a8a",
         perfect: "#c41eed",
         great: "#18b223",
         good: "#1b6f9c",
         bad: "#605252",
         miss: "#1c0f0f"
     },
-    fill: "#b97575"
+    fill: "#b58a8a"
 }
 
 //so the tap note can disappear 
@@ -82,7 +82,7 @@ async function setup() {
 */
 function draw() {
     background("#a79bd4");
-
+    //start at the title screen
     if (titleScreen) {
         drawTitleScreen();
     }
@@ -92,14 +92,19 @@ function draw() {
         drawTapNotes();
         drawAccuracy();
 
-
+        //points tally in the top left
         push();
-        fill("#223455");
-        textSize(90);
+        fill("#ededed");
+        strokeWeight(20)
+        stroke("#223d55")
         textAlign(LEFT, TOP);
         textFont('Verdana')
         textStyle(BOLD)
-        text("Points: " + points, 50, 70);
+        textSize(50);
+        text("Points: ", 60, 70);
+        textSize(90)
+        stroke("#1a348c")
+        text(points, 60, 150);
         pop();
     }
     else if (endScreen) {
@@ -128,7 +133,7 @@ function drawTapNotes() {
     //i put this conditional at the top to be able to make the note disappear
     if (!tapNoteDisappear) {
         push();
-        stroke("#360f0f");
+        stroke("#552727");
         strokeWeight(10);
         fill(tapNote.fill);
         ellipse(tapNote.x, tapNote.y, tapNote.size);
@@ -157,15 +162,12 @@ function moveTapNotes() {
         tapNote.fill = tapNote.fills.neutral
     }
 
-    // // this is for debugging
-    // push()
-    // textSize(30)
-    // text(tapNote.timer, width / 4, height / 4)
-    // pop()
 
 }
 
-
+/**
+ * draws the title screen, when you open the game
+ */
 function drawTitleScreen() {
     push();
     background("#7ec292")
@@ -184,6 +186,11 @@ function drawTitleScreen() {
     pop();
 }
 
+/**
+ * 
+ *when the player presses space, depeding on the time frame she/he presses it on, you receive different amounts
+ of points, and the fill of the tapnote changess
+ */
 function keyPressed(event) {
     if (event.keyCode === 32 && titleScreen) {
         titleScreen = false;
@@ -193,23 +200,23 @@ function keyPressed(event) {
     }
     else if (event.keyCode === 32 && gamePlay && !tapNote.hit) {
         if (tapNote.timer < 20 && tapNote.timer > -20) {
-            points += 50
+            points += 100
             tapNote.fill = tapNote.fills.perfect
 
         }
 
         else if (tapNote.timer < 50 && tapNote.timer > -50) {
-            points += 20
+            points += 50
             tapNote.fill = tapNote.fills.great
         }
 
         else if (tapNote.timer < 100 && tapNote.timer > -100) {
-            points += 10
+            points += 30
             tapNote.fill = tapNote.fills.good
         }
 
         else if (tapNote.timer < 150 && tapNote.timer > -150) {
-            points += 5
+            points += 10
             tapNote.fill = tapNote.fills.bad
         }
 
@@ -267,19 +274,51 @@ function drawEndScreen() {
     text(points, width / 2, height / 2 + 100);
     pop();
 
+    if (points >= 1000) {
+        push();
+        fill("#ececf2");
+        textAlign(CENTER, CENTER);
+        strokeWeight(10)
+        stroke("#41ba72")
+        textSize(50);
+        textFont('Verdana');
+        textStyle(BOLD);
+        text("You passed!!", width / 2, height - 100);
+        pop();
+    }
+
+    else if (points < 1000) {
+        push();
+        fill("#85858e");
+        textAlign(CENTER, CENTER);
+        strokeWeight(10)
+        stroke("#102519")
+        textSize(50);
+        textFont('Verdana');
+        textStyle(BOLD);
+        text("You didn't pass", width / 2, height - 100);
+        pop();
+    }
+
+    //replay button circle
     push();
-    fill("#2c2a7f");
-    textAlign(CENTER, CENTER);
-    strokeWeight(10)
-    stroke("#46db82")
-    textSize(50);
-    textFont('Verdana');
-    textStyle(BOLD);
-    text("Wow!!!", width / 2, height - 100);
+    strokeWeight(5);
+    stroke("#241d3d");
+    fill("#cac4e2")
+    ellipse(920, 690, 170);
     pop();
-
-
+    //replay button text
+    push();
+    fill("#1a1c6d")
+    textFont('Verdana');
+    textStyle(BOLD)
+    textSize(30);
+    text("Refresh to retry", 856, 660, 170, 200);
+    pop();
 }
+
+
+
 
 /**
  * draws text if the player got perfect, great, good, bad or miss
