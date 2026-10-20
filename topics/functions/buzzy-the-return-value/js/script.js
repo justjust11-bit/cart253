@@ -1,6 +1,6 @@
 /**
  * Buzzy the return value
- * Pippin Barr
+ * Pippin Barr 
  * 
  * Two flies that buzz around on the canvas
  */
