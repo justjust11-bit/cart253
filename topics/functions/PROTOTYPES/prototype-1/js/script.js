@@ -10,6 +10,10 @@
 
 let bullet1 = undefined;
 let bullet2 = undefined;
+let bullet3 = undefined;
+let bullet4 = undefined;
+let bullet5 = undefined;
+
 
 
 let canon = {
@@ -64,6 +68,7 @@ function draw() {
     drawCanon();
     moveBullets();
     drawBullets();
+    bulletsLeft();
 }
 
 function drawCanon() {
@@ -76,8 +81,11 @@ function drawCanon() {
 }
 
 function drawElement(bullet) {
+    if (bullet === undefined) {
+        return;
+    }
     push();
-    fill("white");
+    fill("blue");
     ellipse(bullet.x, bullet.y, bullet.size);
     pop();
 }
@@ -90,33 +98,62 @@ function mouseClicked() {
         else if (bullet2 === undefined) {
             bullet2 = createBullets(canon.x, canon.y, 50, -5);
         }
+        else if (bullet3 === undefined) {
+            bullet3 = createBullets(canon.x, canon.y, 50, -5);
+        }
+        else if (bullet4 === undefined) {
+            bullet4 = createBullets(canon.x, canon.y, 50, -5);
+        }
+        else if (bullet5 === undefined) {
+            bullet5 = createBullets(canon.x, canon.y, 50, -5);
+        }
+
     }
 }
 
 function moveBullets() {
-    if (bullet1 !== undefined) {
-        bullet1.y += bullet1.velocity;
-        if (bullet1.y + bullet1.size / 2 < 0) {
-            bullet1 = undefined;
-        }
+    bullet1 = moveBullet(bullet1);
+    bullet2 = moveBullet(bullet2);
+    bullet3 = moveBullet(bullet3);
+    bullet4 = moveBullet(bullet4);
+    bullet5 = moveBullet(bullet5);
+
+}
+
+function moveBullet(bullet) {
+    if (bullet === undefined) {
+        return undefined;
     }
 
-    if (bullet2 !== undefined) {
-        bullet2.y += bullet2.velocity;
-        if (bullet2.y + bullet2.size / 2 < 0) {
-            bullet2 = undefined;
-        }
+    bullet.y += bullet.velocity;
+    if (bullet.y + bullet.size / 2 < 0) {
+        return undefined;
     }
+
+    return bullet;
 }
 
 function drawBullets() {
-    if (bullet1 !== undefined) {
-        drawElement(bullet1);
-    }
+    drawElement(bullet1);
+    drawElement(bullet2);
+    drawElement(bullet3);
+    drawElement(bullet4);
+    drawElement(bullet5);
 
-    if (bullet2 !== undefined) {
-        drawElement(bullet2);
-    }
+}
+
+function bulletsLeft() {
+    let bulletAmount = 0;
+    if (bullet1 === undefined) bulletAmount += 1;
+    if (bullet2 === undefined) bulletAmount += 1;
+    if (bullet3 === undefined) bulletAmount += 1;
+    if (bullet4 === undefined) bulletAmount += 1;
+    if (bullet5 === undefined) bulletAmount += 1;
+
+    push();
+    fill("white")
+    text(bulletAmount, width / 2, height / 2, 100)
+    pop();
 }
 
 // function mouseDragged() {
@@ -139,4 +176,3 @@ function checkOverlap() {
     }
     return overlap;
 }
-
