@@ -20,11 +20,17 @@ let gameStart = 0;
 let oneSecond = 1000;
 
 //"you" will just be the image of the player/fish
+//below are all the pngs used
 let you = undefined;
 let meneImage = undefined;
 let shrimpImage = undefined;
 let titleScreen = undefined;
 let bkg = undefined;
+//
+
+
+
+
 
 let player = {
     y: 300,
@@ -39,7 +45,8 @@ let lastSpawned = 0;
 
 
 //the first mene to spawn, so hes the only one "active" at the start
-let mene1 = {
+let mene1 =
+{
     x: 100,
     y: 0,
     velocity: 4,
@@ -125,6 +132,14 @@ async function setup() {
 */
 function draw() {
 
+    drawTitleScreen();
+    drawGamePlay();
+}
+
+/**draws the title screen
+ * 
+ */
+function drawTitleScreen() {
     if (gameState === "title") {
         push();
         image(titleScreen, 0, 0, width, height);
@@ -143,14 +158,21 @@ function draw() {
         return;
     }
 
+}
+/**
+ * draws the gameplay screen
+ */
+function drawGamePlay() {
     if (gameState === "playing") {
         push();
         image(bkg, 0, 0, width, height);
 
         moveFoes();
         drawFoes();
+        //loads the image of the player
         image(you, player.x, player.y, you.width * player.size, you.height * player.size);
-        drawYou();
+        // calls the movement the image of the player aka the fish
+        moveYou();
 
         //text 6 seconds after start, after player has tried eating around 2 fish, and realized it doesnt work
         //second text to appear
@@ -189,7 +211,7 @@ function mouseClicked() {
 /**
  * moves the fish up and down only
  */
-function drawYou() {
+function moveYou() {
 
     if (keyIsDown(DOWN_ARROW)) { player.y += player.speed; }
     else if (keyIsDown(UP_ARROW)) { player.y -= player.speed; }
