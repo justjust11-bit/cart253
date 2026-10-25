@@ -1,7 +1,7 @@
 # OCEAN DOMINATION REFACTORED
 
 JUSTINE CORMIER
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
 
 ## Description
 

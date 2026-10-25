@@ -95,7 +95,6 @@ function createFoes(x, y, w, size, velocity, image, active) {
  * draws the ocean, the fish, the background
 */
 function draw() {
-
     drawTitleScreen();
     drawGamePlay();
 }
@@ -120,8 +119,8 @@ function drawTitleScreen() {
 
         return;
     }
-
 }
+
 /**
  * draws the gameplay screen, and text that appears as the game goes on
  */
@@ -213,8 +212,6 @@ function drawFoes() {
     drawFoe(mene6);
 
 }
-
-
 
 /**
  * moves and respawns the menes and shrimp
