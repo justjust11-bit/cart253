@@ -10,11 +10,15 @@
 
 "use strict";
 
+let gameStart = true
+
 let bullet1 = undefined;
 let bullet2 = undefined;
 let bullet3 = undefined;
 let bullet4 = undefined;
 let bullet5 = undefined;
+
+let bulletAmount = 0;
 
 
 
@@ -50,6 +54,7 @@ let canon = {
 */
 function setup() {
     createCanvas(900, 900)
+
 }
 
 
@@ -59,6 +64,7 @@ function createBullets(x, y, size, velocity) {
         y: y,
         size: size,
         velocity: velocity,
+
     };
     return bullets;
 }
@@ -88,11 +94,10 @@ function draw() {
     drawElement(bullet4);
     drawElement(bullet5);
 
-    bulletsLeft();
+    bulletsLeft()
+
     checkOverlap();
-    moveCanon(canon);
-
-
+    moveCanon();
 
 }
 
@@ -106,6 +111,8 @@ function drawCanon() {
     fill(canon.fill);
     ellipse(canon.x, canon.y, canon.size);
     pop();
+
+
 }
 
 /**
@@ -113,25 +120,24 @@ function drawCanon() {
  */
 function moveCanon() {
     //check if thedouble click was on the left
-    if ((canon.x - canon.destination.x) < - canon.destination.size / 2) {
+    const dx = canon.x - canon.destination.x
+    if (dx < -canon.destination.size) {
         //if so move right
         canon.x += canon.speed;
+
     }
     //check if its to the right of the destination
-    else if ((canon.x - canon.destination.x) > canon.destination.size / 2) {
-        bug.x += -bug.speed;
+    else if (dx > canon.destination.size) {
+        canon.x -= canon.speed;
+
+
     }
 
 }
 
-/**
- * double clicking sets the spot where you can move the canon
- */
-function doubleClicked() {
-    canon.destination.x = mouseX;
-}
 
-/**
+
+/** 
  * 
  * draws the bullets
  * 
@@ -171,6 +177,11 @@ function mouseClicked() {
         }
 
     }
+
+    // clicking sets the destination of the canobn, so it goes wherever you clicked
+    else {
+        canon.destination.x = mouseX;
+    }
 }
 
 /**
@@ -198,19 +209,25 @@ function moveBullets(bullet) {
 
 }
 
+// function updateSize() {
+//     canon.size = 10 + 10 * bulletAmount;
+// }
 
 /**
  * calculates how many bullets the canon has left
  */
 function bulletsLeft() {
-    let bulletAmount = 0;
+
     //at the start of the game theyre all undefined, so you will have +1 for each
+
     if (bullet1 === undefined) bulletAmount += 1;
     if (bullet2 === undefined) bulletAmount += 1;
     if (bullet3 === undefined) bulletAmount += 1;
     if (bullet4 === undefined) bulletAmount += 1;
     if (bullet5 === undefined) bulletAmount += 1;
 
+
+    // updateSize();
 
 
     push();
