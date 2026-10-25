@@ -61,6 +61,7 @@ function createBullets(x, y, size, velocity) {
         velocity: velocity,
     };
     return bullets;
+    // canon.x, canon.y, 50, -5
 }
 
 
@@ -71,10 +72,11 @@ function createBullets(x, y, size, velocity) {
 function draw() {
     background("black")
 
-    // bullets =
+
     drawCanon();
-    // moveCanon();
-    //addings bullet1 = make sure that the 
+
+    //addings bullet1 = , keeps the identitt of the bullet as it keeps moving
+    //so that it can be recharged when it leaves teh screen
     bullet1 = moveBullets(bullet1);
     bullet2 = moveBullets(bullet2);
     bullet3 = moveBullets(bullet3);
@@ -150,29 +152,38 @@ function drawElement(bullet) {
  */
 function mouseClicked() {
     if (checkOverlap()) {
-        //create the bullets from the get-go
-        if (bullet1 === undefined) {
-            bullet1 = createBullets(canon.x, canon.y, 50, -5);
-        }
-        else if (bullet2 === undefined) {
-            bullet2 = createBullets(canon.x, canon.y, 50, -5);
-        }
-        else if (bullet3 === undefined) {
-            bullet3 = createBullets(canon.x, canon.y, 50, -5);
-        }
-        else if (bullet4 === undefined) {
-            bullet4 = createBullets(canon.x, canon.y, 50, -5);
-        }
-        else if (bullet5 === undefined) {
-            bullet5 = createBullets(canon.x, canon.y, 50, -5);
-        }
-
+        shootBullet();
     }
-
-    // clicking sets the destination of the canobn, so it goes wherever you clicked
     else {
+        // Clicking away from the cannon sets its destination.
         canon.destination.x = mouseX;
     }
+}
+
+/**
+ * creates a bullet that the canon shoots when you click
+ */
+function shootBullet() {
+    if (bullet1 === undefined) {
+        bullet1 = createBullets(canon.x, canon.y, 50, -5);
+    }
+    else if (bullet2 === undefined) {
+        bullet2 = createBullets(canon.x, canon.y, 50, -5);
+    }
+    else if (bullet3 === undefined) {
+        bullet3 = createBullets(canon.x, canon.y, 50, -5);
+    }
+    else if (bullet4 === undefined) {
+        bullet4 = createBullets(canon.x, canon.y, 50, -5);
+    }
+    else if (bullet5 === undefined) {
+        bullet5 = createBullets(canon.x, canon.y, 50, -5);
+    }
+    else {
+        return;
+    }
+
+    canon.size -= 16;
 }
 
 /**
@@ -202,7 +213,7 @@ function moveBullets(bullet) {
 
 
 /**
- * calculates how many bullets the canon has left
+ * calculates how many bullets the canon has left AND has text on top left
  */
 function bulletsLeft() {
     let bulletAmount = 0;
@@ -213,8 +224,6 @@ function bulletsLeft() {
     if (bullet4 === undefined) bulletAmount += 1;
     if (bullet5 === undefined) bulletAmount += 1;
 
-
-    if (bulletAmount <= 5) { canon.size -= 1 }
 
 
 
