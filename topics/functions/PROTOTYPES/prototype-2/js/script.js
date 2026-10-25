@@ -1,16 +1,14 @@
 /**
- * Ocean domination
+ * Ocean domination Refactored
  * Justine Cormier
  * 
+ * ((I refactored my prototype from the conditionals prototypes. The prototype is exactly
+ * the same, but the code uses functions to make the code less cluttered.))
  * A game where you are a fish, you eat smaller fish and get bigger until you can eat orcas!... 
  * Would've been nice. 
  * The fish keep coming, but you can't interact with a single one.
  * Maybe you're the one being dominated by the ocean.
  * 
- * code used as ref: https://editor.p5js.org/pippinbarr/sketches/8NkxcrJsi
- * https://p5js.org/reference/p5/millis/
- * https://editor.p5js.org/pippinbarr/sketches/NLnxtLMat
- * https://editor.p5js.org/pippinbarr/sketches/exJrLtvvU
  */
 
 //game starts on the title screen
@@ -122,7 +120,7 @@ function drawTitleScreen() {
 
 }
 /**
- * draws the gameplay screen
+ * draws the gameplay screen, and text that appears as the game goes on
  */
 function drawGamePlay() {
     if (gameState === "playing") {
@@ -178,8 +176,8 @@ function moveYou() {
     if (keyIsDown(DOWN_ARROW)) { player.y += player.speed; }
     else if (keyIsDown(UP_ARROW)) { player.y -= player.speed; }
 
-    //keeps fish inside the canvas
-    player.y = constrain(player.y, 0, height - you.height * player.size);
+    //keeps fish inside the canvas (but the bottom and top of his body can get cut off)
+    player.y = constrain(player.y, -45, height - you.height * player.size * 0.5);
 }
 
 
@@ -280,9 +278,12 @@ function moveFoes() {
  */
 function spawnFoes() {
     if (!mene1.active) {
+        //having the x here makes the loop possible
+        mene1.x = -mene1.image.width * mene1.size * mene1.w;
         mene1.active = true;
 
     } else if (!mene2.active) {
+        mene2.x = -mene1.image.width * mene2.size * mene2.w;
         mene2.active = true;
     }
 
@@ -292,12 +293,15 @@ function spawnFoes() {
     }
 
     else if (!mene4.active) {
+        mene4.x = -mene4.image.width * mene4.size * mene4.w;
         mene4.active = true;
     }
     else if (!mene5.active) {
+        mene5.x = -mene5.image.width * mene5.size * mene5.w;
         mene5.active = true
     }
     else if (!mene6.active) {
+        mene6.x = -mene6.image.width * mene6.size * mene6.w;
         mene6.active = true;
     }
 }
