@@ -2,7 +2,7 @@
  * Ocean domination Refactored
  * Justine Cormier
  * 
- * ((I refactored my prototype from the conditionals prototypes. The prototype is exactly
+ * ((I refactored my prototype from the conditionals prototypes. The prototype runs exactly
  * the same, but the code uses functions to make the code less cluttered.))
  * A game where you are a fish, you eat smaller fish and get bigger until you can eat orcas!... 
  * Would've been nice. 
@@ -72,6 +72,10 @@ async function setup() {
 
 }
 
+/**
+ * 
+ *creates the foes, sets their variables that are specified in function setup
+ */
 function createFoes(x, y, w, size, velocity, image, active) {
     let foe = {
         x: x,
@@ -111,7 +115,6 @@ function drawTitleScreen() {
         textSize(30);
         text("Use the UP and DOWN arrows to move", width / 2, height / 2 + 5);
         text("Click to start", width / 2, height / 2 + 55);
-
         image(you, width / 2, height / 2 + 60)
         pop();
 
@@ -180,7 +183,10 @@ function moveYou() {
     player.y = constrain(player.y, -45, height - you.height * player.size * 0.5);
 }
 
-
+/**
+ * 
+ * sets the image and its size to each foe. this will be called in drawFoes
+ */
 function drawFoe(foe) {
     if (foe.active) {
         image(
@@ -278,7 +284,7 @@ function moveFoes() {
  */
 function spawnFoes() {
     if (!mene1.active) {
-        //having the x here makes the loop possible
+        //tracking the x here makes the loop possible in movefoes
         mene1.x = -mene1.image.width * mene1.size * mene1.w;
         mene1.active = true;
 
