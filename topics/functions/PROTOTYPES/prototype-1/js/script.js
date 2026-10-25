@@ -37,7 +37,8 @@ let canon = {
         x: 450,
         y: 850,
         size: 50
-    }
+    },
+    speed: 4
 
 }
 
@@ -73,11 +74,12 @@ function draw() {
     // bullets =
     drawCanon();
     // moveCanon();
-    moveBullets(bullet1);
-    moveBullets(bullet2);
-    moveBullets(bullet3);
-    moveBullets(bullet4);
-    moveBullets(bullet5);
+    //addings bullet1 = make sure that the 
+    bullet1 = moveBullets(bullet1);
+    bullet2 = moveBullets(bullet2);
+    bullet3 = moveBullets(bullet3);
+    bullet4 = moveBullets(bullet4);
+    bullet5 = moveBullets(bullet5);
 
 
     drawElement(bullet1);
@@ -88,6 +90,7 @@ function draw() {
 
     bulletsLeft();
     checkOverlap();
+    moveCanon(canon);
 
 
 
@@ -105,20 +108,28 @@ function drawCanon() {
     pop();
 }
 
-// /**
-//  * moves the canon right and left, when double clicking
-//  */
-// function moveCanon() {
+/**
+ * moves the canon right and left, when double clicking
+ */
+function moveCanon() {
+    //check if thedouble click was on the left
+    if ((canon.x - canon.destination.x) < - canon.destination.size / 2) {
+        //if so move right
+        canon.x += canon.speed;
+    }
+    //check if its to the right of the destination
+    else if ((canon.x - canon.destination.x) > canon.destination.size / 2) {
+        bug.x += -bug.speed;
+    }
 
-
-// }
+}
 
 /**
-//  * double clicking sets the spot where you can move the canon
-//  */
-// function doubleClicked() {
-
-// }
+ * double clicking sets the spot where you can move the canon
+ */
+function doubleClicked() {
+    canon.destination.x = mouseX;
+}
 
 /**
  * 
@@ -126,6 +137,8 @@ function drawCanon() {
  * 
  */
 function drawElement(bullet) {
+
+    //if the bullets are undefined, dont draw
     if (bullet === undefined) {
         return;
     }
@@ -140,6 +153,7 @@ function drawElement(bullet) {
  */
 function mouseClicked() {
     if (checkOverlap()) {
+        //create the bullets from the get-go
         if (bullet1 === undefined) {
             bullet1 = createBullets(canon.x, canon.y, 50, -5);
         }
@@ -164,13 +178,19 @@ function mouseClicked() {
  */
 function moveBullets(bullet) {
 
+    //if the bullets are undefined, dont move
+    //so they dont move at the very start
+    //and they wont move when they go off the canvas
+    //because below i mark them as undefined if theyre off canvas
     if (bullet === undefined) {
         return undefined;
     }
-
+    //the bullet goes up the y axis
     bullet.y += bullet.velocity;
-    if (bullet.y + bullet.size / 2 < 0) {
-        return undefined;
+    //if the bullet's y is less than 0 aka it is off the screen
+    //then the bullet becomes undefined, for the sake of the bullet count going back up
+    if (bullet.y < 0) {
+        bullet = undefined;
     }
 
     return bullet;
@@ -184,11 +204,13 @@ function moveBullets(bullet) {
  */
 function bulletsLeft() {
     let bulletAmount = 0;
+    //at the start of the game theyre all undefined, so you will have +1 for each
     if (bullet1 === undefined) bulletAmount += 1;
     if (bullet2 === undefined) bulletAmount += 1;
     if (bullet3 === undefined) bulletAmount += 1;
     if (bullet4 === undefined) bulletAmount += 1;
     if (bullet5 === undefined) bulletAmount += 1;
+
 
 
     push();
