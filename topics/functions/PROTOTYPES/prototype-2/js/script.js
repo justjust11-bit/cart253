@@ -21,7 +21,7 @@ let oneSecond = 1000;
 
 //"you" will just be the image of the player/fish
 let you = undefined;
-let mene = undefined;
+let meneImage = undefined;
 let shrimpImage = undefined;
 let titleScreen = undefined;
 let bkg = undefined;
@@ -93,11 +93,11 @@ let mene6 = {
 //had to name shrimp to something other than just "shrimp", or else the computer didnt
 //undertsand which shrimp im talking about, since its alreadya  variable at the top
 async function preload() {
-    mene = await loadImage("./images/mene.png");
-    you = await loadImage("./images/groper.png");
-    shrimpImage = await loadImage("./images/shrimp.png")
-    titleScreen = await loadImage("./images/bkg.png");
-    bkg = await loadImage("./images/ingameBKG.png");
+    meneImage = await loadImage("./assets/images/mene.png");
+    you = await loadImage("./assets/images/groper.png");
+    shrimpImage = await loadImage("./assets/images/shrimp.png")
+    titleScreen = await loadImage("./assets/images/bkg.png");
+    bkg = await loadImage("./assets/images/ingameBKG.png");
 }
 
 
@@ -110,12 +110,12 @@ async function setup() {
     await preload();
     //where they can appear on the y canvas
     //the ones with .w are ones i played around with the size at the top
-    mene1.y = random(0, height - mene.height * meneSize);
-    mene2.y = random(0, height - mene.height * meneSize * mene2.w);
+    mene1.y = random(0, height - meneImage.height * meneSize);
+    mene2.y = random(0, height - meneImage.height * meneSize * mene2.w);
     shrimp.y = random(0, height - shrimpImage.height * meneSize * shrimp.w);
-    mene4.y = random(0, height - mene.height * meneSize);
-    mene5.y = random(0, height - mene.height * meneSize * mene5.w);
-    mene6.y = random(0, height - mene.height * meneSize * mene6.w);
+    mene4.y = random(0, height - meneImage.height * meneSize);
+    mene5.y = random(0, height - meneImage.height * meneSize * mene5.w);
+    mene6.y = random(0, height - meneImage.height * meneSize * mene6.w);
 
 }
 
@@ -205,11 +205,11 @@ function drawFoes() {
 
     // *meneSize or *shrimpSize makes the height and width adjust to the "size" variable i made
     if (mene1.active) {
-        image(mene, mene1.x, mene1.y, mene.width * meneSize, mene.height * meneSize);
+        image(meneImage, mene1.x, mene1.y, meneImage.width * meneSize, meneImage.height * meneSize);
     }
 
     if (mene2.active) {
-        image(mene, mene2.x, mene2.y, mene.width * meneSize, mene.height * meneSize * mene2.w);
+        image(meneImage, mene2.x, mene2.y, meneImage.width * meneSize, meneImage.height * meneSize * mene2.w);
     }
 
     if (shrimp.active) {
@@ -217,15 +217,15 @@ function drawFoes() {
     }
 
     if (mene4.active) {
-        image(mene, mene4.x, mene4.y, mene.width * meneSize, mene.height * meneSize);
+        image(meneImage, mene4.x, mene4.y, meneImage.width * meneSize, meneImage.height * meneSize);
     }
 
     if (mene5.active) {
-        image(mene, mene5.x, mene5.y, mene.width * meneSize, mene.height * meneSize * mene5.w);
+        image(meneImage, mene5.x, mene5.y, meneImage.width * meneSize, meneImage.height * meneSize * mene5.w);
     }
 
     if (mene6.active) {
-        image(mene, mene6.x, mene6.y, mene.width * meneSize, mene.height * meneSize * mene6.w);
+        image(meneImage, mene6.x, mene6.y, meneImage.width * meneSize, meneImage.height * meneSize * mene6.w);
     }
 }
 
@@ -301,11 +301,11 @@ function spawnFoes() {
     if (!mene1.active) {
         //start at the edge of the canvas
         mene1.x = 0
-        mene1.y = random(0, height - mene.height * meneSize);
+        mene1.y = random(0, height - meneImage.height * meneSize);
         mene1.active = true;
     } else if (!mene2.active) {
         mene2.x = 0
-        mene2.y = random(0, height - mene.height * meneSize * mene2.w);
+        mene2.y = random(0, height - meneImage.height * meneSize * mene2.w);
         mene2.active = true;
     } else if (!shrimp.active) {
         shrimp.x = -shrimpImage.width * shrimpSize;
@@ -314,17 +314,17 @@ function spawnFoes() {
     }
     else if (!mene4.active) {
         mene4.x = 0
-        mene4.y = random(0, height - mene.height * meneSize);
+        mene4.y = random(0, height - meneImage.height * meneSize);
         mene4.active = true;
 
     } else if (!mene5.active) {
         mene5.x = 0
-        mene5.y = random(0, height - mene.height * meneSize * mene5.w);
+        mene5.y = random(0, height - meneImage.height * meneSize * mene5.w);
         mene5.active = true;
 
     } else if (!mene6.active) {
         mene6.x = 0
-        mene6.y = random(0, height - mene.height * meneSize * mene6.w);
+        mene6.y = random(0, height - meneImage.height * meneSize * mene6.w);
         mene6.active = true;
     }
 }
