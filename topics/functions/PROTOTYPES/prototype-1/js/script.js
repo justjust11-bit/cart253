@@ -10,15 +10,11 @@
 
 "use strict";
 
-let gameStart = true
-
 let bullet1 = undefined;
 let bullet2 = undefined;
 let bullet3 = undefined;
 let bullet4 = undefined;
 let bullet5 = undefined;
-
-let bulletAmount = 0;
 
 
 
@@ -54,7 +50,6 @@ let canon = {
 */
 function setup() {
     createCanvas(900, 900)
-
 }
 
 
@@ -64,7 +59,6 @@ function createBullets(x, y, size, velocity) {
         y: y,
         size: size,
         velocity: velocity,
-
     };
     return bullets;
 }
@@ -94,8 +88,7 @@ function draw() {
     drawElement(bullet4);
     drawElement(bullet5);
 
-    bulletsLeft()
-
+    bulletsLeft();
     checkOverlap();
     moveCanon();
 
@@ -111,8 +104,6 @@ function drawCanon() {
     fill(canon.fill);
     ellipse(canon.x, canon.y, canon.size);
     pop();
-
-
 }
 
 /**
@@ -209,17 +200,13 @@ function moveBullets(bullet) {
 
 }
 
-// function updateSize() {
-//     canon.size = 10 + 10 * bulletAmount;
-// }
 
 /**
  * calculates how many bullets the canon has left
  */
 function bulletsLeft() {
-
+    let bulletAmount = 0;
     //at the start of the game theyre all undefined, so you will have +1 for each
-
     if (bullet1 === undefined) bulletAmount += 1;
     if (bullet2 === undefined) bulletAmount += 1;
     if (bullet3 === undefined) bulletAmount += 1;
@@ -227,7 +214,8 @@ function bulletsLeft() {
     if (bullet5 === undefined) bulletAmount += 1;
 
 
-    // updateSize();
+    if (bulletAmount <= 5) { canon.size -= 1 }
+
 
 
     push();
