@@ -45,53 +45,53 @@ let lastSpawned = 0;
 
 
 //the first mene to spawn, so hes the only one "active" at the start
-let mene1 =
-{
-    x: 100,
-    y: 0,
-    velocity: 4,
-    active: true
-};
+// let mene1 =
+// {
+//     x: 100,
+//     y: 0,
+//     velocity: 4,
+//     active: true
+// };
 
-let mene2 = {
-    x: 0,
-    y: 0,
-    velocity: 5,
-    active: false,
-    w: 1.5
-};
+// let mene2 = {
+//     x: 0,
+//     y: 0,
+//     velocity: 5,
+//     active: false,
+//     w: 1.5
+// };
 
-//shrimp is the third fish, hell always spawn in this order
-let shrimp = {
-    x: 0,
-    y: 0,
-    velocity: 4,
-    active: false,
-    w: 2
-};
+// //shrimp is the third fish, hell always spawn in this order
+// let shrimp = {
+//     x: 0,
+//     y: 0,
+//     velocity: 4,
+//     active: false,
+//     w: 2
+// };
 
-let mene4 = {
-    x: 0,
-    y: 0,
-    velocity: 4.5,
-    active: false
-};
+// let mene4 = {
+//     x: 0,
+//     y: 0,
+//     velocity: 4.5,
+//     active: false
+// };
 
-let mene5 = {
-    x: 0,
-    y: 0,
-    velocity: 5,
-    active: false,
-    w: 2
-};
+// let mene5 = {
+//     x: 0,
+//     y: 0,
+//     velocity: 5,
+//     active: false,
+//     w: 2
+// };
 
-let mene6 = {
-    x: 0,
-    y: 0,
-    velocity: 3,
-    active: false,
-    w: 1.5
-};
+// let mene6 = {
+//     x: 0,
+//     y: 0,
+//     velocity: 3,
+//     active: false,
+//     w: 1.5
+// };
 
 
 "use strict";
@@ -102,10 +102,12 @@ let mene6 = {
 async function preload() {
     meneImage = await loadImage("./assets/images/mene.png");
     you = await loadImage("./assets/images/groper.png");
-    shrimpImage = await loadImage("./assets/images/shrimp.png")
+    shrimpImage = await loadImage("./assets/images/shrimp.png");
     titleScreen = await loadImage("./assets/images/bkg.png");
     bkg = await loadImage("./assets/images/ingameBKG.png");
 }
+
+
 
 
 
@@ -117,14 +119,30 @@ async function setup() {
     await preload();
     //where they can appear on the y canvas
     //the ones with .w are ones i played around with the size at the top
-    mene1.y = random(0, height - meneImage.height * meneSize);
-    mene2.y = random(0, height - meneImage.height * meneSize * mene2.w);
-    shrimp.y = random(0, height - shrimpImage.height * meneSize * shrimp.w);
-    mene4.y = random(0, height - meneImage.height * meneSize);
-    mene5.y = random(0, height - meneImage.height * meneSize * mene5.w);
-    mene6.y = random(0, height - meneImage.height * meneSize * mene6.w);
+    mene1 = createFoes(100, random(0, height - meneImage.height * meneSize), 1, meneSize, 4, meneImage, true);
+    mene2 = createFoes(0, random(0, height - meneImage.height * meneSize), 1.5, meneSize, 5, meneImage, false);
+    shrimp = createFoes(0, random(0, height - meneImage.height * shrimpSize), 2, shrimpSize, 4, shrimpImage, false); //there is no mene3
+    mene4 = createFoes(0, random(0, height - meneImage.height * meneSize), 1, meneSize, 4.5, meneImage, false);
+    mene5 = createFoes(0, random(0, height - meneImage.height * meneSize), 2, meneSize, 5, meneImage, false);
+    mene6 = createFoes(0, random(0, height - meneImage.height * meneSize), 1.5, meneSize, 3, meneImage, false);
+
 
 }
+
+function createFoes(x, y, w, size, velocity, image, active) {
+    return {
+        x: x,
+        y: y,
+        w: w,
+        size: size,
+        velocity: velocity,
+        image: image,
+        active: active,
+
+    };
+
+}
+
 
 
 /**
@@ -209,7 +227,7 @@ function mouseClicked() {
 
 
 /**
- * moves the fish up and down only
+ * moves your fish up and down only
  */
 function moveYou() {
 
