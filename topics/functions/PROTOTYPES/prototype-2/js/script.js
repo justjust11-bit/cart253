@@ -13,9 +13,10 @@
  * https://editor.p5js.org/pippinbarr/sketches/exJrLtvvU
  */
 
+//game starts on the title screen
 let gameState = "title";
 
-//relating to millis
+//relating to millis - when the game starts, 0 seconds passed, 1 second is 1000
 let gameStart = 0;
 let oneSecond = 1000;
 
@@ -29,9 +30,6 @@ let bkg = undefined;
 //
 
 
-
-
-
 let player = {
     y: 300,
     x: 850,
@@ -40,58 +38,8 @@ let player = {
 }
 
 let meneSize = 0.12;
-let shrimpSize = 0.25;
+let shrimpSize = 0.14;
 let lastSpawned = 0;
-
-
-//the first mene to spawn, so hes the only one "active" at the start
-// let mene1 =
-// {
-//     x: 100,
-//     y: 0,
-//     velocity: 4,
-//     active: true
-// };
-
-// let mene2 = {
-//     x: 0,
-//     y: 0,
-//     velocity: 5,
-//     active: false,
-//     w: 1.5
-// };
-
-// //shrimp is the third fish, hell always spawn in this order
-// let shrimp = {
-//     x: 0,
-//     y: 0,
-//     velocity: 4,
-//     active: false,
-//     w: 2
-// };
-
-// let mene4 = {
-//     x: 0,
-//     y: 0,
-//     velocity: 4.5,
-//     active: false
-// };
-
-// let mene5 = {
-//     x: 0,
-//     y: 0,
-//     velocity: 5,
-//     active: false,
-//     w: 2
-// };
-
-// let mene6 = {
-//     x: 0,
-//     y: 0,
-//     velocity: 3,
-//     active: false,
-//     w: 1.5
-// };
 
 
 "use strict";
@@ -108,9 +56,6 @@ async function preload() {
 }
 
 
-
-
-
 /**
  * creates canvas
 */
@@ -121,7 +66,7 @@ async function setup() {
     //the ones with .w are ones i played around with the size at the top
     mene1 = createFoes(100, random(0, height - meneImage.height * meneSize), 1, meneSize, 4, meneImage, true);
     mene2 = createFoes(0, random(0, height - meneImage.height * meneSize), 1.5, meneSize, 5, meneImage, false);
-    shrimp = createFoes(0, random(0, height - meneImage.height * shrimpSize), 2, shrimpSize, 4, shrimpImage, false); //there is no mene3
+    shrimp = createFoes(0, random(0, height - shrimpImage.height * shrimpSize), 2, shrimpSize, 4, shrimpImage, false); //there is no mene3
     mene4 = createFoes(0, random(0, height - meneImage.height * meneSize), 1, meneSize, 4.5, meneImage, false);
     mene5 = createFoes(0, random(0, height - meneImage.height * meneSize), 2, meneSize, 5, meneImage, false);
     mene6 = createFoes(0, random(0, height - meneImage.height * meneSize), 1.5, meneSize, 3, meneImage, false);
@@ -130,7 +75,7 @@ async function setup() {
 }
 
 function createFoes(x, y, w, size, velocity, image, active) {
-    return {
+    let foe = {
         x: x,
         y: y,
         w: w,
@@ -140,9 +85,8 @@ function createFoes(x, y, w, size, velocity, image, active) {
         active: active,
 
     };
-
+    return foe;
 }
-
 
 
 /**
@@ -238,35 +182,32 @@ function moveYou() {
     player.y = constrain(player.y, 0, height - you.height * player.size);
 }
 
+
+function drawFoe(foe) {
+    if (foe.active) {
+        image(
+            foe.image,
+            foe.x,
+            foe.y,
+            foe.image.width * foe.size * foe.w,
+            foe.image.height * foe.size * foe.w
+        );
+    }
+}
 /**
- * draws the other fish and sea animals
+ * draws the foes according to how drawFoe draws them, and sends that ingo to the variables
+ * in draw
  */
 function drawFoes() {
 
-    // *meneSize or *shrimpSize makes the height and width adjust to the "size" variable i made
-    if (mene1.active) {
-        image(meneImage, mene1.x, mene1.y, meneImage.width * meneSize, meneImage.height * meneSize);
-    }
+    //takes the info from drawFoe and puts it onto the variables mene, shrimp
+    drawFoe(mene1);
+    drawFoe(mene2);
+    drawFoe(shrimp);
+    drawFoe(mene4);
+    drawFoe(mene5);
+    drawFoe(mene6);
 
-    if (mene2.active) {
-        image(meneImage, mene2.x, mene2.y, meneImage.width * meneSize, meneImage.height * meneSize * mene2.w);
-    }
-
-    if (shrimp.active) {
-        image(shrimpImage, shrimp.x, shrimp.y, shrimpImage.width * shrimpSize, shrimpImage.height * meneSize * shrimp.w);
-    }
-
-    if (mene4.active) {
-        image(meneImage, mene4.x, mene4.y, meneImage.width * meneSize, meneImage.height * meneSize);
-    }
-
-    if (mene5.active) {
-        image(meneImage, mene5.x, mene5.y, meneImage.width * meneSize, meneImage.height * meneSize * mene5.w);
-    }
-
-    if (mene6.active) {
-        image(meneImage, mene6.x, mene6.y, meneImage.width * meneSize, meneImage.height * meneSize * mene6.w);
-    }
 }
 
 
@@ -339,22 +280,24 @@ function moveFoes() {
  */
 function spawnFoes() {
     if (!mene1.active) {
-        //start at the edge of the canvas
         mene1.active = true;
+
     } else if (!mene2.active) {
         mene2.active = true;
-    } else if (!shrimp.active) {
+    }
+
+    else if (!shrimp.active) {
         shrimp.x = -shrimpImage.width * shrimpSize;
         shrimp.active = true;
     }
+
     else if (!mene4.active) {
         mene4.active = true;
-
-    } else if (!mene5.active) {
+    }
+    else if (!mene5.active) {
         mene5.active = true
-
-
-    } else if (!mene6.active) {
+    }
+    else if (!mene6.active) {
         mene6.active = true;
     }
 }
