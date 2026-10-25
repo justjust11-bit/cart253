@@ -340,31 +340,21 @@ function moveFoes() {
 function spawnFoes() {
     if (!mene1.active) {
         //start at the edge of the canvas
-        mene1.x = 0
-        mene1.y = random(0, height - meneImage.height * meneSize);
         mene1.active = true;
     } else if (!mene2.active) {
-        mene2.x = 0
-        mene2.y = random(0, height - meneImage.height * meneSize * mene2.w);
         mene2.active = true;
     } else if (!shrimp.active) {
         shrimp.x = -shrimpImage.width * shrimpSize;
-        shrimp.y = random(0, height - shrimpImage.height * meneSize * shrimp.w);
         shrimp.active = true;
     }
     else if (!mene4.active) {
-        mene4.x = 0
-        mene4.y = random(0, height - meneImage.height * meneSize);
         mene4.active = true;
 
     } else if (!mene5.active) {
-        mene5.x = 0
-        mene5.y = random(0, height - meneImage.height * meneSize * mene5.w);
-        mene5.active = true;
+        mene5.active = true
+
 
     } else if (!mene6.active) {
-        mene6.x = 0
-        mene6.y = random(0, height - meneImage.height * meneSize * mene6.w);
         mene6.active = true;
     }
 }
