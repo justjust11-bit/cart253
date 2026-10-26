@@ -3,14 +3,14 @@
  * 
  * Justine Cormier
  * 
- * This prototype consists of a canon, at the bottom of the screen,
+ * This prototype consists of a canon at the bottom of the screen,
  * which you can shoot bullets from. 
  * You can click to shoot your canon, or to select a spot for
  * it to move towards (left or right). There is a counter for how 
- * many bullets are left for you to shoot, and the canon gets smaller
- * the less bullets it has
+ * many bullets are left to be shot, and the canon gets smaller
+ * the less bullets it has.
  * 
- * 
+ * refs used:
  * https://editor.p5js.org/pippinbarr/sketches/z8cKGbJff
  * https://editor.p5js.org/pippinbarr/sketches/Yc4eMdFyH
  */
