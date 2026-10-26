@@ -15,39 +15,46 @@ const tileSize = 100
 const rows = 10;
 const columns = 10;
 
+let coin = undefined
+
 let player = {
-    fill: ("#adacac"),
-    x: 350,
+    fill: "rgba(200, 200, 200, 0.5)", // the alpha of the player is lowered
+    x: 310,
     y: 400,
-    size: tileSize,
-    roundness: 0
+    size: tileSize + 50,
+    roundness: 60 //80 seems to be good enough
 }
 
 let hole = {
     fill: ("#181818"),
-    x: 400,
-    y: 100,
-    size: 100
+    x: 485,
+    y: 175,
+    size: 150
 }
 
-// const coin = {
-//     // Position and size
-//     x: tileSize * 5,
-//     y: tileSize * 6,
-//     size: tileSize,
-//     // Colour
-//     fill: "#ebe487",
-//     // starts off not having been picked up
-//     collected: false,
 
-// };
+
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * creates canvas
 */
 function setup() {
     createCanvas(tileSize * columns, tileSize * rows)
+    coin = createCoin(random(0, width - tileSize), random(0, height - tileSize), tileSize, "#84cf62");
+    //width or height (- tilesize) makes sure the coin stays within the canvas
+}
 
+/**
+ * creates the coin and stores its properties
+ */
+function createCoin(x, y, size, fill) {
+    let coin = {
+        x: x,
+        y: y,
+        size: size,
+        fill: fill
+    }
+    return coin;
 }
 
 
@@ -56,10 +63,22 @@ function setup() {
 */
 function draw() {
     background("#5d49c1")
-    drawPlayer();
     drawCircleHole();
+    drawPlayer();
+    drawCoin(coin);
+    collectCoin();
+}
 
-    drawCoin(random(0, 800), random(0, 800), 100)
+
+/**
+ * draws the hole the square wants to get into
+ */
+function drawCircleHole() {
+    push();
+    noStroke();
+    fill(hole.fill);
+    ellipse(hole.x, hole.y, hole.size);
+    pop();
 }
 
 /**
@@ -73,26 +92,6 @@ function drawPlayer() {
     pop();
 }
 
-/**
- * draws the hole the square wants to get into
- */
-function drawCircleHole() {
-    push();
-    noStroke();
-    fill(hole.fill);
-    ellipse(hole.x, hole.y, hole.size);
-    pop();
-}
-
-// /**
-//  * moves the player
-//  */
-// function movePlayer() {
-//     keyPressed(up)
-//     keyPressed(down)
-//     keyPressed(left)
-//     keyPressed(right)
-// }
 
 /**
  * uses keys (WASD) to move the player
@@ -121,12 +120,28 @@ function keyPressed() {
 /**
  * draws the coin
  */
-function drawCoin() {
-
-    let randomised =
-        push();
+function drawCoin(coin) {
+    push();
     noStroke();
-    fill("yellow")
-    ellipse(random(0, 800), 100)
+    fill(coin.fill);
+    ellipse(coin.x + coin.size / 2, coin.y + coin.size / 2, coin.size);
     pop();
+}
+
+/**
+ * replaces the coin when the player touches it
+ */
+function collectCoin() {
+    //so the overlap isnt too strict/severe/precise
+    const wiggleRoom = 60
+
+    let overlap =
+        player.x < coin.x + coin.size - wiggleRoom &&
+        player.x + player.size > coin.x + wiggleRoom &&
+        player.y < coin.y + coin.size - wiggleRoom &&
+        player.y + player.size > coin.y + wiggleRoom;
+
+    if (overlap) {
+        coin = createCoin(random(0, width - tileSize), random(0, height - tileSize), tileSize, color(random(255), random(255), random(255)));
+    }
 }
