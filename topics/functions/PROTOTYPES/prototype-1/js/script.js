@@ -1,5 +1,5 @@
 /**
- * Title of Project
+ * Shrinking Shooter
  * Justine
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
@@ -164,20 +164,22 @@ function mouseClicked() {
  * creates a bullet that the canon shoots when you click
  */
 function shootBullet() {
+    const bulletSize = bulletsLeftCount() * 10;
+
     if (bullet1 === undefined) {
-        bullet1 = createBullets(canon.x, canon.y, 50, -5);
+        bullet1 = createBullets(canon.x, canon.y, bulletSize, -5);
     }
     else if (bullet2 === undefined) {
-        bullet2 = createBullets(canon.x, canon.y, 50, -5);
+        bullet2 = createBullets(canon.x, canon.y, bulletSize, -5);
     }
     else if (bullet3 === undefined) {
-        bullet3 = createBullets(canon.x, canon.y, 50, -5);
+        bullet3 = createBullets(canon.x, canon.y, bulletSize, -5);
     }
     else if (bullet4 === undefined) {
-        bullet4 = createBullets(canon.x, canon.y, 50, -5);
+        bullet4 = createBullets(canon.x, canon.y, bulletSize, -5);
     }
     else if (bullet5 === undefined) {
-        bullet5 = createBullets(canon.x, canon.y, 50, -5);
+        bullet5 = createBullets(canon.x, canon.y, bulletSize, -5);
     }
     else {
         return;
@@ -216,6 +218,16 @@ function moveBullets(bullet) {
  * calculates how many bullets the canon has left AND has text on top left
  */
 function bulletsLeft() {
+    const bulletAmount = bulletsLeftCount();
+
+    push();
+    fill("white")
+    textSize(60)
+    text("Bullets left: " + bulletAmount, 50, 50, 300)
+    pop();
+}
+
+function bulletsLeftCount() {
     let bulletAmount = 0;
     //at the start of the game theyre all undefined, so you will have +1 for each
     if (bullet1 === undefined) bulletAmount += 1;
@@ -224,14 +236,7 @@ function bulletsLeft() {
     if (bullet4 === undefined) bulletAmount += 1;
     if (bullet5 === undefined) bulletAmount += 1;
 
-
-
-
-    push();
-    fill("white")
-    textSize(60)
-    text("Bullets left: " + bulletAmount, 50, 50, 300)
-    pop();
+    return bulletAmount;
 }
 
 
