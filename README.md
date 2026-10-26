@@ -121,21 +121,13 @@ This website serves to present the prototyping work I will create in my class CA
 
 #### 3 Functions Prototypes
 
-##### Canon bullets
+##### Shrinking Shooter
 
-![Screenshot of Ocean Domination Refactored](./topics/functions/PROTOTYPES/ocean-domination-refactored/assets/images/refactored.png)
+![Screenshot of Shrinking Shooter](./topics/functions/PROTOTYPES/shrinking-shooter/assets/images/shooter.png)
 
-- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/shrinking-shooter/)
 
-- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/ocean-domination-refactored)
-
-##### Ocean Domination Refactored
-
-![Screenshot of Ocean Domination Refactored](./topics/functions/PROTOTYPES/ocean-domination-refactored/assets/images/refactored.png)
-
-- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
-
-- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/ocean-domination-refactored)
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/shrinking-shooter)
 
 ##### Ocean Domination Refactored
 
@@ -144,3 +136,11 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/ocean-domination-refactored)
+
+##### The Square Hole
+
+![Screenshot of The Square Hole](./topics/functions/PROTOTYPES/the-square-hole/assets/images/square.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/the-square-hole/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/the-square-hole)
