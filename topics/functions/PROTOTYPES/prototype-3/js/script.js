@@ -1,5 +1,5 @@
 /**
- * Title of Project
+ * Rounding rectangle
  * Justine Cormier
  * 
  * 
@@ -24,7 +24,7 @@ let player = {
     x: 310,
     y: 400,
     size: tileSize + 50,
-    roundness: 80 //80 seems to be good enough
+    roundness: 0 //80 seems to be good enough
 }
 
 let hole = {
@@ -68,9 +68,11 @@ function draw() {
     background("#5d49c1")
     drawCircleHole();
     drawPlayer();
+    drawText();
     drawCoin(coin);
     collectCoin();
-    drawWin()
+    drawWin();
+
 
 }
 
@@ -96,6 +98,28 @@ function drawPlayer() {
     rect(player.x, player.y, player.size, player.size, player.roundness);
     pop();
 }
+
+
+/**
+ * draws the text that indicates what to do
+ */
+function drawText() {
+    if (!gameWon) {
+
+        //top text
+        push();
+        textSize(49)
+        text("Use 'WASD' to move", 50, 80)
+        pop();
+
+        //bottom text
+        push();
+        textSize(30)
+        text("Press 'Enter' when you are the right size at the right place", 50, 940)
+        pop();
+    }
+}
+
 
 
 /**
