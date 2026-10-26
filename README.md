@@ -118,3 +118,29 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/events/PROTOTYPES/one-note-rythm-game/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/events/PROTOTYPES/one-note-rythm-game)
+
+#### 3 Functions Prototypes
+
+##### Canon bullets
+
+![Screenshot of Ocean Domination Refactored](./topics/functions/PROTOTYPES/ocean-domination-refactored/assets/images/refactored.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/ocean-domination-refactored)
+
+##### Ocean Domination Refactored
+
+![Screenshot of Ocean Domination Refactored](./topics/functions/PROTOTYPES/ocean-domination-refactored/assets/images/refactored.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/ocean-domination-refactored)
+
+##### Ocean Domination Refactored
+
+![Screenshot of Ocean Domination Refactored](./topics/functions/PROTOTYPES/ocean-domination-refactored/assets/images/refactored.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/ocean-domination-refactored/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/ocean-domination-refactored)
