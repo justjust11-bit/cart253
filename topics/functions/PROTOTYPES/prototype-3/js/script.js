@@ -15,21 +15,24 @@ const tileSize = 100
 const rows = 10;
 const columns = 10;
 
-let coin = undefined
+let coin = undefined;
+
+let gameWon = false;
 
 let player = {
     fill: "rgba(200, 200, 255, 0.5)", // the alpha of the player is lowered
     x: 310,
     y: 400,
     size: tileSize + 50,
-    roundness: 0 //80 seems to be good enough
+    roundness: 80 //80 seems to be good enough
 }
 
 let hole = {
     fill: ("#190000"),
-    x: 485,
-    y: 175,
-    size: 150
+    x: 410,
+    y: 200,
+    size: 150,
+    roundness: 100
 }
 
 
@@ -67,7 +70,8 @@ function draw() {
     drawPlayer();
     drawCoin(coin);
     collectCoin();
-    drawWin();
+    drawWin()
+
 }
 
 
@@ -78,7 +82,7 @@ function drawCircleHole() {
     push();
     noStroke();
     fill(hole.fill);
-    ellipse(hole.x, hole.y, hole.size);
+    rect(hole.x, hole.y, hole.size, hole.size, hole.roundness);
     pop();
 }
 
@@ -95,7 +99,7 @@ function drawPlayer() {
 
 
 /**
- * uses keys (WASD) to move the player
+ * uses keys (WASD) to move the player, when player is round enough and overlapping, go to win screen
  */
 function keyPressed() {
 
@@ -117,35 +121,31 @@ function keyPressed() {
         player.x -= tileSize
     }
 
-
-    if (keyCode === 32 && player.roundness >= 80 && playerOverlapsHole()) {
-        drawWin()
+    //if you press enter, the player is round enough, AND is overlapping
+    if (keyCode === 13 && player.roundness >= 80 && playerOverlapsHole()) {
+        gameWon = true;
 
     }
 
 }
 
 /**
- * checks whether the player's rectangle overlaps the circular hole
+ * checks whether the player's rectangle overlaps the hole (rectangle)
+ * (i got help from someone for this part)
  */
 function playerOverlapsHole() {
-    //calculates the height and width of the player for the lower calculations
-    let pWidth = player.x + player.size
-    let pHeight = player.y + player.size
-
+    const playerRight = player.x + player.size;
+    const playerBottom = player.y + player.size;
+    const holeRight = hole.x + hole.size;
+    const holeBottom = hole.y + hole.size;
 
     const overlap =
-        // the players right edge is past the holes left edge
-        pWidth > hole.x - hole.size / 2 &&
-        // the left edge is before the hole's right edge
-        player.x < hole.x + hole.size / 2 &&
-        // the bottom edge is below the hole's top edge
-        pHeight > hole.y - hole.size / 2 &&
-        // the top edge is above the hole's bottom edge
-        player.y < hole.y + hole.size / 2;
+        playerRight > hole.x &&
+        player.x < holeRight &&
+        playerBottom > hole.y &&
+        player.y < holeBottom;
 
     return overlap;
-
 }
 
 /**
@@ -189,9 +189,28 @@ function roundPlayer() {
 }
 
 /**
- * draws the winning screen
+ * draws the winning screen, this is called in keyispressed
  */
 function drawWin() {
+    if (gameWon) {
+        background("#7361d9")
+
+        //ellipse
+        push();
+        noStroke();
+        fill(25, 20, 20, 200)
+        ellipse(width / 2, height / 2, 600)
+        pop();
+
+        //text
+        push();
+        fill("#d8d8d8")
+        textSize(50)
+        text("The square fit into the circle hole!", 120, height / 2)
+        pop();
+
+
+    }
 
 
 }
