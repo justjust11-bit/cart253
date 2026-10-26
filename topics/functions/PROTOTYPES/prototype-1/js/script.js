@@ -1,9 +1,16 @@
 /**
  * Shrinking Shooter
- * Justine
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Justine Cormier
+ * 
+ * This prototype consists of a canon, at the bottom of the screen,
+ * which you can shoot bullets from. 
+ * You can click to shoot your canon, or to select a spot for
+ * it to move towards (left or right). There is a counter for how 
+ * many bullets are left for you to shoot, and the canon gets smaller
+ * the less bullets it has
+ * 
+ * 
  * https://editor.p5js.org/pippinbarr/sketches/z8cKGbJff
  * https://editor.p5js.org/pippinbarr/sketches/Yc4eMdFyH
  */
@@ -15,6 +22,8 @@ let bullet2 = undefined;
 let bullet3 = undefined;
 let bullet4 = undefined;
 let bullet5 = undefined;
+
+const canonSizeChange = 16;
 
 
 
@@ -164,7 +173,7 @@ function mouseClicked() {
  * creates a bullet that the canon shoots when you click
  */
 function shootBullet() {
-    const bulletSize = bulletsLeftCount() * 10;
+    const bulletSize = canon.size / 2;
 
     if (bullet1 === undefined) {
         bullet1 = createBullets(canon.x, canon.y, bulletSize, -5);
@@ -185,7 +194,7 @@ function shootBullet() {
         return;
     }
 
-    canon.size -= 16;
+    canon.size -= canonSizeChange;
 }
 
 /**
@@ -205,6 +214,7 @@ function moveBullets(bullet) {
     //if the bullet's y is less than 0 aka it is off the screen
     //then the bullet becomes undefined, for the sake of the bullet count going back up
     if (bullet.y < 0) {
+        canon.size += canonSizeChange;
         bullet = undefined;
     }
 
