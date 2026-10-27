@@ -79,9 +79,9 @@ function draw() {
     background("#5d49c1")
     drawHole();
     drawPlayer(player);
-    drawText();
     drawCoin(coin);
     collectCoin();
+    drawText();
 
     if (gameWon) {
         drawWin();
@@ -112,26 +112,6 @@ function drawPlayer(player) {
     pop();
 }
 
-
-/**
- * draws the text that indicates what to do to the player
- */
-function drawText() {
-    if (!gameWon) {
-
-        //top text
-        push();
-        textSize(49)
-        text("Use 'WASD' to move", 50, 80)
-        pop();
-
-        //bottom text
-        push();
-        textSize(30)
-        text("Press 'Enter' when you are the right shape at the right place", 50, 940)
-        pop();
-    }
-}
 
 
 
@@ -266,6 +246,29 @@ function drawWin() {
         fill("#d8d8d8")
         textSize(50)
         text("The square fit into the circle hole!", 120, height / 2)
+        pop();
+    }
+}
+
+/**
+ * draws the text that indicates what to do to the player
+ */
+function drawText() {
+    if (!gameWon) {
+
+        //top text
+        push();
+        textSize(35)
+        fill("white")
+        text("Press 'Enter' as the right shape at the right place", 50, 80)
+        pop();
+
+
+        //bottom text
+        push();
+        textSize(30)
+        fill("white")
+        text("Use 'WASD' to move", 50, 130)
         pop();
     }
 }
