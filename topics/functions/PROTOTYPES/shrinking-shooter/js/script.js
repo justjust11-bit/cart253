@@ -70,7 +70,6 @@ function createBullets(x, y, size, velocity) {
         velocity: velocity,
     };
     return bullets;
-    // canon.x, canon.y, 50, -5
 }
 
 
