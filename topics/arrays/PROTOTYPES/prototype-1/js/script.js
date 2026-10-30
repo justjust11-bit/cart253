@@ -4,23 +4,34 @@
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
- * https://p5js.org/reference/p5/createInput/
+ * https://editor.p5js.org/pippinbarr/sketches/wfDOLrIm13
  */
 
 "use strict";
 
-let searchBar;
+const speech = [
+    "You applied for a job you are unqualified for.",
+    "After a thourough investigation through HR...",
+    "You're hired!"
+];
+
+let speechIndex = 0;
+
+let box = {
+    x: 150,
+    y: 700,
+    w: 300,
+    h: 100,
+    padding: 20,
+    fontSize: 20,
+};
 
 /**
- * creates canvas, adds searchBar
+ * 
 */
 function setup() {
     createCanvas(1080, 800)
-    searchBar = createInput('');
-    searchBar.position(1850, 900);
-    searchBar.size(500, 50);
-    searchBar.style('font-size', '32px');
-    describe('search bar for you to write stuff into')
+
 }
 
 
@@ -28,12 +39,6 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
-    background("#b5acac")
-    drawUserMessage()
+    background("black")
 
-}
-
-function drawUserMessage() {
-    let msg = searchBar.value();
-    text(msg, 25, 55);
 }
