@@ -75,22 +75,11 @@ let box = {
 let choiceBoxes = [];
 
 
-
-
-
 /**
  * draws the canvas
 */
 function setup() {
     createCanvas(1080, 800)
-
-    //each box displays the same dimensions except for the text (multipleChoice)
-    //choice 0 is 1- insignificant
-    choiceBoxes.push(createChoiceBox(multipleChoice[0], 400, 400, 200, 60));
-    //2
-    choiceBoxes.push(createChoiceBox(multipleChoice[1], 400, 470, 200, 60));
-    choiceBoxes.push(createChoiceBox(multipleChoice[2], 400, 540, 200, 60));
-    choiceBoxes.push(createChoiceBox(multipleChoice[3], 400, 610, 200, 60));
 
 }
 
@@ -99,7 +88,7 @@ function setup() {
  * 
  *creates the choice box with parameters that are specififed in setup
  */
-function createChoiceBox(choiceText, x, y, w, h) {
+function createChoiceBox(choiceText, x, y, w, h, fill) {
     let choiceBox = {
         text: choiceText,
         x: x,
@@ -108,6 +97,7 @@ function createChoiceBox(choiceText, x, y, w, h) {
         h: h,
         padding: 1,
         fontSize: 23,
+        fill: fill
     };
     return choiceBox;
 
@@ -127,6 +117,14 @@ function draw() {
         }
 
     }
+
+    //each box displays the same dimensions except for the text (multipleChoice)
+    //choice 0 is 1- insignificant
+    choiceBoxes.push(createChoiceBox(multipleChoice[0], 400, 400, 200, 60, "green"));
+    //2
+    choiceBoxes.push(createChoiceBox(multipleChoice[1], 400, 470, 200, 60, "blue"));
+    choiceBoxes.push(createChoiceBox(multipleChoice[2], 400, 540, 200, 60, "yellow"));
+    choiceBoxes.push(createChoiceBox(multipleChoice[3], 400, 610, 200, 60, "orange"));
 }
 
 /**
@@ -268,7 +266,7 @@ function drawChoiceBox(choiceBox) {
 
     //draws one selection box
     push();
-    fill("#f0efe5");
+    fill(choiceBox.fill);
     stroke("#252738");
     strokeWeight(3);
     rect(choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h, 5);
@@ -277,12 +275,26 @@ function drawChoiceBox(choiceBox) {
     textSize(choiceBox.fontSize);
     textStyle(BOLD)
     textAlign(CENTER, CENTER);
-    text(multipleChoice[selectedChoice], choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h);
+    text(choiceBox.text, choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h);
     pop();
 
 
     return choiceBox;
 
+}
+
+/**
+ * using up and down arrows will make  you select your choice
+ */
+function keyPressed() {
+    if (keyCode === 40) {
+        selectedChoice++
+    }
+    if (keyCode === 38) {
+        selectedChoice--
+    }
+    //constrain the 9 possibilities so it doesnt bug
+    selectedChoice = constrain(selectedChoice, 0, 8);
 }
 
 
