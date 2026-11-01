@@ -52,9 +52,9 @@ const multipleChoice = [
     "4 - Moderate",
     "5 - Slight structural damage possible",
     "6 - Serious Accident",
-    "7 - Destructive",
-    "8 - Very destructive",
-    "9 - Extreme Disaster"
+    "7 - Destructive!",
+    "8 - Very destructive!!",
+    "9 - Extreme Disaster!!! EVACUATE EVERYTHING EVERYONE"
 ]
 
 
@@ -65,11 +65,11 @@ let speechIndex = 0;
 
 let box = {
     x: 70,
-    y: 600,
+    y: 620,
     w: 940,
     h: 150,
     padding: 40,
-    fontSize: 25,
+    fontSize: 27,
 };
 
 let choiceBoxes = [];
@@ -88,7 +88,7 @@ function setup() {
  * 
  *creates the choice box with parameters that are specififed in setup
  */
-function createChoiceBox(choiceText, x, y, w, h, fill) {
+function createChoiceBox(choiceText, x, y, w, h, fill, fontSize) {
     let choiceBox = {
         text: choiceText,
         x: x,
@@ -96,7 +96,7 @@ function createChoiceBox(choiceText, x, y, w, h, fill) {
         w: w,
         h: h,
         padding: 1,
-        fontSize: 23,
+        fontSize: fontSize,
         fill: fill
     };
     return choiceBox;
@@ -120,11 +120,17 @@ function draw() {
 
     //each box displays the same dimensions except for the text (multipleChoice)
     //choice 0 is 1- insignificant
-    choiceBoxes.push(createChoiceBox(multipleChoice[0], 400, 400, 200, 60, "green"));
+    choiceBoxes.push(createChoiceBox(multipleChoice[0], 250, 564, 580, 51, "#dfd5d5", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[1], 250, 509, 580, 50, "#61acc3", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[2], 250, 454, 580, 50, "#3f769a", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[3], 250, 389, 580, 60, "#478742", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[4], 250, 324, 580, 60, "#89d21c", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[5], 250, 259, 580, 60, "#ddad29", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[6], 250, 184, 580, 70, "#df6c00", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[7], 250, 110, 580, 70, "#df4116", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[8], 250, 6, 580, 100, "#d60000", 23));
     //2
-    choiceBoxes.push(createChoiceBox(multipleChoice[1], 400, 470, 200, 60, "blue"));
-    choiceBoxes.push(createChoiceBox(multipleChoice[2], 400, 540, 200, 60, "yellow"));
-    choiceBoxes.push(createChoiceBox(multipleChoice[3], 400, 610, 200, 60, "orange"));
+
 }
 
 /**
@@ -274,6 +280,7 @@ function drawChoiceBox(choiceBox) {
     noStroke();
     textSize(choiceBox.fontSize);
     textStyle(BOLD)
+    textFont('verdana')
     textAlign(CENTER, CENTER);
     text(choiceBox.text, choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h);
     pop();
@@ -296,5 +303,4 @@ function keyPressed() {
     //constrain the 9 possibilities so it doesnt bug
     selectedChoice = constrain(selectedChoice, 0, 8);
 }
-
 
