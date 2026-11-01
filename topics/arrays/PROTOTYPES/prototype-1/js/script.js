@@ -22,6 +22,7 @@ let bkg = {
 
 
 
+
 //texts that will be in the speech box
 const introSpeech = [
     "You applied for a job you are unqualified for.",
@@ -30,18 +31,35 @@ const introSpeech = [
     "Congratulations, and welcome to your new job!"
 ];
 
+//text ingame, before multiple selection option
 const inGameSpeech = [
     "",
     "First day on the job...",
     "You now work at an earthquake detection center.",
-    "",
+    "...",
     "An earthquake is incoming...",
     "Your lack of technical competence prevents you from making an educated guess.",
     "What magnitude do you guess it is?"
+    //maybe you get payed by the earthquake announcement
 
 ];
 
+//text choices to choose
+const multipleChoice = [
+    "1 - Insignificant",
+    "2 - Slightly felt",
+    "3 - Minor",
+    "4 - Moderate",
+    "5 - Slight structural damage possible",
+    "6 - Serious Accident",
+    "7 - Destructive",
+    "8 - Very destructive",
+    "9 - Extreme Disaster"
+]
+
+
 ///
+let selectedChoice = 0;
 
 let speechIndex = 0;
 
@@ -54,27 +72,61 @@ let box = {
     fontSize: 25,
 };
 
+let choiceBoxes = [];
+
+
+
 
 
 /**
- * 
+ * draws the canvas
 */
 function setup() {
     createCanvas(1080, 800)
 
+    //each box displays the same dimensions except for the text (multipleChoice)
+    //choice 0 is 1- insignificant
+    choiceBoxes.push(createChoiceBox(multipleChoice[0], 400, 400, 200, 60));
+    //2
+    choiceBoxes.push(createChoiceBox(multipleChoice[1], 400, 470, 200, 60));
+    choiceBoxes.push(createChoiceBox(multipleChoice[2], 400, 540, 200, 60));
+    choiceBoxes.push(createChoiceBox(multipleChoice[3], 400, 610, 200, 60));
+
+}
+
+
+/**
+ * 
+ *creates the choice box with parameters that are specififed in setup
+ */
+function createChoiceBox(choiceText, x, y, w, h) {
+    let choiceBox = {
+        text: choiceText,
+        x: x,
+        y: y,
+        w: w,
+        h: h,
+        padding: 1,
+        fontSize: 23,
+    };
+    return choiceBox;
 
 }
 
 
 
-
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * draws the intro screen with the paper and the text box
 */
 function draw() {
     drawIntro();
 
+    if (inGame && speechIndex === inGameSpeech.length - 1) {
+        for (let choiceBox of choiceBoxes) {
+            drawChoiceBox(choiceBox);
+        }
 
+    }
 }
 
 /**
@@ -100,6 +152,7 @@ function drawIntro() {
 function drawInGame() {
 
     background(bkg.inGame)
+
 
 
 }
@@ -192,6 +245,9 @@ function mousePressed() {
     }
 }
 
+/**
+ * draws the button panel
+ */
 
 function drawButtonPanel() {
     //draw the board
@@ -204,4 +260,29 @@ function drawButtonPanel() {
 
 
 }
+
+/**
+ * draws the selection boxes
+ */
+function drawChoiceBox(choiceBox) {
+
+    //draws one selection box
+    push();
+    fill("#f0efe5");
+    stroke("#252738");
+    strokeWeight(3);
+    rect(choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h, 5);
+    fill("#121211");
+    noStroke();
+    textSize(choiceBox.fontSize);
+    textStyle(BOLD)
+    textAlign(CENTER, CENTER);
+    text(multipleChoice[selectedChoice], choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h);
+    pop();
+
+
+    return choiceBox;
+
+}
+
 
