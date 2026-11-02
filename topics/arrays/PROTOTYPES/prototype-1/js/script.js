@@ -1,8 +1,8 @@
 /**
- * Title of Project
+ * New job!
  * Justine Cormier
  * 
- * You applied for a job you aren't qualified for! What's the worst that can happen, 
+ * You applied for a job you aren't qualified for. What's the worst that can happen, 
  * you can probably figure this out! Visual novel-esque mini game, you click to progress 
  * the story, and use the UP and DOWN arrows when confronted with a choice to make a selection.
  * 
@@ -273,6 +273,13 @@ function mousePressed() {
         }
     } else if (inGame && speechIndex < inGameSpeech.length - 1) {
         speechIndex++;
+    }
+    //if you lose/win the game, clicking will get you back ingame, so you can retry if you want
+    if (fired || promoted) {
+        inGame = true;
+        fired = false;
+        promoted = false;
+        speechIndex = 0;
     }
 }
 
