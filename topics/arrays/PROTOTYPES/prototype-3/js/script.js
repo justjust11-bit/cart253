@@ -21,13 +21,19 @@ let canvasY = {
 }
 
 /**
- *draws the Clovers from the array
+ *draws the clovers from the array
 */
 function setup() {
 
-    clovers.push(create4Clovers(100, 100, 100, 10))
-    clovers.push(create3Clovers(300, 100, 100, 5))
+    //randomised the y, z, and angle rotation
+    clovers.push(create4Clovers(random(150, 900), (random(150, 600)), 100, random(-20, 20)))
+    clovers.push(create3Clovers(random(150, 900), (random(150, 600)), 100, random(-30, 30)))
 
+}
+
+//initiates the clovers all on the screen
+function spawnClovers() {
+    clovers.push(create4Clovers, create3Clovers)
 }
 
 /**
@@ -62,7 +68,7 @@ function create3Clovers(x, y, size, rotate) {
 
 
 /**
- * creates the canvas, draws the background and the Clovers
+ * creates the canvas, draws the background and the clovers
 */
 function draw() {
     changeCanvas()
