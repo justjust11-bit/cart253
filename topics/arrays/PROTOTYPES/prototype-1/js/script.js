@@ -82,6 +82,19 @@ let choiceBoxes = [];
 function setup() {
     createCanvas(1080, 800)
 
+    //each box displays the same dimensions except for the text (multipleChoice)
+    //choice 0 is 1- insignificant
+    choiceBoxes.push(createChoiceBox(multipleChoice[0], 250, 564, 580, 51, "#dfd5d5", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[1], 250, 509, 580, 50, "#61acc3", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[2], 250, 454, 580, 50, "#3f769a", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[3], 250, 389, 580, 60, "#478742", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[4], 250, 324, 580, 60, "#89d21c", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[5], 250, 259, 580, 60, "#ddad29", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[6], 250, 184, 580, 70, "#df6c00", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[7], 250, 110, 580, 70, "#df4116", 23));
+    choiceBoxes.push(createChoiceBox(multipleChoice[8], 250, 6, 580, 100, "#d60000", 23));
+    //2
+
 }
 
 
@@ -112,19 +125,6 @@ function createChoiceBox(choiceText, x, y, w, h, fill, fontSize) {
 function draw() {
     drawIntro();
     drawSelection();
-
-    //each box displays the same dimensions except for the text (multipleChoice)
-    //choice 0 is 1- insignificant
-    choiceBoxes.push(createChoiceBox(multipleChoice[0], 250, 564, 580, 51, "#dfd5d5", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[1], 250, 509, 580, 50, "#61acc3", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[2], 250, 454, 580, 50, "#3f769a", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[3], 250, 389, 580, 60, "#478742", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[4], 250, 324, 580, 60, "#89d21c", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[5], 250, 259, 580, 60, "#ddad29", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[6], 250, 184, 580, 70, "#df6c00", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[7], 250, 110, 580, 70, "#df4116", 23));
-    choiceBoxes.push(createChoiceBox(multipleChoice[8], 250, 6, 580, 100, "#d60000", 23));
-    //2
 
 }
 
@@ -283,14 +283,15 @@ function drawChoiceBox(choiceBox, isSelected) {
     //draws one selection box
     push();
     if (isSelected) {
-        strokeWeight(10)
+        stroke("#fdffdc")
+        strokeWeight(15)
     }
     else {
         strokeWeight(3)
+        stroke("#252738");
     }
 
     fill(choiceBox.fill);
-    stroke("#252738");
     rect(choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h, 5);
     fill("#121211");
     noStroke();
@@ -311,10 +312,10 @@ function drawChoiceBox(choiceBox, isSelected) {
  */
 function keyPressed() {
     if (keyCode === 40) {
-        selectedChoice++
+        selectedChoice--
     }
     if (keyCode === 38) {
-        selectedChoice--
+        selectedChoice++
     }
     //constrain the 9 possibilities so it doesnt bug
     selectedChoice = constrain(selectedChoice, 0, 8);
