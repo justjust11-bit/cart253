@@ -5,6 +5,7 @@
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
  * https://editor.p5js.org/pippinbarr/sketches/wfDOLrIm13
+ * used flies flies flies and buzzy the return value as ref
  */
 
 "use strict";
@@ -16,7 +17,7 @@ let fired = false;
 
 let bkg = {
     intro: "black",
-    inGame: "#4e566c",
+    inGame: "#3e4866",
     fired: "red"
 }
 
@@ -39,7 +40,7 @@ const inGameSpeech = [
     "...",
     "An earthquake is incoming...",
     "Your lack of technical competence prevents you from making an educated guess.",
-    "What magnitude do you guess it is?"
+    "What magnitude do you guess it to be?"
     //maybe you get payed by the earthquake announcement
 
 ];
@@ -110,13 +111,7 @@ function createChoiceBox(choiceText, x, y, w, h, fill, fontSize) {
 */
 function draw() {
     drawIntro();
-
-    if (inGame && speechIndex === inGameSpeech.length - 1) {
-        for (let choiceBox of choiceBoxes) {
-            drawChoiceBox(choiceBox);
-        }
-
-    }
+    drawSelection();
 
     //each box displays the same dimensions except for the text (multipleChoice)
     //choice 0 is 1- insignificant
@@ -147,6 +142,20 @@ function drawIntro() {
         boxText();
     }
 
+}
+
+/**
+ * draws the selection on the selection boxes
+ */
+function drawSelection() {
+    if (inGame && speechIndex === inGameSpeech.length - 1) {
+        for (let choiceBox of choiceBoxes) {
+            //isSelected is a new variable that identifies what choice is selected
+            let isSelected = choiceBox === choiceBoxes[selectedChoice];
+            drawChoiceBox(choiceBox, isSelected);
+        }
+
+    }
 }
 
 /**
@@ -268,13 +277,20 @@ function drawButtonPanel() {
 /**
  * draws the selection boxes
  */
-function drawChoiceBox(choiceBox) {
+function drawChoiceBox(choiceBox, isSelected) {
+    console.log(isSelected)
 
     //draws one selection box
     push();
+    if (isSelected) {
+        strokeWeight(10)
+    }
+    else {
+        strokeWeight(3)
+    }
+
     fill(choiceBox.fill);
     stroke("#252738");
-    strokeWeight(3);
     rect(choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h, 5);
     fill("#121211");
     noStroke();
