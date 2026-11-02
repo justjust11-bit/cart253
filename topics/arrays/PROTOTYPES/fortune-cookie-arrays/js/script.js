@@ -2,10 +2,11 @@
  * Fortune Cookie (now with arrays)
  * Justine Cormier
  * 
- * Pick a fortune cookie from the cookie jar, have your fortune 
- * be read! The fortune is randomized.
+ * Pick a fortune cookie from the cookie jar, have your fortune be read!
+ * The fortune is randomized. This is refactored version of one of my conditionals 
+ * prototypes. I focused on using arrays, and functions to tie the code together and 
+ * reduce repetitiveness.
  * 
- * refs used: 
  */
 
 "use strict";
@@ -44,6 +45,10 @@ const cookieFortune = [
 //the index for the cookie fortune
 let fortuneMessage = 0
 
+jar = {
+    y: 80,
+    size: 1.2
+}
 
 
 async function preload() {
@@ -53,9 +58,6 @@ async function preload() {
     cookiePic = await loadImage("./assets/images/opened-cookie.png");
 }
 
-
-
-
 /**
  * draws canvas
 */
@@ -64,14 +66,6 @@ async function setup() {
 
     await preload();
 
-
-
-    jar = {
-        y: 80,
-        size: 1.2
-    }
-
-
     //bottom row
     wrappers.push(createWrappers(85, 200, 0.16, 45, cookiePic));
     wrappers.push(createWrappers(0, 220, 0.16, 80, cookiePic));
@@ -79,11 +73,11 @@ async function setup() {
     //middle row, right to left
     wrappers.push(createWrappers(85, 140, 0.165, 290, cookiePic));
     wrappers.push(createWrappers(10, 145, 0.165, 150, cookiePic));
-    wrappers.push = createWrappers(-78, 130, 0.16, 70, cookiePic);
+    wrappers.push(createWrappers(-78, 130, 0.16, 70, cookiePic));
     //top row, right to left
-    wrappers.push = createWrappers(88, 55, 0.165, 20, cookiePic);
-    wrappers.push = createWrappers(0, 50, 0.165, 110, cookiePic);
-    wrappers.push = createWrappers(-78, 50, 0.155, 210, cookiePic);
+    wrappers.push(createWrappers(88, 55, 0.165, 20, cookiePic));
+    wrappers.push(createWrappers(0, 50, 0.165, 110, cookiePic));
+    wrappers.push(createWrappers(-78, 50, 0.155, 210, cookiePic));
 
 }
 
@@ -100,71 +94,6 @@ function createWrappers(x, y, size, angle, image) {
         image: image
     };
     return wrapper;
-
-    // //bottom row
-    // {
-    //     x: 85,
-    //     y: 200,
-    //     size: 0.16,
-    //     angle: 45
-    // },
-    // {
-    //     x: 0,
-    //     y: 220,
-    //     size: 0.16,
-    //     angle: 80
-    // },
-
-    // {
-    //     x: -78,
-    //     y: 200,
-    //     size: 0.16,
-    //     angle: 200
-    // },
-    // //middle row, right to left
-    // {
-    //     x: 85,
-    //     y: 140,
-    //     size: 0.165,
-    //     angle: 290
-    // },
-
-    // {
-    //     x: 10,
-    //     y: 145,
-    //     size: 0.165,
-    //     angle: 150
-    // },
-
-    // {
-    //     x: -78,
-    //     y: 130,
-    //     size: 0.16,
-    //     angle: 70
-    // },
-
-    // //top row, right to left
-    // {
-    //     x: 88,
-    //     y: 55,
-    //     size: 0.165,
-    //     angle: 20
-    // },
-
-    // {
-    //     x: 0,
-    //     y: 50,
-    //     size: 0.165,
-    //     angle: 110
-    // },
-
-    // {
-    //     x: -78,
-    //     y: 50,
-    //     size: 0.155,
-    //     angle: 210
-    // }
-    // ];
 }
 
 
@@ -173,9 +102,9 @@ function createWrappers(x, y, size, angle, image) {
 */
 function draw() {
     background("#952e1b");
-
     drawJar();
     drawWrappers();
+    drawText();
 
     if (gameState === "dragging") {
         mouseDragged();
@@ -183,20 +112,7 @@ function draw() {
     else if (gameState === "fortune") {
         drawFortune();
     }
-
-    //write the text at the top 
-    if (gameState === "jar") {
-        push();
-        textAlign(CENTER, TOP);
-        textSize(25);
-        textStyle(BOLD)
-        textFont('Verdana');
-        fill("#141414");
-        text("Drag a cookie from the jar", width / 2, 20);
-        pop();
-    }
 }
-
 
 /**
  * draws the jar
@@ -204,7 +120,6 @@ function draw() {
 function drawJar() {
     push()
     tint(100, 100, 255, 200);
-
     imageMode(CENTER);
     image(jarPic, width / 2, height / 2 + jar.y, jarPic.width * jar.size, jarPic.height * jar.size);
     pop();
@@ -222,20 +137,32 @@ function drawWrappers() {
     //makes the image (before the rotation) in the center
     imageMode(CENTER);
 
+    //all the wrappers in jar using their position, rotation, and size
     for (let cookieWrapper of wrappers) {
         push();
         translate(width / 2 + cookieWrapper.x, height / 2 + cookieWrapper.y, 0);
         rotate(cookieWrapper.angle);
-        image(
-            wrapperPic,
-            0,
-            0,
-            wrapperPic.width * cookieWrapper.size,
-            wrapperPic.height * cookieWrapper.size
-        );
+        image(wrapperPic, 0, 0, wrapperPic.width * cookieWrapper.size, wrapperPic.height * cookieWrapper.size);
         pop();
     }
 
+}
+
+/**
+ * draws the text over the jar, only when you see the jar (not when fortune is read)
+ */
+function drawText() {
+    //write the text at the top 
+    if (gameState === "jar") {
+        push();
+        textAlign(CENTER, TOP);
+        textSize(25);
+        textStyle(BOLD)
+        textFont('Verdana');
+        fill("#141414");
+        text("Drag a cookie from the jar", width / 2, 20);
+        pop();
+    }
 }
 
 // /**
@@ -247,7 +174,6 @@ function drawFortune() {
     push();
     background(125, 10, 10)
     pop();
-
     push();
     tint(200, 200, 255);
     imageMode(CENTER);
@@ -277,12 +203,26 @@ function mousePressed() {
         gameState = "jar";
         return;
     }
-
     // Only start a new cookie drag from the jar's initial state.
     if (gameState !== "jar") {
         return;
     }
 
+    // if all of the above are true, the mouse clicked inside the jar
+    if (checkOverlap()) {
+        pickedWrapper = {
+            x: mouseX,
+            y: mouseY,
+            size: 0.16,
+        };
+        gameState = "dragging";
+    }
+}
+
+/**
+ * checks the overlap of the jar with the user mouse
+ */
+function checkOverlap() {
     //where the jar is
     //new const for this section only
     //jar is in the middle
@@ -293,7 +233,7 @@ function mousePressed() {
     const jarHeight = jarPic.height * jar.size;
 
     // hitbox, check if the mouse is inside the jars area, so all 4 sides
-    const overJar = (
+    let overJar = (
         //checking if the mouse is to the right of the jar's left side
         mouseX >= jarX - jarWidth / 2 &&
         // mouse to the left of the jar's right side
@@ -302,18 +242,7 @@ function mousePressed() {
         mouseY >= jarY - jarHeight / 2 &&
         // mouse above the jar's bottom side
         mouseY <= jarY + jarHeight / 2
-    );
-
-    // if all of the above are true, the mouse clicked inside the jar
-
-    if (overJar) {
-        pickedWrapper = {
-            x: mouseX,
-            y: mouseY,
-            size: 0.16,
-        };
-        gameState = "dragging";
-    }
+    ); return overJar
 }
 
 /**
