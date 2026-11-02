@@ -81,9 +81,7 @@ let box = {
 let choiceBoxes = [];
 
 
-//for the button panel circles
-let ellipseX = undefined
-let ellipseY = undefined
+
 
 
 /**
@@ -228,9 +226,10 @@ function boxText() {
         strokeWeight(3);
         rect(box.x, box.y, box.w, box.h);
         pop();
-
+        //the text inside the box
         push();
         fill("#f3f1eb");
+        textFont('verdana')
         textSize(box.fontSize);
         text(introSpeech[speechIndex], box.x + box.padding, box.y + box.padding, box.w - 2 * box.padding, box.h - 2 * box.padding);
         pop();
@@ -244,9 +243,10 @@ function boxText() {
         strokeWeight(4);
         rect(box.x, box.y, box.w, box.h, 5);
         pop();
-
+        //the text in the box
         push();
         fill("#121211");
+        textFont('verdana')
         textSize(box.fontSize);
         text(inGameSpeech[speechIndex], box.x + box.padding, box.y + box.padding, box.w - 2 * box.padding, box.h - 2 * box.padding);
         pop();
@@ -281,7 +281,6 @@ function mousePressed() {
 function drawButtonPanel() {
 
 
-
     //draw the board
     push();
     stroke(10)
@@ -291,11 +290,34 @@ function drawButtonPanel() {
     pop();
     //draw buttons
     push();
+    //three red buttons from big to small
     stroke("#2d0505")
     strokeWeight(6)
     fill("#8f0c0c")
-    ellipse(200, 300, 100)
-
+    ellipse(200, 450, 90);
+    ellipse(320, 455, 80);
+    ellipse(420, 460, 50);
+    //green buttons in a row
+    fill("#216205")
+    stroke("#062806")
+    //top row
+    ellipse(700, 250, 50);
+    ellipse(800, 250, 50);
+    ellipse(900, 250, 50);
+    //second row
+    ellipse(700, 350, 50);
+    ellipse(800, 350, 50);
+    ellipse(900, 350, 50);
+    //grey/white lines
+    fill("#c2d7de")
+    stroke("#425357")
+    rect(180, 150, 350, 20)
+    rect(180, 200, 350, 20)
+    rect(180, 250, 350, 20)
+    //big black circle
+    fill("#0f0e0e")
+    stroke("#000000")
+    rect(650, 440, 240, 80, 80)
     pop();
 
 }
@@ -312,7 +334,7 @@ function drawChoiceBox(choiceBox, isSelected) {
         strokeWeight(13)
     }
     else {
-        strokeWeight(3)
+        strokeWeight(5)
         stroke("#252738");
     }
 
@@ -362,7 +384,6 @@ function drawGameOvers() {
     textAlign(CENTER, CENTER);
     fill("black");
     textSize(50);
-    ellipse(random(200, 900), random(100, 500), 100)
     //choose the first option in the index of choice result
     text(choiceResult[0], 200, height / 2, 700)
     pop();
