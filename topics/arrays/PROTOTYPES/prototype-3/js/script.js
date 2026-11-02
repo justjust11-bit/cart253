@@ -11,7 +11,7 @@
 
 let clovers = [];
 
-let clover3 = undefined;
+let cloverIndex = undefined;
 
 //canvas sizes
 let canvasX = 1080;
@@ -26,14 +26,24 @@ let canvasY = {
 function setup() {
 
     //randomised the y, z, and angle rotation
-    clovers.push(create4Clovers(random(150, 900), (random(150, 600)), 100, random(-20, 20)))
-    clovers.push(create3Clovers(random(150, 900), (random(150, 600)), 100, random(-30, 30)))
+    spawnClovers();
+
 
 }
 
 //initiates the clovers all on the screen
 function spawnClovers() {
-    clovers.push(create4Clovers, create3Clovers)
+
+    //if the clover index has less than 30 (clovers, keep bringig them on)
+    for (let cloverIndex = 0; cloverIndex < 100; cloverIndex++) {
+        //10% chance of it being a 4 leaf clover
+        if (random(1) < 0.1) {
+            clovers.push(create4Clovers(random(100, 900), (random(150, 650)), 100, random(-20, 20)))
+        } else {
+            clovers.push(create3Clovers(random(100, 900), (random(150, 650)), 100, random(-30, 30)))
+        }
+    }
+
 }
 
 /**
@@ -73,9 +83,16 @@ function create3Clovers(x, y, size, rotate) {
 function draw() {
     changeCanvas()
     createCanvas(canvasX, canvasY.size)
-    background("#b5acac");
-    draw4Clovers();
-    draw3Clovers();
+    background("#355e41");
+
+    for (let clover of clovers) {
+        //draws both clovers, but also distinguishes that theyre different
+        if (clover.leafCount === 4) {
+            draw4Clovers(clover);
+        } else {
+            draw3Clovers(clover);
+        }
+    }
 }
 
 /**
@@ -89,59 +106,49 @@ function changeCanvas() {
 }
 
 
-
-
 /**
  * draws the Clovers where things pop out of
  */
-function draw4Clovers() {
+function draw4Clovers(clover) {
 
+    push();
+    angleMode(DEGREES)
+    stroke("#051f0b")
+    strokeWeight(5)
+    fill("#0a5116")
+    //top right leaf
+    rotate(clover.rotate)
+    ellipse(clover.x, clover.y, clover.size, clover.size - 15)
+    //top left leaf
+    rotate(0)
+    ellipse(clover.x + clover.size - 16, clover.y, clover.size, clover.size - 15)
+    //bottom right leaf
+    ellipse(clover.x + 5, clover.y + 60, clover.size, clover.size - 15)
+    //bottom left leaf
+    ellipse(clover.x + 80, clover.y + 60, clover.size, clover.size - 15)
+    pop();
 
-    for (let clover4 of clovers) {
-        //to distinguish 4leaf clovers and 3 leaf in teh draw
-        if (clover4.leafCount === 4) {
-            push();
-            angleMode(DEGREES)
-            stroke("#051f0b")
-            strokeWeight(5)
-            fill("#0a5116")
-            //top right leaf
-            rotate(clover4.rotate)
-            ellipse(clover4.x, clover4.y, clover4.size, clover4.size - 15)
-            //top left leaf
-            rotate(0)
-            ellipse(clover4.x + clover4.size - 16, clover4.y, clover4.size, clover4.size - 15)
-            //bottom right leaf
-            ellipse(clover4.x + 5, clover4.y + 60, clover4.size, clover4.size - 15)
-            //bottom left leaf
-            ellipse(clover4.x + 80, clover4.y + 60, clover4.size, clover4.size - 15)
-            pop();
-        }
-
-    }
 }
 
 /**
  * draws the 3 leaf clovers
  */
-function draw3Clovers() {
-    for (let clover3 of clovers) {
-        //to seperate both clovers in the draw
-        if (clover3.leafCount === 3) {
-            push();
-            angleMode(DEGREES)
-            stroke("#051f0b")
-            strokeWeight(5)
-            fill("#0a5116")
-            //top right leaf
-            rotate(clover3.rotate)
-            ellipse(clover3.x + 40, clover3.y, clover3.size, clover3.size - 15)
-            //bottom right leaf
-            ellipse(clover3.x + 5, clover3.y + 60, clover3.size, clover3.size - 15)
-            //bottom left leaf
-            ellipse(clover3.x + 80, clover3.y + 60, clover3.size, clover3.size - 15)
-            pop();
-        }
+function draw3Clovers(clover) {
 
-    }
+    push();
+    angleMode(DEGREES)
+    stroke("#051f0b")
+    strokeWeight(5)
+    fill("#219634")
+    //top right leaf
+    rotate(clover.rotate)
+    ellipse(clover.x + 40, clover.y, clover.size, clover.size - 15)
+    //bottom right leaf
+    ellipse(clover.x + 5, clover.y + 60, clover.size, clover.size - 15)
+    //bottom left leaf
+    ellipse(clover.x + 80, clover.y + 60, clover.size, clover.size - 15)
+    pop();
+
+
+
 }
