@@ -144,3 +144,29 @@ This website serves to present the prototyping work I will create in my class CA
 - [View online](https://justjust11-bit.github.io/cart253/topics/functions/PROTOTYPES/the-square-hole/)
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/functions/PROTOTYPES/the-square-hole)
+
+#### 3 Arrays Prototypes
+
+##### New job!
+
+![Screenshot of New job!](./topics/arrays/PROTOTYPES/new-job/assets/images/job.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/new-job/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/arrays/PROTOTYPES/new-job)
+
+##### Fortune Cookie (now with arrays)
+
+![Screenshot of Fortune Cookie arrays](./topics/arrays/PROTOTYPES/fortune-cookie-arrays/assets/images/job.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/fortune-cookie-arrays/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/arrays/PROTOTYPES/fortune-cookie-arrays)
+
+##### New job!
+
+![Screenshot of New job!](./topics/arrays/PROTOTYPES/new-job/assets/images/job.png)
+
+- [View online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/new-job/)
+
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/arrays/PROTOTYPES/new-job)
