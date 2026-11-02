@@ -14,11 +14,13 @@
 let intro = false;
 let inGame = true;
 let fired = false;
+let promoted = false;
 
 let bkg = {
     intro: "black",
     inGame: "#3e4866",
-    fired: "red"
+    fired: "#840808",
+    raise: "#268f79"
 }
 
 
@@ -59,14 +61,20 @@ const multipleChoice = [
 ]
 
 const choiceResult = [
-    "You failed to warn the world of a magnitude 9 earthquake.The world is in shambles and it's your fault.",
+    "You failed to warn the world of a magnitude 9 earthquake. The world is in shambles and it's your fault.",
+    "Lucky you! You guessed the right earthquake level. You got a promotion due to outstanding performance, so you no longer work in this department. You are now payed to scroll on your phone for 8 hours.",
+    "You alarmed the entire world for no reason. You're fired. Nobody wants to speak to you anymore."
 ]
 
 
-///
+//the selectable choices in ingame (all the earthquakes)
 let selectedChoice = 0;
 
+// the dialogue in intro and ingame in the box
 let speechIndex = 0;
+
+//if you get fired or promoted
+let jobCondition = 0;
 
 //speech box
 let box = {
@@ -79,6 +87,7 @@ let box = {
 };
 
 let choiceBoxes = [];
+let resultIndex = 0;
 
 
 
@@ -131,7 +140,7 @@ function createChoiceBox(choiceText, x, y, w, h, fill, fontSize) {
  * draws the intro screen with the paper and the text box
 */
 function draw() {
-    if (fired) {
+    if (fired || promoted) {
         drawGameOvers();
         return;
     }
@@ -286,7 +295,7 @@ function drawButtonPanel() {
     stroke(10)
     strokeWeight(10)
     fill("#212020")
-    rect(100, 100, 880, 450, 1)
+    rect(90, 80, 900, 490, 1)
     pop();
     //draw buttons
     push();
@@ -368,8 +377,7 @@ function keyPressed() {
     selectedChoice = constrain(selectedChoice, 0, 8);
 
     if (inGame === true && keyCode === 13) {
-        fired = true
-        drawGameOvers();
+        incomingEarthquake();
     }
 }
 
@@ -378,13 +386,57 @@ draws the game over screens
 */
 
 function drawGameOvers() {
-    background(bkg.fired)
+    if (fired === true) {
+        background(bkg.fired)
 
-    push();
-    textAlign(CENTER, CENTER);
-    fill("black");
-    textSize(50);
-    //choose the first option in the index of choice result
-    text(choiceResult[0], 200, height / 2, 700)
-    pop();
+        push();
+        textAlign(CENTER, CENTER);
+        fill("#efe5e5");
+        textSize(50);
+        //choose the first option in the index of choice result
+        text(choiceResult[resultIndex], 200, height / 2, 700)
+        pop();
+    }
+
+    if (promoted === true) {
+        background(bkg.raise)
+        push();
+        textAlign(CENTER, CENTER);
+        fill("black");
+        textSize(50);
+        //choose the first option in the index of choice result
+        text(choiceResult[resultIndex], 200, height / 2, 700)
+        pop();
+
+
+    }
+}
+
+/**
+ * randomizes the levels of earthquake that appear
+ */
+function incomingEarthquake() {
+
+    //floor rounds to round numbers with no .0000
+    let randomEarthquake = floor(random(1, 10))
+    //+1 because the index has 0, so we skip over that
+    let playerGuess = selectedChoice + 1;
+    console.log("Earthquake:", randomEarthquake, "Your guess:", playerGuess);
+
+    if (playerGuess < randomEarthquake) {
+        resultIndex = 0;
+        fired = true;
+    }
+    else if (playerGuess === randomEarthquake) {
+        resultIndex = 1;
+        promoted = true;
+    }
+    else {
+        resultIndex = 2;
+        fired = true;
+    }
+
+
+
+
 }
