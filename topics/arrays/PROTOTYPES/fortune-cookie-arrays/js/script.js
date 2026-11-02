@@ -25,13 +25,29 @@ let pickedWrapper = undefined;
 let cookieSize = 1.25
 let drop = undefined
 
+const cookieFortune = [
+    "All your wishes will come true ",
+    "Don't do anything outside of your comfort zone",
+    "Someone is thinking about you today",
+    "Burgundy is your lucky colour of the day",
+    "Don't do that thing you've been meaning to do",
+    "You've forgotten to do something very important",
+    "Your smile lights up the life of everyone around you",
+    "Listen to your subconscious",
+    "Don't listen to your subconscious",
+    "Your phone is begging for you to scroll more",
+    "Clear the way for people leaving the train before you enter"
+]
+//the index for the cookie fortune
+let fortuneMessage = 0
+
 
 
 async function preload() {
 
-    jarPic = await loadImage("./images/jar.png");
-    wrapperPic = await loadImage("./images/wrapper.png");
-    cookiePic = await loadImage("./images/opened-cookie.png");
+    jarPic = await loadImage("./assets/images/jar.png");
+    wrapperPic = await loadImage("./assets/images/wrapper.png");
+    cookiePic = await loadImage("./assets/images/opened-cookie.png");
 }
 
 
@@ -353,39 +369,6 @@ function mouseReleased() {
     if (gameState === "dragging") {
         const fortuneRoll = random();
 
-        if (fortuneRoll < 0.11) {
-            drop = "All your wishes will come true ";
-        }
-        else if (fortuneRoll < 0.21) {
-            drop = "Don't do anything outside of your comfort zone";
-        }
-        else if (fortuneRoll < 0.31) {
-            drop = "Someone is thinking about you today";
-        }
-        else if (fortuneRoll < 0.41) {
-            drop = "Burgundy is your lucky colour of the day";
-        }
-        else if (fortuneRoll < 0.51) {
-            drop = "Don't do that thing you've been meaning to do";
-        }
-        else if (fortuneRoll < 0.61) {
-            drop = "You've forgotten to do something very important";
-        }
-        else if (fortuneRoll < 0.71) {
-            drop = "Your smile lights up the life of everyone around you";
-        }
-        else if (fortuneRoll < 0.81) {
-            drop = "Listen to your subconscious";
-        }
-        else if (fortuneRoll < 0.89) {
-            drop = "Don't listen to your subconscious";
-        }
-        else if (fortuneRoll < 0.91) {
-            drop = "Your phone is begging for you to scroll more";
-        }
-        else {
-            drop = "Clear the way for people leaving the train before you enter";
-        }
 
         gameState = "fortune";
     }
