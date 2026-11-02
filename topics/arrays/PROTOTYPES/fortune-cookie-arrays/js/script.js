@@ -26,8 +26,8 @@ let wrappers = [];
 let pickedWrapper = undefined;
 
 //cookie including text on fortune
-let cookieSize = 1.25
-let drop = undefined
+let cookieSize = 1.25;
+let drop = undefined;
 
 const cookieFortune = [
     "All your wishes will come true ",
@@ -43,7 +43,7 @@ const cookieFortune = [
     "Clear the way for people leaving the train before you enter"
 ]
 //the index for the cookie fortune
-let fortuneMessage = 0
+let fortuneMessage = 0;
 
 jar = {
     y: 80,
@@ -118,7 +118,7 @@ function draw() {
  * draws the jar
  */
 function drawJar() {
-    push()
+    push();
     tint(100, 100, 255, 200);
     imageMode(CENTER);
     image(jarPic, width / 2, height / 2 + jar.y, jarPic.width * jar.size, jarPic.height * jar.size);
@@ -157,7 +157,7 @@ function drawText() {
         push();
         textAlign(CENTER, TOP);
         textSize(25);
-        textStyle(BOLD)
+        textStyle(BOLD);
         textFont('Verdana');
         fill("#141414");
         text("Drag a cookie from the jar", width / 2, 20);
@@ -172,7 +172,7 @@ function drawText() {
 function drawFortune() {
     //make bkg darker when you picked fortune/opened cookie
     push();
-    background(125, 10, 10)
+    background(125, 10, 10);
     pop();
     push();
     tint(200, 200, 255);
@@ -182,10 +182,10 @@ function drawFortune() {
 
     //fortune format
     push();
-    angleMode(DEGREES)
-    translate(width / 4 - 40, height / 4 - 125)
-    rotate(-4)
-    textFont('Verdana')
+    angleMode(DEGREES);
+    translate(width / 4 - 40, height / 4 - 125);
+    rotate(-4);
+    textFont('Verdana');
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
     textSize(18.5);
