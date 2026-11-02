@@ -9,7 +9,9 @@
 "use strict";
 
 
-let holes = [];
+let clovers = [];
+
+let clover3 = undefined;
 
 let canvasX = 1080;
 
@@ -20,42 +22,60 @@ let canvasY = {
 }
 
 /**
- *draws the holes from the array
+ *draws the Clovers from the array
 */
 function setup() {
 
-    holes.push(createHoles(100, 100, 100))
+    clovers.push(create4Clovers(100, 100, 100))
+    clovers.push(create3Clovers(300, 100, 100))
 
 }
 
 /**
  * 
- *creates the holes
+ *creates the 4 leaf clovers
  */
-function createHoles(x, y, size) {
-    let hole = {
+function create4Clovers(x, y, size) {
+    let clover4 = {
         x: x,
         y: y,
         size: size,
     };
-    return hole;
+    return clover4;
 }
 
 /**
- * creates the canvas, draws the background and the holes
+ * created 3 leaf clovers
+ */
+function create3Clovers(x, y, size) {
+    let clover3 = {
+        x: x,
+        y: y,
+        size: size,
+    };
+    return clover3;
+
+}
+
+
+/**
+ * creates the canvas, draws the background and the Clovers
 */
 function draw() {
     changeCanvas()
     createCanvas(canvasX, canvasY.size)
     background("#b5acac");
-    drawHoles();
+    draw4Clovers();
+    draw3Clovers();
 }
 
 /**
  * makes the canvas bigger or smaller
  */
 function changeCanvas() {
-    canvasY.size -= canvasY.decrease
+
+    //makes the canvas become smaller
+    // canvasY.size -= canvasY.decrease
     resizeCanvas(canvasX, canvasY.size)
 }
 
@@ -63,15 +83,50 @@ function changeCanvas() {
 
 
 /**
- * draws the holes where things pop out of
+ * draws the Clovers where things pop out of
  */
-function drawHoles() {
-    for (let hole of holes) {
+function draw4Clovers() {
+    for (let clover4 of clovers) {
         push();
+        angleMode(DEGREES)
         stroke("#051f0b")
         strokeWeight(5)
         fill("#0a5116")
-        ellipse(hole.x, hole.y, hole.size)
+        //top right leaf
+        rotate(10)
+        ellipse(clover4.x, clover4.y, clover4.size, clover4.size - 15)
+        //top left leaf
+        rotate(0)
+        ellipse(clover4.x + clover4.size - 16, clover4.y, clover4.size, clover4.size - 15)
+        //bottom right leaf
+        ellipse(clover4.x + 5, clover4.y + 60, clover4.size, clover4.size - 15)
+        //bottom left leaf
+        ellipse(clover4.x + 80, clover4.y + 60, clover4.size, clover4.size - 15)
+        pop();
+
+    }
+}
+
+/**
+ * draws the 3 leaf clovers
+ */
+function draw3Clovers() {
+    for (let clover3 of clovers) {
+        push();
+        angleMode(DEGREES)
+        stroke("#051f0b")
+        strokeWeight(5)
+        fill("#0a5116")
+        //top right leaf
+        rotate(10)
+        ellipse(clover3.x, clover3.y, clover3.size, clover3.size - 15)
+        //top left leaf
+        rotate(0)
+        ellipse(clover3.x + clover3.size - 16, clover3.y, clover3.size, clover3.size - 15)
+        //bottom right leaf
+        ellipse(clover3.x + 5, clover3.y + 60, clover3.size, clover3.size - 15)
+        //bottom left leaf
+        ellipse(clover3.x + 80, clover3.y + 60, clover3.size, clover3.size - 15)
         pop();
 
     }
