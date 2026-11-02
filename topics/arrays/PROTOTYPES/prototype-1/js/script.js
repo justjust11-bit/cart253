@@ -24,7 +24,7 @@ let bkg = {
 
 
 
-//texts that will be in the speech box
+//texts that will be in the intro speech box
 const introSpeech = [
     "You applied for a job you are unqualified for.",
     "After a thorough investigation with HR...",
@@ -58,12 +58,17 @@ const multipleChoice = [
     "9 - Extreme Disaster!!! EVACUATE EVERYTHING EVERYONE"
 ]
 
+const choiceResult = [
+    "You failed to warn the world of a magnitude 9 earthquake.The world is in shambles and it's your fault.",
+]
+
 
 ///
 let selectedChoice = 0;
 
 let speechIndex = 0;
 
+//speech box
 let box = {
     x: 70,
     y: 620,
@@ -74,6 +79,11 @@ let box = {
 };
 
 let choiceBoxes = [];
+
+
+//for the button panel circles
+let ellipseX = undefined
+let ellipseY = undefined
 
 
 /**
@@ -123,6 +133,10 @@ function createChoiceBox(choiceText, x, y, w, h, fill, fontSize) {
  * draws the intro screen with the paper and the text box
 */
 function draw() {
+    if (fired) {
+        drawGameOvers();
+        return;
+    }
     drawIntro();
     drawSelection();
 
@@ -139,7 +153,9 @@ function drawIntro() {
 
     if (!intro && inGame) {
         drawInGame();
+        drawButtonPanel();
         boxText();
+
     }
 
 }
@@ -226,7 +242,7 @@ function boxText() {
         fill("#bbc8db");
         stroke("#252738");
         strokeWeight(4);
-        rect(box.x, box.y, box.w, box.h, 10);
+        rect(box.x, box.y, box.w, box.h, 5);
         pop();
 
         push();
@@ -263,14 +279,24 @@ function mousePressed() {
  */
 
 function drawButtonPanel() {
+
+
+
     //draw the board
     push();
-    stroke(100)
+    stroke(10)
     strokeWeight(10)
-    fill("#585858")
-    rect(100, 100, 880, 450, 5)
+    fill("#212020")
+    rect(100, 100, 880, 450, 1)
     pop();
+    //draw buttons
+    push();
+    stroke("#2d0505")
+    strokeWeight(6)
+    fill("#8f0c0c")
+    ellipse(200, 300, 100)
 
+    pop();
 
 }
 
@@ -278,13 +304,12 @@ function drawButtonPanel() {
  * draws the selection boxes
  */
 function drawChoiceBox(choiceBox, isSelected) {
-    console.log(isSelected)
 
     //draws one selection box
     push();
     if (isSelected) {
         stroke("#fdffdc")
-        strokeWeight(15)
+        strokeWeight(13)
     }
     else {
         strokeWeight(3)
@@ -319,5 +344,26 @@ function keyPressed() {
     }
     //constrain the 9 possibilities so it doesnt bug
     selectedChoice = constrain(selectedChoice, 0, 8);
+
+    if (inGame === true && keyCode === 13) {
+        fired = true
+        drawGameOvers();
+    }
 }
 
+/**
+draws the game over screens
+*/
+
+function drawGameOvers() {
+    background(bkg.fired)
+
+    push();
+    textAlign(CENTER, CENTER);
+    fill("black");
+    textSize(50);
+    ellipse(random(200, 900), random(100, 500), 100)
+    //choose the first option in the index of choice result
+    text(choiceResult[0], 200, height / 2, 700)
+    pop();
+}
