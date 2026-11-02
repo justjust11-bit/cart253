@@ -68,46 +68,51 @@ async function setup() {
         size: 1.2
     }
 
-    wrapper = {
+    wrapper = createWrappers();
+
+}
+
+function createWrappers() {
+    return [
         //these are all placed in the center of the image, the x and y are just + from that spot
         //from right to left, then up, right to left
 
         //bottom row
-        one: {
+        {
             x: 85,
             y: 200,
             size: 0.16,
             angle: 45
         },
-        two: {
+        {
             x: 0,
             y: 220,
             size: 0.16,
             angle: 80
         },
 
-        three: {
+        {
             x: -78,
             y: 200,
             size: 0.16,
             angle: 200
         },
         //middle row, right to left
-        four: {
+        {
             x: 85,
             y: 140,
             size: 0.165,
             angle: 290
         },
 
-        five: {
+        {
             x: 10,
             y: 145,
             size: 0.165,
             angle: 150
         },
 
-        six: {
+        {
             x: -78,
             y: 130,
             size: 0.16,
@@ -115,29 +120,27 @@ async function setup() {
         },
 
         //top row, right to left
-        seven: {
+        {
             x: 88,
             y: 55,
             size: 0.165,
             angle: 20
         },
 
-        eight: {
+        {
             x: 0,
             y: 50,
             size: 0.165,
             angle: 110
         },
 
-        nine: {
+        {
             x: -78,
             y: 50,
             size: 0.155,
             angle: 210
         }
-    }
-
-
+    ];
 }
 
 
@@ -195,72 +198,19 @@ function drawWrappers() {
     //makes the image (before the rotation) in the center
     imageMode(CENTER);
 
-    //first wrapper
-    push();
-    //dividing by two using TRANSLATE, moves the origin point of the wrapper to the center of the page
-    //so that the rotate function can make the wrapper rotate on itself
-    translate(width / 2 + wrapper.one.x, height / 2 + wrapper.one.y, 0)
-    rotate(wrapper.one.angle)
-    //x and y are left at 0 because they are variables on translate
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.one.size, wrapperPic.height * wrapper.one.size)
-    pop();
-
-    //second wrapper
-    push();
-    translate(width / 2 + wrapper.two.x, height / 2 + wrapper.two.y, 0)
-    rotate(wrapper.two.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.two.size, wrapperPic.height * wrapper.two.size)
-    pop();
-
-    //third wrapper
-    push();
-    translate(width / 2 + wrapper.three.x, height / 2 + wrapper.three.y, 0)
-    rotate(wrapper.three.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.three.size, wrapperPic.height * wrapper.three.size)
-    pop();
-
-    //fourth wrapper
-    push();
-    translate(width / 2 + wrapper.four.x, height / 2 + wrapper.four.y, 0)
-    rotate(wrapper.four.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.four.size, wrapperPic.height * wrapper.four.size)
-    pop();
-
-    //fifth wrapper
-    push();
-    translate(width / 2 + wrapper.five.x, height / 2 + wrapper.five.y, 0)
-    rotate(wrapper.five.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.five.size, wrapperPic.height * wrapper.five.size)
-    pop();
-
-    //sixth wrapper
-    push();
-    translate(width / 2 + wrapper.six.x, height / 2 + wrapper.six.y, 0)
-    rotate(wrapper.six.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.six.size, wrapperPic.height * wrapper.six.size)
-    pop();
-
-    //seventh wrapper
-    push();
-    translate(width / 2 + wrapper.seven.x, height / 2 + wrapper.seven.y, 0)
-    rotate(wrapper.seven.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.seven.size, wrapperPic.height * wrapper.seven.size)
-    pop();
-
-    //eigth wrapper
-    push();
-    translate(width / 2 + wrapper.eight.x, height / 2 + wrapper.eight.y, 0)
-    rotate(wrapper.eight.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.eight.size, wrapperPic.height * wrapper.eight.size)
-    pop();
-
-    //ninth wrapper
-    push();
-    translate(width / 2 + wrapper.nine.x, height / 2 + wrapper.nine.y, 0)
-    rotate(wrapper.nine.angle)
-    image(wrapperPic, 0, 0, wrapperPic.width * wrapper.nine.size, wrapperPic.height * wrapper.nine.size)
-    pop();
-
+    for (let cookieWrapper of wrapper) {
+        push();
+        translate(width / 2 + cookieWrapper.x, height / 2 + cookieWrapper.y, 0);
+        rotate(cookieWrapper.angle);
+        image(
+            wrapperPic,
+            0,
+            0,
+            wrapperPic.width * cookieWrapper.size,
+            wrapperPic.height * cookieWrapper.size
+        );
+        pop();
+    }
 
 }
 
@@ -368,7 +318,19 @@ function mouseReleased() {
     // opening the wrapper changes from wrapper to opened cookie
     if (gameState === "dragging") {
         const fortuneRoll = random();
+        //to keep the probabilities the same as in the original prototype
+        const fortuneChances = [0.11, 0.21, 0.31, 0.41, 0.51, 0.61, 0.71, 0.81, 0.89, 0.91];
 
+        let index = cookieFortune.length - 1;
+
+        for (let fortuneIndex = 0; fortuneIndex < fortuneChances.length; fortuneIndex++) {
+            if (fortuneRoll < fortuneChances[fortuneIndex]) {
+                index = fortuneIndex;
+                break;
+            }
+        }
+
+        drop = cookieFortune[index];
 
         gameState = "fortune";
     }
