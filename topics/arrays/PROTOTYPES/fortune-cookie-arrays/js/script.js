@@ -13,12 +13,15 @@
 
 let gameState = "jar";
 
+//all the images used
 let jarPic = undefined;
 let wrapperPic = undefined;
 let cookiePic = undefined;
 
+//for the limits of the jar
 let jar = undefined;
-let wrapper = undefined;
+
+let wrappers = [];
 let pickedWrapper = undefined;
 
 //cookie including text on fortune
@@ -68,79 +71,100 @@ async function setup() {
         size: 1.2
     }
 
-    wrapper = createWrappers();
+
+    //bottom row
+    wrappers.push(createWrappers(85, 200, 0.16, 45, cookiePic));
+    wrappers.push(createWrappers(0, 220, 0.16, 80, cookiePic));
+    wrappers.push(createWrappers(-78, 200, 0.16, 200, cookiePic));
+    //middle row, right to left
+    wrappers.push(createWrappers(85, 140, 0.165, 290, cookiePic));
+    wrappers.push(createWrappers(10, 145, 0.165, 150, cookiePic));
+    wrappers.push = createWrappers(-78, 130, 0.16, 70, cookiePic);
+    //top row, right to left
+    wrappers.push = createWrappers(88, 55, 0.165, 20, cookiePic);
+    wrappers.push = createWrappers(0, 50, 0.165, 110, cookiePic);
+    wrappers.push = createWrappers(-78, 50, 0.155, 210, cookiePic);
 
 }
 
-function createWrappers() {
-    return [
-        //these are all placed in the center of the image, the x and y are just + from that spot
-        //from right to left, then up, right to left
+function createWrappers(x, y, size, angle, image) {
+    // return [
+    //these are all placed in the center of the image, the x and y are just + from that spot
+    //from right to left, then up, right to left
 
-        //bottom row
-        {
-            x: 85,
-            y: 200,
-            size: 0.16,
-            angle: 45
-        },
-        {
-            x: 0,
-            y: 220,
-            size: 0.16,
-            angle: 80
-        },
+    let wrapper = {
+        x: x,
+        y: y,
+        size: size,
+        angle: angle,
+        image: image
+    };
+    return wrapper;
 
-        {
-            x: -78,
-            y: 200,
-            size: 0.16,
-            angle: 200
-        },
-        //middle row, right to left
-        {
-            x: 85,
-            y: 140,
-            size: 0.165,
-            angle: 290
-        },
+    // //bottom row
+    // {
+    //     x: 85,
+    //     y: 200,
+    //     size: 0.16,
+    //     angle: 45
+    // },
+    // {
+    //     x: 0,
+    //     y: 220,
+    //     size: 0.16,
+    //     angle: 80
+    // },
 
-        {
-            x: 10,
-            y: 145,
-            size: 0.165,
-            angle: 150
-        },
+    // {
+    //     x: -78,
+    //     y: 200,
+    //     size: 0.16,
+    //     angle: 200
+    // },
+    // //middle row, right to left
+    // {
+    //     x: 85,
+    //     y: 140,
+    //     size: 0.165,
+    //     angle: 290
+    // },
 
-        {
-            x: -78,
-            y: 130,
-            size: 0.16,
-            angle: 70
-        },
+    // {
+    //     x: 10,
+    //     y: 145,
+    //     size: 0.165,
+    //     angle: 150
+    // },
 
-        //top row, right to left
-        {
-            x: 88,
-            y: 55,
-            size: 0.165,
-            angle: 20
-        },
+    // {
+    //     x: -78,
+    //     y: 130,
+    //     size: 0.16,
+    //     angle: 70
+    // },
 
-        {
-            x: 0,
-            y: 50,
-            size: 0.165,
-            angle: 110
-        },
+    // //top row, right to left
+    // {
+    //     x: 88,
+    //     y: 55,
+    //     size: 0.165,
+    //     angle: 20
+    // },
 
-        {
-            x: -78,
-            y: 50,
-            size: 0.155,
-            angle: 210
-        }
-    ];
+    // {
+    //     x: 0,
+    //     y: 50,
+    //     size: 0.165,
+    //     angle: 110
+    // },
+
+    // {
+    //     x: -78,
+    //     y: 50,
+    //     size: 0.155,
+    //     angle: 210
+    // }
+    // ];
 }
 
 
@@ -198,7 +222,7 @@ function drawWrappers() {
     //makes the image (before the rotation) in the center
     imageMode(CENTER);
 
-    for (let cookieWrapper of wrapper) {
+    for (let cookieWrapper of wrappers) {
         push();
         translate(width / 2 + cookieWrapper.x, height / 2 + cookieWrapper.y, 0);
         rotate(cookieWrapper.angle);
