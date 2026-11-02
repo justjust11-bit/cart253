@@ -2,8 +2,11 @@
  * Title of Project
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * You applied for a job you aren't qualified for! What's the worst that can happen, 
+ * you can probably figure this out! Visual novel-esque mini game, you click to progress 
+ * the story, and use the UP and DOWN arrows when confronted with a choice to make a selection.
+ * 
+ * refs used: 
  * https://editor.p5js.org/pippinbarr/sketches/wfDOLrIm13
  * used flies flies flies and buzzy the return value as ref
  */
@@ -11,19 +14,18 @@
 "use strict";
 
 //game states
-let intro = false;
-let inGame = true;
+let intro = true;
+let inGame = false;
 let fired = false;
 let promoted = false;
 
+//different possible background colours
 let bkg = {
     intro: "black",
     inGame: "#3e4866",
     fired: "#840808",
     raise: "#268f79"
 }
-
-
 
 
 //texts that will be in the intro speech box
@@ -43,11 +45,10 @@ const inGameSpeech = [
     "An earthquake is incoming...",
     "Your lack of technical competence prevents you from making an educated guess.",
     "What magnitude do you guess it to be?"
-    //maybe you get payed by the earthquake announcement
 
 ];
 
-//text choices to choose
+//text choices to choose from
 const multipleChoice = [
     "1 - Insignificant",
     "2 - Slightly felt",
@@ -60,12 +61,15 @@ const multipleChoice = [
     "9 - Extreme Disaster!!! EVACUATE EVERYTHING EVERYONE"
 ]
 
+//end game results, you are either fired or promoted
 const choiceResult = [
     "You failed to warn the world of a magnitude 9 earthquake. The world is in shambles and it's your fault.",
     "Lucky you! You guessed the right earthquake level. You got a promotion due to outstanding performance, so you no longer work in this department. You are now payed to scroll on your phone for 8 hours.",
     "You alarmed the entire world for no reason. You're fired. Nobody wants to speak to you anymore."
 ]
 
+//choice result index
+let resultIndex = 0;
 
 //the selectable choices in ingame (all the earthquakes)
 let selectedChoice = 0;
@@ -73,8 +77,9 @@ let selectedChoice = 0;
 // the dialogue in intro and ingame in the box
 let speechIndex = 0;
 
+
 //if you get fired or promoted
-let jobCondition = 0;
+let jobCondition = undefined;
 
 //speech box
 let box = {
@@ -86,11 +91,8 @@ let box = {
     fontSize: 27,
 };
 
+//the colourful boxes, placed on the screen once youre confronted with the option of choice
 let choiceBoxes = [];
-let resultIndex = 0;
-
-
-
 
 
 /**
@@ -100,7 +102,7 @@ function setup() {
     createCanvas(1080, 800)
 
     //each box displays the same dimensions except for the text (multipleChoice)
-    //choice 0 is 1- insignificant
+    //choice 0 is 1- insignificant level earthquake
     choiceBoxes.push(createChoiceBox(multipleChoice[0], 250, 564, 580, 51, "#dfd5d5", 23));
     choiceBoxes.push(createChoiceBox(multipleChoice[1], 250, 509, 580, 50, "#61acc3", 23));
     choiceBoxes.push(createChoiceBox(multipleChoice[2], 250, 454, 580, 50, "#3f769a", 23));
@@ -110,7 +112,7 @@ function setup() {
     choiceBoxes.push(createChoiceBox(multipleChoice[6], 250, 184, 580, 70, "#df6c00", 23));
     choiceBoxes.push(createChoiceBox(multipleChoice[7], 250, 110, 580, 70, "#df4116", 23));
     choiceBoxes.push(createChoiceBox(multipleChoice[8], 250, 6, 580, 100, "#d60000", 23));
-    //2
+    //
 
 }
 
@@ -137,7 +139,7 @@ function createChoiceBox(choiceText, x, y, w, h, fill, fontSize) {
 
 
 /**
- * draws the intro screen with the paper and the text box
+ * draws the intro screen with the paper and the text box, the game over, and the selection on the boxes
 */
 function draw() {
     if (fired || promoted) {
@@ -150,7 +152,7 @@ function draw() {
 }
 
 /**
- * draws the intro screen
+ * draws the intro screen, and switches to ingame state
  */
 function drawIntro() {
     if (intro) {
@@ -160,20 +162,17 @@ function drawIntro() {
 
     if (!intro && inGame) {
         drawInGame();
-        drawButtonPanel();
-        boxText();
-
     }
 
 }
 
 /**
- * draws the selection on the selection boxes
+ * draws the selection on the selection boxes (strokeWeight)
  */
 function drawSelection() {
     if (inGame && speechIndex === inGameSpeech.length - 1) {
         for (let choiceBox of choiceBoxes) {
-            //isSelected is a new variable that identifies what choice is selected
+            //isSelected identifies what choice is selected by the user
             let isSelected = choiceBox === choiceBoxes[selectedChoice];
             drawChoiceBox(choiceBox, isSelected);
         }
@@ -182,15 +181,14 @@ function drawSelection() {
 }
 
 /**
- * draws the at work scene
+ * draws the at work scene, with the button panel, the box text
  */
 
 function drawInGame() {
 
     background(bkg.inGame)
-
-
-
+    drawButtonPanel();
+    boxText();
 }
 
 /**
@@ -198,7 +196,6 @@ function drawInGame() {
  */
 function drawResume() {
     background(bkg.intro)
-
     //white paper
     push();
     fill("#f0efe5")
@@ -214,8 +211,6 @@ function drawResume() {
     textSize(50)
     text("CV", 515, 320)
     pop();
-
-
 }
 
 
@@ -223,8 +218,6 @@ function drawResume() {
  * display the text in a dialogue box
  */
 function boxText() {
-
-
     // The text dimensions for the text to wrap inside, including
     // the padding of the dialog box
     if (intro) {
@@ -270,7 +263,7 @@ function mousePressed() {
     // if not at the end of the speech aready
     if (intro) {
         if (speechIndex < introSpeech.length - 1) {
-            // Advance the line
+            // advance the line
             speechIndex++;
         }
         else {
@@ -288,8 +281,6 @@ function mousePressed() {
  */
 
 function drawButtonPanel() {
-
-
     //draw the board
     push();
     stroke(10)
@@ -328,7 +319,6 @@ function drawButtonPanel() {
     stroke("#000000")
     rect(650, 440, 240, 80, 80)
     pop();
-
 }
 
 /**
@@ -336,17 +326,19 @@ function drawButtonPanel() {
  */
 function drawChoiceBox(choiceBox, isSelected) {
 
-    //draws one selection box
+    //draws the box when selected (stroke is white and thicker)
     push();
     if (isSelected) {
         stroke("#fdffdc")
         strokeWeight(13)
     }
+    //when the box is not selected, (black and thing stroke)
     else {
         strokeWeight(5)
         stroke("#252738");
     }
 
+    //choicebox draw, where the variables were created in createChoiceBox
     fill(choiceBox.fill);
     rect(choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h, 5);
     fill("#121211");
@@ -358,25 +350,27 @@ function drawChoiceBox(choiceBox, isSelected) {
     text(choiceBox.text, choiceBox.x, choiceBox.y, choiceBox.w, choiceBox.h);
     pop();
 
-
     return choiceBox;
-
 }
 
 /**
  * using up and down arrows will make  you select your choice
  */
 function keyPressed() {
+
+    //down arrow makes you go down
     if (keyCode === 40) {
         selectedChoice--
     }
+    //up arrow makes you go up
     if (keyCode === 38) {
         selectedChoice++
     }
-    //constrain the 9 possibilities so it doesnt bug
+    //constrain the 9 possibilities so the player does bug outside of the choices that are available
     selectedChoice = constrain(selectedChoice, 0, 8);
 
-    if (inGame === true && keyCode === 13) {
+    //if the player presses Enter at any moment inGame
+    if (inGame === true && keyCode === 13 && speechIndex === inGameSpeech.length - 1) {
         incomingEarthquake();
     }
 }
@@ -421,19 +415,24 @@ function incomingEarthquake() {
     let randomEarthquake = floor(random(1, 10))
     //+1 because the index has 0, so we skip over that
     let playerGuess = selectedChoice + 1;
-    console.log("Earthquake:", randomEarthquake, "Your guess:", playerGuess);
+
+    // use this if you are curious about the specific # earthquake you got:
+    // console.log("Earthquake:", randomEarthquake, "Your guess:", playerGuess);
 
     if (playerGuess < randomEarthquake) {
         resultIndex = 0;
         fired = true;
+        promoted = false;
     }
     else if (playerGuess === randomEarthquake) {
         resultIndex = 1;
         promoted = true;
+        fired = false;
     }
     else {
         resultIndex = 2;
         fired = true;
+        promoted = false;
     }
 
 
