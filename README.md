@@ -157,7 +157,7 @@ This website serves to present the prototyping work I will create in my class CA
 
 ##### Fortune Cookie (now with arrays)
 
-![Screenshot of Fortune Cookie arrays](./topics/arrays/PROTOTYPES/fortune-cookie-arrays/assets/images/job.png)
+![Screenshot of Fortune Cookie arrays](./topics/arrays/PROTOTYPES/fortune-cookie-arrays/assets/images/Screenshot.png)
 
 - [View online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/fortune-cookie-arrays/)
 
