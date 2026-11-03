@@ -13,6 +13,9 @@ let clovers = [];
 
 let cloverIndex = undefined;
 
+let inGame = true;
+let gameOver = false;
+
 //canvas sizes
 let canvasX = 1080;
 let canvasY = {
@@ -20,7 +23,11 @@ let canvasY = {
     decrease: 1
 }
 
-let cloverAmount = 150
+let cloverAmount = 150;
+//special clovers collected
+let collectedClovers = 0;
+//total special clovers that got spawned 
+let totalSpecialClovers = 0;
 
 /**
  *draws the clovers from the array
@@ -40,9 +47,11 @@ function spawnClovers() {
     for (let cloverIndex = 0; cloverIndex < cloverAmount; cloverIndex++) {
         //10% chance of it being a 4 leaf clover
         if (random(1) < 0.1) {
-            clovers.push(create4Clovers(random(50, 1000), (random(50, 750)), 100,))
+            clovers.push(create4Clovers(random(10, 1060), (random(20, 750)), 100,))
+            //counts how many special clovers were spawned
+            totalSpecialClovers++;
         } else {
-            clovers.push(create3Clovers(random(50, 1000), (random(50, 750)), 100,))
+            clovers.push(create3Clovers(random(10, 1060), (random(20, 750)), 100,))
         }
     }
 
@@ -83,7 +92,13 @@ function create3Clovers(x, y, size) {
 function draw() {
     changeCanvas()
     createCanvas(canvasX, canvasY.size)
-    background("#355e41");
+    drawInGame();
+
+    if (gameOver) {
+        drawGameOver();
+        //return erases the previous clover screen
+        return;
+    }
 
     for (let clover of clovers) {
         //draws both clovers, but also distinguishes that theyre different
@@ -99,14 +114,27 @@ function draw() {
  * makes the canvas bigger or smaller
  */
 function changeCanvas() {
+    if (inGame === true) {
+        //makes the canvas become smaller
+        canvasY.size -= canvasY.decrease
+        let canvasTop = canvasY.height
+        canvasTop -= canvasY.decrease
 
-    //makes the canvas become smaller
-    canvasY.size -= canvasY.decrease
+        resizeCanvas(canvasX, canvasY.size)
 
-    resizeCanvas(canvasX, canvasY.size)
+        if (canvasY.size <= 5) {
+            inGame = false;
+            gameOver = true;
+
+        }
+    }
 }
 
-
+function drawInGame() {
+    push();
+    background("#355e41");
+    pop();
+}
 /**
  * draws the Clovers where things pop out of
  */
@@ -155,8 +183,32 @@ function mousePressed() {
 
         if (distance < clover.size / 2) {
             clovers.splice(cloverIndex, 1);
+            //only have the special clovers selected for the counter at the end
+            if (clover.special === true) {
+                collectedClovers += 1
+            }
             //adding a break makes sure it only selects one clover
             break;
         }
+    }
+}
+
+/**
+ * draws the gameover
+ */
+
+function drawGameOver() {
+    if (gameOver === true) {
+
+        push();
+        createCanvas(1080, 800)
+        background("#172e1e");
+        pop();
+        push();
+        fill("white")
+        textAlign(CENTER, CENTER)
+        textSize(50)
+        text("You collected " + collectedClovers + " out of " + totalSpecialClovers + " special clovers", width / 2, height / 2)
+        pop();
     }
 }
