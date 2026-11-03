@@ -1,9 +1,9 @@
 /**
- * Title of Project
+ * Round Clovers
  * Justine Cormier
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Try collecting as many of the dark (special) clovers as you can before the canvas collapses!
+ * Click to collect the clovers, only the dark ones will be counter into the final tally.
  */
 
 "use strict";
@@ -12,6 +12,7 @@
 let clovers = [];
 
 let cloverIndex = undefined;
+
 
 let inGame = true;
 let gameOver = false;
@@ -23,6 +24,7 @@ let canvasY = {
     decrease: 1
 }
 
+//total amount of clovers to be spawned on the screen
 let cloverAmount = 150;
 //special clovers collected
 let collectedClovers = 0;
@@ -45,13 +47,13 @@ function spawnClovers() {
 
     //if the clover index has less than 30 (clovers, keep bringig them on)
     for (let cloverIndex = 0; cloverIndex < cloverAmount; cloverIndex++) {
-        //10% chance of it being a 4 leaf clover
+        //10% chance of it being a special clover
         if (random(1) < 0.1) {
-            clovers.push(create4Clovers(random(10, 1060), (random(20, 750)), 100,))
+            clovers.push(createSpecialClovers(random(10, 1060), (random(20, 750)), 100,))
             //counts how many special clovers were spawned
             totalSpecialClovers++;
         } else {
-            clovers.push(create3Clovers(random(10, 1060), (random(20, 750)), 100,))
+            clovers.push(createNormalClovers(random(10, 1060), (random(20, 750)), 100,))
         }
     }
 
@@ -59,9 +61,9 @@ function spawnClovers() {
 
 /**
  * 
- *creates the 4 leaf clovers
+ *creates the special clovers
  */
-function create4Clovers(x, y, size) {
+function createSpecialClovers(x, y, size) {
     let clover = {
         x: x,
         y: y,
@@ -74,7 +76,7 @@ function create4Clovers(x, y, size) {
 /**
  * created 3 leaf clovers
  */
-function create3Clovers(x, y, size) {
+function createNormalClovers(x, y, size) {
     let clover = {
         x: x,
         y: y,
@@ -103,9 +105,9 @@ function draw() {
     for (let clover of clovers) {
         //draws both clovers, but also distinguishes that theyre different
         if (clover.special === true) {
-            draw4Clovers(clover);
+            drawSpecialClovers(clover);
         } else {
-            draw3Clovers(clover);
+            drawNormalClovers(clover);
         }
     }
 }
@@ -122,7 +124,7 @@ function changeCanvas() {
 
         resizeCanvas(canvasX, canvasY.size)
 
-        if (canvasY.size <= 5) {
+        if (canvasY.size <= 50) {
             inGame = false;
             gameOver = true;
 
@@ -138,7 +140,7 @@ function drawInGame() {
 /**
  * draws the Clovers where things pop out of
  */
-function draw4Clovers(clover) {
+function drawSpecialClovers(clover) {
 
     push();
     angleMode(DEGREES)
@@ -155,7 +157,7 @@ function draw4Clovers(clover) {
 /**
  * draws the 3 leaf clovers
  */
-function draw3Clovers(clover) {
+function drawNormalClovers(clover) {
 
     push();
     angleMode(DEGREES)
@@ -194,7 +196,7 @@ function mousePressed() {
 }
 
 /**
- * draws the gameover
+ * draws the gameover screen, tells you how many clovers out of the total youu collected
  */
 
 function drawGameOver() {
