@@ -51,28 +51,28 @@ function spawnClovers() {
  *creates the 4 leaf clovers
  */
 function create4Clovers(x, y, size, rotate) {
-    let clover4 = {
+    let clover = {
         x: x,
         y: y,
         size: size,
         rotate: rotate,
         leafCount: 4
     };
-    return clover4;
+    return clover;
 }
 
 /**
  * created 3 leaf clovers
  */
 function create3Clovers(x, y, size, rotate) {
-    let clover3 = {
+    let clover = {
         x: x,
         y: y,
         size: size,
         rotate: rotate,
         leafCount: 3
     };
-    return clover3;
+    return clover;
 
 }
 
@@ -151,4 +151,23 @@ function draw3Clovers(clover) {
 
 
 
+}
+
+/**
+ * pressing with your mouse will collect the clover
+ */
+function mousePressed() {
+    //check all the four leaf clovers
+    for (let clover of clovers) {
+        if (clover.leafCount === 4) {
+            const d = dist(mouseX, mouseY, clover.x, clover.y);
+            if (d > clover.size / 2) {
+                //this 4 leaf clover was clicked
+                //get the index of this clover to know which was clicked
+                const index = clovers.indexOf(clover);
+                //splice it out of the array
+                clovers.splice(index, 1);
+            }
+        }
+    }
 }
