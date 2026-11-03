@@ -29,7 +29,7 @@ function draw() {
     let strokeColor2 = 0;
     let lineThick2 = 0;
 
-    for (let a = 0; a <= height; a += 2) {
+    for (let a = 0; a <= height; a += 3) {
         push();
         let strokeColor4 = map(a, 0, height, 0, 100);
         stroke(strokeColor4);
