@@ -2,7 +2,7 @@
  * Round Clover Hunt
  * Justine Cormier
  * 
- * Try collecting as many of the dark (special) clovers as you can before the canvas collapses!
+ * Try collecting as many of the dark (special) clovers as you can before the canvas collapses on itself!
  * Click to collect the clovers, only the dark ones will be counter into the final tally.
  */
 

@@ -163,10 +163,10 @@ This website serves to present the prototyping work I will create in my class CA
 
 - [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/arrays/PROTOTYPES/fortune-cookie-arrays)
 
-##### New job!
+##### Round Clover Hunt!
 
-![Screenshot of New job!](./topics/arrays/PROTOTYPES/new-job/assets/images/job.png)
+![Screenshot of Round Clover Hunt!](./topics/arrays/PROTOTYPES/round-clover-hunt/assets/images/clover.png)
 
-- [View online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/new-job/)
+- [View online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/round-clover-hunt/)
 
-- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/arrays/PROTOTYPES/new-job)
+- [View code](https://github.com/justjust11-bit/cart253/tree/main/topics/arrays/PROTOTYPES/round-clover-hunt)

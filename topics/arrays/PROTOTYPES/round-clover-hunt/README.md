@@ -1,10 +1,13 @@
-# TITLE OF PROJECT
+# ROUND CLOVER HUNT
 
 JUSTINE CORMIER
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://justjust11-bit.github.io/cart253/topics/arrays/PROTOTYPES/round-clover-hunt/)
 
 ## Description
+
+Try collecting as many of the dark (special) clovers as you can before the canvas collapses on itself!
+Click to collect the clovers, only the dark ones will be counter into the final tally.
 
 ## Attribution
 
