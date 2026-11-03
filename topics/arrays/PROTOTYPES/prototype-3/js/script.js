@@ -17,8 +17,10 @@ let cloverIndex = undefined;
 let canvasX = 1080;
 let canvasY = {
     size: 800,
-    decrease: 0.5
+    decrease: 1
 }
+
+let cloverAmount = 150
 
 /**
  *draws the clovers from the array
@@ -35,12 +37,12 @@ function setup() {
 function spawnClovers() {
 
     //if the clover index has less than 30 (clovers, keep bringig them on)
-    for (let cloverIndex = 0; cloverIndex < 100; cloverIndex++) {
+    for (let cloverIndex = 0; cloverIndex < cloverAmount; cloverIndex++) {
         //10% chance of it being a 4 leaf clover
         if (random(1) < 0.1) {
-            clovers.push(create4Clovers(random(100, 900), (random(150, 650)), 100, random(-20, 20)))
+            clovers.push(create4Clovers(random(50, 1000), (random(50, 750)), 100,))
         } else {
-            clovers.push(create3Clovers(random(100, 900), (random(150, 650)), 100, random(-30, 30)))
+            clovers.push(create3Clovers(random(50, 1000), (random(50, 750)), 100,))
         }
     }
 
@@ -50,13 +52,12 @@ function spawnClovers() {
  * 
  *creates the 4 leaf clovers
  */
-function create4Clovers(x, y, size, rotate) {
+function create4Clovers(x, y, size) {
     let clover = {
         x: x,
         y: y,
         size: size,
-        rotate: rotate,
-        leafCount: 4
+        special: true
     };
     return clover;
 }
@@ -64,13 +65,12 @@ function create4Clovers(x, y, size, rotate) {
 /**
  * created 3 leaf clovers
  */
-function create3Clovers(x, y, size, rotate) {
+function create3Clovers(x, y, size) {
     let clover = {
         x: x,
         y: y,
         size: size,
-        rotate: rotate,
-        leafCount: 3
+        special: false
     };
     return clover;
 
@@ -87,7 +87,7 @@ function draw() {
 
     for (let clover of clovers) {
         //draws both clovers, but also distinguishes that theyre different
-        if (clover.leafCount === 4) {
+        if (clover.special === true) {
             draw4Clovers(clover);
         } else {
             draw3Clovers(clover);
@@ -101,7 +101,8 @@ function draw() {
 function changeCanvas() {
 
     //makes the canvas become smaller
-    // canvasY.size -= canvasY.decrease
+    canvasY.size -= canvasY.decrease
+
     resizeCanvas(canvasX, canvasY.size)
 }
 
@@ -118,14 +119,7 @@ function draw4Clovers(clover) {
     fill("#0a5116")
     //top right leaf
     rotate(clover.rotate)
-    ellipse(clover.x, clover.y, clover.size, clover.size - 15)
-    //top left leaf
-    rotate(0)
-    ellipse(clover.x + clover.size - 16, clover.y, clover.size, clover.size - 15)
-    //bottom right leaf
-    ellipse(clover.x + 5, clover.y + 60, clover.size, clover.size - 15)
-    //bottom left leaf
-    ellipse(clover.x + 80, clover.y + 60, clover.size, clover.size - 15)
+    ellipse(clover.x, clover.y, clover.size, clover.size)
     pop();
 
 }
@@ -142,11 +136,7 @@ function draw3Clovers(clover) {
     fill("#219634")
     //top right leaf
     rotate(clover.rotate)
-    ellipse(clover.x + 40, clover.y, clover.size, clover.size - 15)
-    //bottom right leaf
-    ellipse(clover.x + 5, clover.y + 60, clover.size, clover.size - 15)
-    //bottom left leaf
-    ellipse(clover.x + 80, clover.y + 60, clover.size, clover.size - 15)
+    ellipse(clover.x, clover.y, clover.size, clover.size)
     pop();
 
 
@@ -157,17 +147,16 @@ function draw3Clovers(clover) {
  * pressing with your mouse will collect the clover
  */
 function mousePressed() {
-    //check all the four leaf clovers
-    for (let clover of clovers) {
-        if (clover.leafCount === 4) {
-            const d = dist(mouseX, mouseY, clover.x, clover.y);
-            if (d > clover.size / 2) {
-                //this 4 leaf clover was clicked
-                //get the index of this clover to know which was clicked
-                const index = clovers.indexOf(clover);
-                //splice it out of the array
-                clovers.splice(index, 1);
-            }
+    // Check topmost clover first.
+    for (let cloverIndex = clovers.length - 1; cloverIndex >= 0; cloverIndex--) {
+        //for both clovers
+        const clover = clovers[cloverIndex];
+        const distance = dist(mouseX, mouseY, clover.x, clover.y);
+
+        if (distance < clover.size / 2) {
+            clovers.splice(cloverIndex, 1);
+            //adding a break makes sure it only selects one clover
+            break;
         }
     }
 }
