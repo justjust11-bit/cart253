@@ -1,5 +1,5 @@
 /**
- * Round Clovers
+ * Round Clover Hunt
  * Justine Cormier
  * 
  * Try collecting as many of the dark (special) clovers as you can before the canvas collapses!
@@ -21,7 +21,7 @@ let gameOver = false;
 let canvasX = 1080;
 let canvasY = {
     size: 800,
-    decrease: 1
+    decrease: 1.2
 }
 
 //total amount of clovers to be spawned on the screen
@@ -49,11 +49,11 @@ function spawnClovers() {
     for (let cloverIndex = 0; cloverIndex < cloverAmount; cloverIndex++) {
         //10% chance of it being a special clover
         if (random(1) < 0.1) {
-            clovers.push(createSpecialClovers(random(10, 1060), (random(20, 750)), 100,))
+            clovers.push(createSpecialClovers(random(10, 1060), (random(20, 730)), 100,))
             //counts how many special clovers were spawned
             totalSpecialClovers++;
         } else {
-            clovers.push(createNormalClovers(random(10, 1060), (random(20, 750)), 100,))
+            clovers.push(createNormalClovers(random(10, 1060), (random(20, 730)), 100,))
         }
     }
 
@@ -124,7 +124,12 @@ function changeCanvas() {
 
         resizeCanvas(canvasX, canvasY.size)
 
-        if (canvasY.size <= 50) {
+        //close the canvas up a little faster at the end
+        if (canvasY.size <= 100) {
+            canvasY.decrease += 0.1
+        }
+        //if the canvas y size is 20 pixels or less close it up and go to gameover screen
+        if (canvasY.size <= 20) {
             inGame = false;
             gameOver = true;
 
@@ -132,6 +137,7 @@ function changeCanvas() {
     }
 }
 
+//draws the background color for ingame
 function drawInGame() {
     push();
     background("#355e41");
@@ -141,17 +147,13 @@ function drawInGame() {
  * draws the Clovers where things pop out of
  */
 function drawSpecialClovers(clover) {
-
     push();
-    angleMode(DEGREES)
     stroke("#051f0b")
     strokeWeight(5)
     fill("#0a5116")
     //top right leaf
-    rotate(clover.rotate)
     ellipse(clover.x, clover.y, clover.size, clover.size)
     pop();
-
 }
 
 /**
@@ -160,24 +162,19 @@ function drawSpecialClovers(clover) {
 function drawNormalClovers(clover) {
 
     push();
-    angleMode(DEGREES)
     stroke("#051f0b")
     strokeWeight(5)
     fill("#219634")
     //top right leaf
-    rotate(clover.rotate)
     ellipse(clover.x, clover.y, clover.size, clover.size)
     pop();
-
-
-
 }
 
 /**
  * pressing with your mouse will collect the clover
  */
 function mousePressed() {
-    // Check topmost clover first.
+    // check topmost clover first
     for (let cloverIndex = clovers.length - 1; cloverIndex >= 0; cloverIndex--) {
         //for both clovers
         const clover = clovers[cloverIndex];
@@ -210,6 +207,7 @@ function drawGameOver() {
         fill("white")
         textAlign(CENTER, CENTER)
         textSize(50)
+        //you collected how many special clovers out of how many there were on screen
         text("You collected " + collectedClovers + " out of " + totalSpecialClovers + " special clovers", width / 2, height / 2)
         pop();
     }
