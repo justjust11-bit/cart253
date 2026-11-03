@@ -58,3 +58,15 @@ function draw() {
     }
 
 }
+
+
+//I made this gradient, (justine), but you can comment this out to see the same result that clara has on her github
+function bkgGradient() {
+    for (let x = 0; x <= width; x++) {
+        let strokeColor3 = map(x, 0, width, 0, 255);
+        stroke(strokeColor3);
+        line(x, 0, x, height);
+
+
+    }
+}
