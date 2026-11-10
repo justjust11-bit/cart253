@@ -1,8 +1,8 @@
 /**
- * Terrible New Car
- * Pippin Barr
+ * New art form
+ * Justine Cormier
  * 
- * A program to generate new car model names using dinosaurs.
+ * A program to generate new art form using technology.
  * 
  * Uses:
  * Darius Kazemi's corpora repository
