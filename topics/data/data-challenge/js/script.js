@@ -11,26 +11,36 @@
 
 "use strict";
 
-let carData = undefined;
-let dinosaurData = undefined;
+let artData = undefined;
+let technoData = undefined;
 let langData = undefined;
 let lang = "fr";
+let stringData = undefined;
+
+// let randomArt = undefined;
+// let randomTechno = undefined;
 
 // Starts with the instruction
-let carName = "Click to generate a car name.";
+let artName = "Click to generate a new art form.";
 
 /**
  * Load the car and dinosaur data
  */
-function preload() {
-
+async function preload() {
+    artData = await loadJSON("./assets/json/art.json");
+    technoData = await loadJSON("./assets/json/techno.json");
+    strings = await loadJSON(" ./assets/json/lang.json");
 }
 
 /**
  * Create the canvas
 */
-function setup() {
+async function setup() {
     createCanvas(600, 400);
+
+    await preload();
+
+
 }
 
 /**
@@ -42,8 +52,8 @@ function draw() {
     push();
     fill("pink");
     textAlign(CENTER, CENTER);
-    textSize(32);
-    text(carName, width / 2, height / 2);
+    textSize(30);
+    text(artName, 50, -50, 500, 500);
     pop();
 }
 
@@ -51,5 +61,12 @@ function draw() {
  * Generate a new car name
  */
 function mousePressed() {
+    //randomize the art array
+
+    const randomArt = random(artData.isms)
+    const randomTechno = random(technoData.technos)
+
+    artName = randomArt + " " + randomTechno
+
 
 }
