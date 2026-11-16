@@ -8,6 +8,7 @@
 
 "use strict";
 
+let playing = true
 
 let bkg = {
     dark: "#070931",
@@ -35,8 +36,8 @@ let userCircle = {
 
 let moving = true
 let lost = false
-
-let points = 0
+//start at -1 because the duck isnt moving so its detected as you lost once
+let timesLost = -1
 
 
 async function preload() {
@@ -67,8 +68,8 @@ function draw() {
     userCircle.x = mouseX
     userCircle.y = mouseY
 
-    checkIfInside()
-    pointIncrease();
+    checkIfInside();
+    timesFailed();
     checkWin();
 
 
@@ -112,21 +113,15 @@ function moveCircle() {
 }
 
 
-function pointIncrease() {
+function timesFailed() {
 
     duck.progression += duck.x - duck.previousX
 
     push();
     fill("white")
-    textSize(100)
-    text(points, 150, 150)
+    textSize(50)
+    text("Failed attempts: " + timesLost, 150, 150)
     pop();
-
-
-    if (duck.progression > 100) {
-        duck.progression = 0
-        points += 1
-    }
 
 }
 
@@ -139,29 +134,40 @@ function checkIfInside() {
     push()
     fill(color(255, 255, 255))
     if (d > threshold) {
-        moving = false
-        lost = true
-        gameOver()
+        if (!lost) {
+            moving = false
+            lost = true
+
+            gameOver()
+        }
     } else {
         moving = true
+        lost = false
     }
     pop()
-
-    //check if that distance is smaller than their two radii
 
 }
 
 function gameOver() {
-    if (lost === true) {
+    if (lost === true && moving === false) {
         duck.x = 50
         duck.previousX = duck.x
         duck.y = 500
+        timesLost += 1
     }
+
+
+
 }
 
+
+/**
+ * checks if passed through canvas and displays winning message
+ */
 function checkWin() {
     if (duck.x > width) {
         fill(150)
-        text("YOU WON", width / 2, height / 2)
+        textSize(100)
+        text("YOU WON", width / 4, height / 2)
     }
 }
