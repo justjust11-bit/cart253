@@ -30,7 +30,7 @@ async function preload() {
 */
 async function setup() {
     createCanvas(1000, 610)
-    background("#5a5171")
+    background("#1e1b26")
     await preload();
 
 
@@ -53,7 +53,7 @@ function drawBeginningScreen() {
 
         push();
         noStroke();
-        fill("#3a3d46")
+        fill("#637372")
         rect(0, 330, width, 320)
         pop();
 
@@ -61,7 +61,7 @@ function drawBeginningScreen() {
         push();
         noStroke();
         fill("#c14d4d")
-        rect(width / 2 - 200, height / 2 - 220, 500, 400, 180, 180, 20, 20)
+        rect(width / 2 - 200, height / 2 - 220, 500, 400, 180, 180, 15, 15)
         fill("#978586")
         rect(width / 2 - 100, 10, 300, 200, 300, 300, 100, 100)
         pop();
