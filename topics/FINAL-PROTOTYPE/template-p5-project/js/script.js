@@ -122,10 +122,22 @@ function drawRaft() {
     angleMode(DEGREES)
     rotate(1)
     stroke("#3d1f0c")
-    fill("#5e4829")
+    fill("#553b1e")
     rect(raft.x - 3, raft.y, raft.w + 5, raft.h + 20, 20, 20, 10, 10)
-    fill("#a78b64")
+    fill("#977c56")
     rect(raft.x, raft.y, raft.w, raft.h, 20)
+    fill("#dbd3d3")
+    //bottom ball
+    ellipse(raft.x + 100, raft.y + 20, raft.w - 100, raft.h, 20)
+    //middle ball
+    ellipse(raft.x + 100, raft.y - 30, raft.w - 120, raft.h - 20, 20)
+    //top ball
+    ellipse(raft.x + 100, raft.y - 70, raft.w - 140, raft.h - 40, 20)
+
+    //eyes
+    fill("black")
+    ellipse(raft.x + 90, raft.y - 80, raft.w - 190, raft.h - 90, 20)
+    ellipse(raft.x + 120, raft.y - 80, raft.w - 190, raft.h - 90, 20)
     pop();
 }
 
