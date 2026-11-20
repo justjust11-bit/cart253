@@ -12,6 +12,15 @@
 
 let waves = []
 
+let raft = {
+    x: 100,
+    y: 500,
+    w: 200,
+    h: 100,
+    speed: 1,
+    acceleration: undefined
+}
+
 
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
@@ -19,18 +28,18 @@ let waves = []
 function setup() {
     createCanvas(1000, 1000)
 
-    //if there are less than 20 waves, increase the amount
-    for (let i = 0; i < 20; i++) {
+    //if there are less than 12 waves, increase the amount
+    for (let i = 0; i < 12; i++) {
         //.push adds the following to the array
         waves.push({
             x: random(0, width),
-            y: random(270, height),
+            y: random(350, height),
             w: random(40, 120),
-            h: random(1, 5),
+            h: random(1, 4),
             fill: random(200, 255),
             opacity: random(50, 255),
-            speed: 1,
-            acceleration: random(0, 10),
+            speed: -4,
+            acceleration: random(-2, -10),
         })
 
     }
@@ -38,14 +47,15 @@ function setup() {
 
 
 /**
- * draws a lake, with waves flowing down (to the right)
+ * draws a lake, with waves flowing up, because we are moving forwards (wave go to the left)
 */
 function draw() {
     background("#3b409d")
     drawBkg();
     drawWaves();
     moveWaves();
-
+    drawRaft();
+    moveRaft();
 }
 
 /**
@@ -61,7 +71,7 @@ function drawBkg() {
     strokeWeight(20)
     angleMode(DEGREES)
     rotate(1)
-    rect(-20, -50, width + 50, 300)
+    rect(-20, -50, width + 50, 380)
     pop();
 }
 
@@ -85,15 +95,54 @@ function drawWaves() {
 
 }
 
+
+/**
+ * moves the waves to the left, and makes them loop
+ */
 function moveWaves() {
 
     for (let wave of waves) {
         //acceleration randomizes the speed
         wave.x += wave.speed + wave.acceleration
 
-        // if the wave goes past the width, it comes back from the left
-        if (wave.x > width + wave.w) {
-            wave.x = -wave.w;
+        // if the wave goes past the width, it comes back from the right
+        if (wave.x < 0 - wave.w) {
+            wave.x = width + wave.w;
         }
     }
+}
+
+/**
+ * draws the raft, and the player
+ */
+
+function drawRaft() {
+
+    push();
+    angleMode(DEGREES)
+    rotate(1)
+    stroke("#3d1f0c")
+    fill("#5e4829")
+    rect(raft.x - 3, raft.y, raft.w + 5, raft.h + 20, 20, 20, 10, 10)
+    fill("#a78b64")
+    rect(raft.x, raft.y, raft.w, raft.h, 20)
+    pop();
+}
+
+/**
+ * moves the raft when you press s or w
+ */
+function moveRaft() {
+
+    let acceleration = random(2, 6)
+    //w
+    if (keyCode === 87) {
+        raft.y -= raft.speed + acceleration
+    }
+
+    //s
+    if (keyCode === 83) {
+        raft.y += raft.speed + acceleration
+    }
+    raft.y = constrain(raft.y, 330, height - raft.h - 20)
 }
