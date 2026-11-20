@@ -9,15 +9,15 @@
 "use strict";
 
 
+
 let wave = {
     x: undefined,
     y: undefined,
-    x2: 270,
-    y2: 505,
-    fill: (250, 255),
+    h: undefined,
+    w: undefined,
+    fill: undefined,
     speed: 1,
-    acceleration: 2
-
+    acceleration: undefined
 }
 
 /**
@@ -25,6 +25,15 @@ let wave = {
 */
 function setup() {
     createCanvas(1000, 1000)
+
+    wave.x = random(0, width)
+    wave.y = random(300, height)
+    wave.h = random(1, 5)
+    wave.w = random(50, 100)
+    wave.fill = random(100, 255)
+    wave.opacity = random(0, 255)
+    wave.acceleration = random(0, 10)
+
 }
 
 
@@ -55,19 +64,32 @@ function drawBkg() {
     pop();
 }
 
+/**
+ * draws the white lines that look like waves
+ * the lines are actually ellipses, because its easier to work with than lines
+ */
 function drawWaves() {
 
-    let x = random(200,)
+
 
     push();
-    stroke(wave.fill)
-    strokeWeight(10)
-    line(wave.x, wave.y, wave.x2, wave.y2)
+    stroke(wave.fill, wave.opacity)
+    strokeWeight(3)
+    angleMode(DEGREES)
+    rotate(4)
+    ellipse(wave.x, wave.y, wave.w, wave.h)
+    // line(wave.x, wave.y, wave.x2, wave.y2)
     pop();
+
 }
 
 function moveWaves() {
 
-    wave.x2 += wave.speed;
-    wave.x += wave.speed
+
+    wave.x += wave.speed + wave.acceleration
+
+    // if the wave goes past the width, it comes back from the left
+}
+if (wave.x > width + wave.w) {
+    wave.x = -wave.w;
 }
