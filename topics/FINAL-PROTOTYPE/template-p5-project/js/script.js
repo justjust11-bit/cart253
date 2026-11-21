@@ -15,14 +15,10 @@ let waves = []
 //array for the lilypads
 let lilypads = []
 
-let raft = {
-    x: 100,
-    y: 500,
-    w: 200,
-    h: 100,
-    speed: 1,
-    acceleration: undefined
-}
+let raft = undefined;
+
+let collided = false
+
 
 
 /**
@@ -31,12 +27,16 @@ let raft = {
 function setup() {
     createCanvas(1000, 1000)
 
+    //creates the raft
+    raft = createRaft(100, 500, 200, 100, 1)
+
+    //creates the waves
     //if there are less than 12 waves, keep adding more...
     for (let i = 0; i < 12; i++)
         //.push adds the following to the array
         waves.push(createWave());
 
-
+    //creates the lilypads
     //if there are less than 3 lilypads, increase the amount
     for (let i = 0; i < 3; i++) {
         //increase the amount of lilypads
@@ -45,6 +45,16 @@ function setup() {
 
 }
 
+function createRaft(x, y, w, h, speed) {
+    let raft = {
+        x: x,
+        y: y,
+        w: w,
+        h: h,
+        speed: speed,
+    }
+    return raft;
+}
 /**
  * creates the waves variables
  */
@@ -63,9 +73,7 @@ function createWave() {
 
     }
     return waves; //sends this info to setup
-
 }
-
 /**
  * creates the lilypad variables
  */
@@ -83,9 +91,6 @@ function createLilypad() {
     }
     return lilies;
 }
-
-
-
 /**
  * draws a lake, with waves flowing up, because we are moving forwards (wave go to the left)
 */
@@ -101,8 +106,13 @@ function draw() {
 
     drawRaft();
     moveRaft();
-}
 
+    checkCollision();
+
+    displayLoss();
+
+
+}
 /**
  * draws the "shore", and the sky
  */
@@ -119,7 +129,6 @@ function drawBkg() {
     rect(-20, -50, width + 50, 380)
     pop();
 }
-
 /**
  * draws the white lines that look like waves
  * the lines are actually ellipses, because its easier to work with than lines
@@ -139,8 +148,6 @@ function drawWaves() {
     }
 
 }
-
-
 /**
  * moves the waves to the left, and makes them loop
  */
@@ -163,8 +170,6 @@ function moveWaves() {
         }
     }
 }
-
-
 /**
  * draws the lilypads
  */
@@ -183,8 +188,6 @@ function drawLilypads() {
     }
 
 }
-
-
 /**
  * moves the lilypads to the left, and makes them loop
  */
@@ -204,10 +207,6 @@ function moveLilypads() {
         }
     }
 }
-
-
-
-
 /**
  * draws the raft, and the player (for now, snowman)
  */
@@ -241,7 +240,6 @@ function drawRaft() {
     ellipse(raft.x + 120, raft.y - 80, raft.w - 190, raft.h - 90, 20)
     pop();
 }
-
 /**
  * moves the raft when you press s or w
  */
@@ -258,4 +256,28 @@ function moveRaft() {
         raft.y += raft.speed + acceleration
     }
     raft.y = constrain(raft.y, 330, height - raft.h - 20)
+}
+/**
+ * checks if the lilypads collided with the player raft
+ */
+function checkCollision() {
+    const raftFrontX = raft.x + raft.w;
+    const raftFrontY = raft.y + raft.h / 2;
+
+    for (let lilypad of lilypads) {
+        const d = dist(raftFrontX, raftFrontY, lilypad.x, lilypad.y)
+
+        if (d < raft.h / 2 + lilypad.w / 2) {
+            collided = true
+        }
+    };
+
+}
+
+function displayLoss() {
+    if (collided === true) {
+        textSize(50)
+        text("You lost BOOOOOO", width / 2, height / 2)
+        raft.x -= 4
+    }
 }
