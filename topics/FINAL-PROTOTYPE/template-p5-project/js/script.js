@@ -88,6 +88,8 @@ function createLilypad() {
         fill: "#063b12",
         speed: -4,
         acceleration: random(-2, -8),
+        //the cut of the lilypad (pacman)
+        cutAngle: random(0, 360)
     }
     return lilies;
 }
@@ -183,7 +185,8 @@ function drawLilypads() {
         fill(lilypad.fill)
         angleMode(DEGREES)
         rotate(1)
-        ellipse(lilypad.x, lilypad.y, lilypad.w, lilypad.h)
+        // ellipse(lilypad.x, lilypad.y, lilypad.w, lilypad.h)
+        arc(lilypad.x, lilypad.y, lilypad.w, lilypad.h, lilypad.cutAngle, lilypad.cutAngle + 330, PIE);
         pop();
     }
 
