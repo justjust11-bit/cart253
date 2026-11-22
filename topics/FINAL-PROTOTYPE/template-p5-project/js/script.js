@@ -10,14 +10,21 @@
 
 
 //array for the waves/current
-let waves = []
+let waves = [];
 
 //array for the lilypads
-let lilypads = []
+let lilypads = [];
+
+let orbs = [];
+let orb1 = undefined
+
+
 
 let raft = undefined;
 
 let collided = false
+
+
 
 
 
@@ -42,6 +49,15 @@ function setup() {
         //increase the amount of lilypads
         lilypads.push(createLilypad());
     }
+
+    //adds the orbs to the index, with their colours and letter
+    orbs.push(createOrb("pink", "A"))
+    orbs.push(createOrb("red", "L"))
+    orbs.push(createOrb("blue", "L"))
+    orbs.push(createOrb("green", "O"))
+
+
+
 
 }
 
@@ -81,7 +97,9 @@ function createLilypad() {
     //LILYPADS
 
     const lilies = {
-        x: random(0, width),
+        //x is at 600 so the player has a head start and sees the lilypads come forward
+        //when it loops itll loop after x width
+        x: random(600, width),
         y: random(370, height),
         w: random(60, 80),
         h: random(55, 80),
@@ -92,6 +110,20 @@ function createLilypad() {
         cutAngle: random(0, 360)
     }
     return lilies;
+}
+
+//** creates the orbs (might include letters) 
+function createOrb(fill, text) {
+    let orb = {
+        //itll first spawn at the width, later ill make it spawn after
+        x: width,
+        y: random(370, height),
+        size: 80,
+        speed: -5,
+        fill: fill,
+        text: text
+    }
+    return orb;
 }
 /**
  * draws a lake, with waves flowing up, because we are moving forwards (wave go to the left)
@@ -105,6 +137,9 @@ function draw() {
 
     drawLilypads();
     moveLilypads();
+
+    drawOrbs();
+    moveOrbs();
 
     drawRaft();
     moveRaft();
@@ -260,6 +295,45 @@ function moveRaft() {
     }
     raft.y = constrain(raft.y, 330, height - raft.h - 20)
 }
+
+/**
+ * draws the lilypads
+ */
+function drawOrbs() {
+    //takes the variables from orbs and applies it to each individual orb
+    //draws the orbs
+    for (let orb of orbs) {
+        push();
+        stroke(orb.fill)
+        strokeWeight(3)
+        fill(orb.fill)
+        ellipse(orb.x, orb.y, orb.size)
+        textAlign(CENTER, CENTER)
+        text(orb.text, orb.x, orb.y)
+        pop();
+    }
+
+}
+/**
+ * moves the orbs to the left, and makes them loop
+ */
+function moveOrbs() {
+
+    for (let orb of orbs) {
+        //makes all orbs move, some faster than others ( because of random acceleration)
+        orb.x += orb.speed;
+
+        if (orb.x < 0 - orb.w) {
+            //when the orbs leave the canvas, their y,w,and h gets re randomized
+            orb.y = random(370, height);
+            orb.size
+            //respawn at the size twice the canvas
+            orb.x = width + 1000;
+        }
+    }
+}
+
+
 /**
  * checks if the lilypads collided with the player raft
  */
