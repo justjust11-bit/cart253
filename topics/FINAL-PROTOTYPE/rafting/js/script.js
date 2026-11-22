@@ -19,7 +19,6 @@ let orbs = [];
 let orb1 = undefined
 
 
-
 let raft = undefined;
 
 let collided = false
