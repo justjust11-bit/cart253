@@ -6,54 +6,84 @@
 */
 "use strict";
 
+let hole = undefined;
+let holes = []
+
+
+
+//seconds that passed
+let sec = undefined
 
 
 let board = []
 
-let holeBlack = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+// let holeBlack = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 let colors = [
+    "#000000",
     "#675017",
     "#361904",
-    "#ff0000"
+    "#ff0000",
+    "#000000",
+    "#000000",
+    "#000000",
+    "#000000",
+    "#000000",
+    "#000000",
 ]
 
-let holeFill = colors[0];
+// let holeFill = colors[0];
+
+
+let bkg = {
+    grey: "#959292",
+    pink: "pink"
+}
 
 /**
  * creates the canvas
 */
 function setup() {
     createCanvas(1000, 1000)
+    createHoles()
 
-
-}
-
-// function createHole() {
-//     let hole = {
-//         x: 200,
-//         y: 
-//     }
-// }
-
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
-function draw() {
-    background(100)
-    drawHoles()
 
 
 }
 
-function drawHoles() {
+function createHole(x, y, size, gap) {
+    let hole = {
+        x: x,
+        y: y,
+        size: size,
+        gap: gap,
+        fill: 0
+    }
+    startTimer(hole)
 
-    // let numHoles = map(mouseY, 0, height, 0, 9)
+    return hole
+}
+
+function startTimer(hole) {
+
+
+    setTimeout(() => {
+        hole.fill = random(colors);
+        setTimeout(() => {
+            hole.fill = "black";
+            //restarts the function over and over
+            startTimer(hole)
+        }, random(100, 2000));
+
+    }, random(1000, 2000));
+}
+
+function createHoles() {
+
     let x = 200 // restart from x = 200 when starting a new line
     let y = 400
     let size = 120
     let gap = 150
-    let t = 0
 
 
     // use two for loops to fill the board
@@ -66,25 +96,67 @@ function drawHoles() {
 
         for (let j = 0; j < 5; j++) {
             x = 200 + j * gap
-            noStroke()
-            fill(random(holeBlack))
-            ellipse(x, y, size)
-            row.push(t++)
+
+            holes.push(createHole(x, y, size, gap, colors.black))
         }
     }
-
-    fill(0)
-    textSize(50)
-    text(board[1][0], 100, 100)
 }
 
-function mouseClicked() {
+/**
+ * draws the holes
+*/
+function draw() {
+    background(bkg.grey)
+    // timePassed()
 
-    push();
-    let p = random(colors)
+    drawHoles()
 
-    holeBlack = p
-    pop();
+}
+
+
+/**
+ * time passed
+ */
+
+function timePassed() {
+
+    let sec = millis()
+
+    if (sec > 1000) {
+        randomColor()
+    }
+
+}
+
+function drawHoles() {
+
+
+
+    //got help from michael for this part
+    console.log(holes)
+    for (let hole of holes) {
+        push();
+        noStroke()
+        fill(hole.fill)
+        ellipse(hole.x, hole.y, hole.size)
+        pop()
+
+    }
+}
+
+
+/**
+ * randomizes the color of the holes
+ */
+
+function randomColor() {
+
+    colors[0] = random(colors)
+    bkg.grey = "pink"
+
+    for (let hole of holes) {
+        hole.fill = random(colors)
+    }
 
 }
 
