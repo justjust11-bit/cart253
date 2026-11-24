@@ -10,13 +10,22 @@
 
 let board = []
 
+let holeBlack = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+let colors = [
+    "#675017",
+    "#361904",
+    "#ff0000"
+]
+
+let holeFill = colors[0];
 
 /**
  * creates the canvas
 */
 function setup() {
     createCanvas(1000, 1000)
+
 
 }
 
@@ -46,6 +55,7 @@ function drawHoles() {
     let gap = 150
     let t = 0
 
+
     // use two for loops to fill the board
     for (let i = 0; i < 4; i++) {
         // create a new line
@@ -56,7 +66,8 @@ function drawHoles() {
 
         for (let j = 0; j < 5; j++) {
             x = 200 + j * gap
-            fill("black")
+            noStroke()
+            fill(random(holeBlack))
             ellipse(x, y, size)
             row.push(t++)
         }
@@ -65,6 +76,16 @@ function drawHoles() {
     fill(0)
     textSize(50)
     text(board[1][0], 100, 100)
+}
+
+function mouseClicked() {
+
+    push();
+    let p = random(colors)
+
+    holeBlack = p
+    pop();
+
 }
 
 
