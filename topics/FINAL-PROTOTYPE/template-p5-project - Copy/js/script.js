@@ -9,13 +9,21 @@
 let hole = undefined;
 let holes = []
 
-let points = 0
+let points = 1000
 
 //seconds that passed
 let sec = undefined
 
+//for strokeweight
+let outlineSize = 10
+
+let strokeFill = "#261f1f"
 
 let board = []
+
+let inGame = true;
+let gameLost = false;
+let gameWon = false;
 
 // let holeBlack = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -23,7 +31,7 @@ let colors = [
     "#c48d00",
     "#4c280d",
     "#4c280d",
-    "#ff0000",
+    "#cd0909",
     "#000000",
     "#000000",
     "#000000",
@@ -42,7 +50,11 @@ let colors = [
 
 let bkg = {
     grey: "#959292",
-    pink: "pink"
+    black: "black",
+    won: "blue",
+    lost: "red",
+    surprise: "green",
+    white: "#ffffff"
 }
 
 /**
@@ -87,7 +99,7 @@ function createHoles() {
 
     let x = 200 // restart from x = 200 when starting a new line
     let y = 400
-    let size = 120
+    let size = 140
     let gap = 150
 
 
@@ -111,26 +123,40 @@ function createHoles() {
  * draws the holes
 */
 function draw() {
-    background(bkg.grey)
-    // timePassed()
+    drawInGame()
 
-    drawHoles()
-    drawPoints()
 }
 
+function drawInGame() {
+    if (inGame === true) {
+        background(bkg.grey)
 
-// /**
-//  * time passed
-//  */
+        push();
+        textSize(50)
+        fill("white")
+        text("Reach 1010 points", width / 2, 100)
+        pop();
+        timePassed()
 
-// function timePassed() {
+        drawHoles()
+        drawPoints()
 
-//     let sec = millis()
 
-//     if (sec > 1000) {
-//         randomColor()
-//     }
-// }
+    }
+}
+
+/**
+ * time passed
+ */
+
+function timePassed() {
+
+    let sec = millis()
+
+    if (sec > 1000) {
+        bkg.grey = bkg.black
+    }
+}
 
 function drawHoles() {
 
@@ -138,7 +164,9 @@ function drawHoles() {
     console.log(holes)
     for (let hole of holes) {
         push();
+        // strokeWeight(outlineSize)
         noStroke()
+        // stroke(strokeFill)
         fill(hole.fill)
         ellipse(hole.x, hole.y, hole.size)
         pop()
@@ -155,32 +183,31 @@ function mousePressed() {
         if (d < hole.size / 2) {
             //if the hole is the golden one
             if (hole.fill === colors[0]) {
-                hole.size += 100
-                hole.fill = colors[6]
-                points += 5
+                // hole.size += 100
+                hole.fill = colors[6] //switch it back to a black colour, so the player cant click
+                //really fast twice and get double or triple points
+                points += 100
             }
 
             //if the hole is the brown one
-            if (hole.fill === colors[1] || colors[2]) {
+            else if (hole.fill === colors[1] || hole.fill === colors[2]) {
                 points += 2
-                hole.size -= 100
+                // hole.size -= 100
+                strokeFill = "pink"
                 hole.fill = colors[6]
+                hole.size -= 40
+
 
 
             }
 
             //if the hole is the red one
-            if (hole.fill === colors[3]) {
-                points -= 10
-                hole.size += 400
-                hole.fill = colors[6]
+            else if (hole.fill === colors[3]) {
+                drawGameLost()
+                inGame = false
+                gameLost = true
 
             }
-
-            //if the hole is black
-            else
-                hole.size = 120
-            points -= 1
 
 
         }
@@ -191,10 +218,51 @@ function mousePressed() {
 function drawPoints() {
 
     push()
-    fill("black")
+    fill("white")
     textSize(100)
     text(points, 200, 200)
     pop();
+
+    if (points === 1010) {
+        drawGameWon()
+        inGame = false
+        gameWon = true
+    }
+
+    if (points > 1010) {
+        inGame = false
+        drawSurprise()
+
+    }
+
+}
+
+function drawGameLost() {
+    background("red")
+    textSize(100)
+    fill("white")
+    text("you lost", width / 2, height / 2)
+
+
+}
+
+
+function drawGameWon() {
+
+    background("blue")
+    textSize(100)
+    fill("white")
+    text("you won", width / 2, height / 2)
+
+}
+
+function drawSurprise() {
+
+    background("#000000")
+
+    lerpColor("#000000", "#ffffff", 0.5)
+
+
 }
 
 
