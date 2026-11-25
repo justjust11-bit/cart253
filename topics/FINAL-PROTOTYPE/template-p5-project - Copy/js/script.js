@@ -9,7 +9,7 @@
 let hole = undefined;
 let holes = []
 
-
+let points = 0
 
 //seconds that passed
 let sec = undefined
@@ -20,9 +20,9 @@ let board = []
 // let holeBlack = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 let colors = [
-    "#000000",
-    "#675017",
-    "#361904",
+    "#c48d00",
+    "#4c280d",
+    "#4c280d",
     "#ff0000",
     "#000000",
     "#000000",
@@ -30,6 +30,11 @@ let colors = [
     "#000000",
     "#000000",
     "#000000",
+    "#000000",
+    "#000000",
+
+
+
 ]
 
 // let holeFill = colors[0];
@@ -73,9 +78,9 @@ function startTimer(hole) {
             hole.fill = "black";
             //restarts the function over and over
             startTimer(hole)
-        }, random(100, 2000));
+        }, random(500, 1300)); //time colored
 
-    }, random(1000, 2000));
+    }, random(500, 4000)); //time black
 }
 
 function createHoles() {
@@ -110,27 +115,24 @@ function draw() {
     // timePassed()
 
     drawHoles()
-
+    drawPoints()
 }
 
 
-/**
- * time passed
- */
+// /**
+//  * time passed
+//  */
 
-function timePassed() {
+// function timePassed() {
 
-    let sec = millis()
+//     let sec = millis()
 
-    if (sec > 1000) {
-        randomColor()
-    }
-
-}
+//     if (sec > 1000) {
+//         randomColor()
+//     }
+// }
 
 function drawHoles() {
-
-
 
     //got help from michael for this part
     console.log(holes)
@@ -145,20 +147,56 @@ function drawHoles() {
 }
 
 
-/**
- * randomizes the color of the holes
- */
-
-function randomColor() {
-
-    colors[0] = random(colors)
-    bkg.grey = "pink"
+function mousePressed() {
 
     for (let hole of holes) {
-        hole.fill = random(colors)
-    }
 
+        let d = dist(mouseX, mouseY, hole.x, hole.y)
+        if (d < hole.size / 2) {
+            //if the hole is the golden one
+            if (hole.fill === colors[0]) {
+                hole.size += 100
+                hole.fill = colors[6]
+                points += 5
+            }
+
+            //if the hole is the brown one
+            if (hole.fill === colors[1] || colors[2]) {
+                points += 2
+                hole.size -= 100
+                hole.fill = colors[6]
+
+
+            }
+
+            //if the hole is the red one
+            if (hole.fill === colors[3]) {
+                points -= 10
+                hole.size += 400
+                hole.fill = colors[6]
+
+            }
+
+            //if the hole is black
+            else
+                hole.size = 120
+            points -= 1
+
+
+        }
+
+    }
 }
+
+function drawPoints() {
+
+    push()
+    fill("black")
+    textSize(100)
+    text(points, 200, 200)
+    pop();
+}
+
 
 
 
